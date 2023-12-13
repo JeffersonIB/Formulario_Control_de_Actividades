@@ -148,6 +148,7 @@
     <Content Include="Pages\Forms\DonPatricio.aspx" />
     <Content Include="Pages\Forms\FormsV1.aspx" />
     <Content Include="Pages\Forms\FormsV2.aspx" />
+    <Content Include="Pages\Forms\FormsV3.aspx" />
     <Content Include="Pages\Forms\Formulario_Beneficio.aspx" />
     <Content Include="Pages\Forms\Formulario_Cosecha.aspx" />
     <Content Include="Pages\Forms\LasMinas.aspx" />
@@ -2434,6 +2435,13 @@
     </Compile>
     <Compile Include="Pages\Forms\FormsV2.aspx.designer.cs">
       <DependentUpon>FormsV2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Forms\FormsV3.aspx.cs">
+      <DependentUpon>FormsV3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Forms\FormsV3.aspx.designer.cs">
+      <DependentUpon>FormsV3.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Forms\Formulario_Beneficio.aspx.cs">
       <DependentUpon>Formulario_Beneficio.aspx</DependentUpon>

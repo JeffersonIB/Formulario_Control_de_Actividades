@@ -11,17 +11,8 @@ namespace IT_Finca.Pages.Forms
 {
 
 
-    public partial class FormsV2
+    public partial class FormsV3
     {
-
-        /// <summary>
-        /// Control lblFinca.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFinca;
 
         /// <summary>
         /// Control ScriptManager1.

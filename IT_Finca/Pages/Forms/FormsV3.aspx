@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="FormsV2.aspx.cs" Inherits="IT_Finca.Pages.Forms.FormsV2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="FormsV3.aspx.cs" Inherits="IT_Finca.Pages.Forms.FormsV3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
     Formuario V2_2
@@ -55,8 +55,8 @@
         </style>
     </head>
     <body>
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
+        <%--<div class="modal-dialog modal-xl" role="document">--%>
+            <%--<div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Agregar actividades V2_1 <strong>"<asp:Label CssClass="navbar-link" runat="server" ID="lblFinca"> </asp:Label>"</strong>
                     </h5>
@@ -64,7 +64,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body">--%>
                     <asp:ScriptManager ID="ScriptManager1" runat="server">
                     </asp:ScriptManager>
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -168,9 +168,9 @@
                             </td>
                         </tr>
                     </table>
-                </div>
-            </div>
-        </div>
+                <%--</div>
+            </div>--%>
+        <%--</div>--%>
     </body>
     </html>
 </asp:Content>

@@ -229,6 +229,18 @@ namespace IT_Finca.Pages.Test
             ddlProcesos.ClearSelection();
             ddlActividad1.ClearSelection();
             GetDataTable();
+            dt.Rows.Clear();
         }
+        //protected void EliminarTodasLasFilas_Click(object sender, EventArgs e)
+        //{
+        //    DataTable dt = (DataTable)Session["GridViewData"];
+
+        //    // Eliminar todas las filas
+        //    dt.Rows.Clear();
+
+        //    // Actualizar el GridView
+        //    BindGridView();
+        //}
+
     }
 }
