@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="FormsV2.aspx.cs" Inherits="IT_Finca.Pages.Forms.FormsV2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Formuario V2_2
+    Formuario V2
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
