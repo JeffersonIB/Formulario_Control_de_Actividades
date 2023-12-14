@@ -244,6 +244,11 @@
                                         <asp:GridView ID="GridViewCalificaciones" runat="server" AutoGenerateColumns="False" OnRowCreated="GridViewCalificaciones_RowCreated">
                                             <Columns>
                                                 <asp:BoundField DataField="Id_Empleado" HeaderText="ID Proveedor" Visible="false" />
+                                                <asp:TemplateField HeaderText="Id_Empleado" ItemStyle-CssClass="hidden-column" Visible="false" >
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblIdEmpleado" runat="server" Text='<%# Eval("Id_Empleado") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:BoundField DataField="Nom_Ape" HeaderText="Nombre proveedor" />
                                                 <asp:TemplateField HeaderText="Tipo Pago">
                                                     <ItemTemplate>
@@ -258,7 +263,7 @@
                                                             ControlToValidate="txtCantidad1"
                                                             ErrorMessage="!=0"
                                                             ForeColor="Red"
-                                                            ValidationGroup="Validate"
+                                                            ValidationGroup="Validate2"
                                                             Display="Dynamic"
                                                             InitialValue="0">
                                                         </asp:RequiredFieldValidator>
@@ -283,7 +288,7 @@
                         <tr>
                             <td>
                                 <div class="ml-auto">
-                                    <asp:Button ID="Insertar" runat="server" class="btn btn-round btn-success" Text="Insertar" ValidationGroup="Validate" OnClick="Insertar_Click" Visible="false" />
+                                    <asp:Button ID="Insertar" runat="server" class="btn btn-round btn-success" Text="Insertar" ValidationGroup="Validate2" OnClick="Insertar_Click" Visible="false" />
                                 </div>
                             </td>
                         </tr>

@@ -225,8 +225,8 @@ namespace IT_Finca.Pages.Forms
             bool ddlActividad2Selected = ddlActividad2.SelectedIndex > 0;
             bool ddlActividad3Selected = ddlActividad3.SelectedIndex > 0;
             // Mostrar u ocultar las columnas según las selecciones
-            GridViewCalificaciones.Columns[4].Visible = ddlActividad2Selected; // Índice de la columna "Cantidad2"
-            GridViewCalificaciones.Columns[5].Visible = ddlActividad3Selected; // Índice de la columna "Cantidad3"
+            GridViewCalificaciones.Columns[5].Visible = ddlActividad2Selected; // Índice de la columna "Cantidad2"
+            GridViewCalificaciones.Columns[6].Visible = ddlActividad3Selected; // Índice de la columna "Cantidad3"
             ViewState["EmpleadosDataTable"] = dt; // Guardar DataTable en ViewState
             Insertar.Visible = true;
         }
@@ -258,41 +258,39 @@ namespace IT_Finca.Pages.Forms
             {
                 foreach (GridViewRow row in GridViewCalificaciones.Rows)
                 {
-                    
-                        DropDownList ddlTipo_Actividad = (DropDownList)row.FindControl("ddlTipo_Actividad");
-                        TextBox txtCantidad1 = (TextBox)row.FindControl("txtCantidad1");
-                        TextBox txtCantidad2 = (TextBox)row.FindControl("txtCantidad2");
-                        TextBox txtCantidad3 = (TextBox)row.FindControl("txtCantidad3");
-                        int idEmpleado = Convert.ToInt32(row.Cells[0].Text);
-                        string nomApe = row.Cells[1].Text;
-
-                        SqlCommand cmd = new SqlCommand("SP_AG_FNC00600_2", con);
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = Session["Id_Finca"].ToString();
-                        cmd.Parameters.Add("@Id_Empleado", System.Data.SqlDbType.Int).Value = 2;
-                        cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = 2;
-                        cmd.Parameters.Add("@Id_Proceso", System.Data.SqlDbType.Int).Value = 2;
-                        cmd.Parameters.Add("@Id_Actividad1", System.Data.SqlDbType.Int).Value = 2;
-                        cmd.Parameters.Add("@Id_Actividad2", System.Data.SqlDbType.Int).Value = 2;
-                        cmd.Parameters.Add("@Id_Actividad3", System.Data.SqlDbType.Int).Value = 2;
-                        cmd.Parameters.Add("@Id_Tipo_Actividad1", System.Data.SqlDbType.Int).Value = 2;
-                        cmd.Parameters.Add("@Cantidad1", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad1.Text);
-                        cmd.Parameters.Add("@Cantidad2", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad2.Text);
-                        cmd.Parameters.Add("@Cantidad3", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad3.Text);
-                        cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = Session["Id_Empresa"].ToString();
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                    
+                    //int idEmpleado = Convert.ToInt32(row.Cells[0].Text);
+                    int idEmpleado = Convert.ToInt32((row.FindControl("lblIdEmpleado") as Label)?.Text);
+                    string nomApe = row.Cells[1].Text;
+                    DropDownList ddlTipo_Actividad = (DropDownList)row.FindControl("ddlTipo_Actividad");
+                    TextBox txtCantidad1 = (TextBox)row.FindControl("txtCantidad1");
+                    TextBox txtCantidad2 = (TextBox)row.FindControl("txtCantidad2");
+                    TextBox txtCantidad3 = (TextBox)row.FindControl("txtCantidad3");
+                    SqlCommand cmd = new SqlCommand("SP_AG_FNC00600_2", con);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Finca"]);
+                    cmd.Parameters.Add("@Id_Empleado", System.Data.SqlDbType.Int).Value = idEmpleado;
+                    cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlLotes.Text);
+                    cmd.Parameters.Add("@Id_Proceso", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlProcesos.Text);
+                    cmd.Parameters.Add("@Id_Actividad1", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad1.Text);
+                    cmd.Parameters.Add("@Id_Actividad2", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad2.Text);
+                    cmd.Parameters.Add("@Id_Actividad3", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad3.Text);
+                    cmd.Parameters.Add("@Id_Tipo_Actividad1", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlTipo_Actividad.SelectedValue);
+                    cmd.Parameters.Add("@Cantidad1", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad1.Text);
+                    cmd.Parameters.Add("@Cantidad2", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad2.Text);
+                    cmd.Parameters.Add("@Cantidad3", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad3.Text);
+                    cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Empresa"]);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();                    
+                    Insertar.Visible = false;
+                    Response.Redirect("~/Pages/Forms/FormsV2.aspx");
                 }
             }
             catch (Exception)
             {
-                //throw;
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
                     "swal('Error!', 'Error en validación de datos!', 'error')", true);
             }
         }
-
     }
 }
