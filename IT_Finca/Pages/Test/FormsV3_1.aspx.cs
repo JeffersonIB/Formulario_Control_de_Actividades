@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace IT_Finca.Pages.Forms
+namespace IT_Finca.Pages.Test
 {
-    public partial class FormsV2 : System.Web.UI.Page
+    public partial class FormsV3_1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                lblFinca.Text = Session["Finca"].ToString();
+                //lblFinca.Text = Session["Finca"].ToString();
                 CargarLotes();
-                CargarEmpleados();
             }
             else
             {
@@ -78,11 +76,11 @@ namespace IT_Finca.Pages.Forms
         protected void ddlProcesos_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             ddlActividad1.ClearSelection();
-            ddlActividad2.ClearSelection();
-            ddlActividad3.ClearSelection();
+            //ddlActividad2.ClearSelection();
+            //ddlActividad3.ClearSelection();
             CargarActividad1(long.Parse(ddlProcesos.SelectedValue));
-            CargarActividad2(long.Parse(ddlProcesos.SelectedValue));
-            CargarActividad3(long.Parse(ddlProcesos.SelectedValue));
+            //CargarActividad2(long.Parse(ddlProcesos.SelectedValue));
+            //CargarActividad3(long.Parse(ddlProcesos.SelectedValue));
         }
         void CargarActividad1(long IdProceso)
         {
@@ -109,124 +107,104 @@ namespace IT_Finca.Pages.Forms
         {
 
         }
-        void CargarActividad2(long IdProceso)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00400", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
-                ddlActividad2.Items.Clear();
-                con.Open();
-                ddlActividad2.DataSource = cmd.ExecuteReader();
-                ddlActividad2.DataTextField = "Actividad";
-                ddlActividad2.DataValueField = "Id_Actividad";
-                ddlActividad2.DataBind();
-                ddlActividad2.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        protected void ddlActividad2_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
+        //void CargarActividad2(long IdProceso)
+        //{
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand("SP_FNC00400", con);
+        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
+        //        ddlActividad2.Items.Clear();
+        //        con.Open();
+        //        ddlActividad2.DataSource = cmd.ExecuteReader();
+        //        ddlActividad2.DataTextField = "Actividad";
+        //        ddlActividad2.DataValueField = "Id_Actividad";
+        //        ddlActividad2.DataBind();
+        //        ddlActividad2.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+        //        con.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+        //protected void ddlActividad2_OnSelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-        }
-        void CargarActividad3(long IdProceso)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00400", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
-                ddlActividad3.Items.Clear();
-                con.Open();
-                ddlActividad3.DataSource = cmd.ExecuteReader();
-                ddlActividad3.DataTextField = "Actividad";
-                ddlActividad3.DataValueField = "Id_Actividad";
-                ddlActividad3.DataBind();
-                ddlActividad3.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        protected void ddlActividad3_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
+        //}
+        //void CargarActividad3(long IdProceso)
+        //{
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand("SP_FNC00400", con);
+        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
+        //        ddlActividad3.Items.Clear();
+        //        con.Open();
+        //        ddlActividad3.DataSource = cmd.ExecuteReader();
+        //        ddlActividad3.DataTextField = "Actividad";
+        //        ddlActividad3.DataValueField = "Id_Actividad";
+        //        ddlActividad3.DataBind();
+        //        ddlActividad3.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+        //        con.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+        //protected void ddlActividad3_OnSelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-        }
-        public class Employee
-        {
-            public int Id_Empleado { get; set; }
-            public string Nom_Ape { get; set; }
-        }
-        private void CargarEmpleados()
-        {
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SP_CN_FNC202", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = IdEmpresa;
-                con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                List<Employee> empleados = new List<Employee>();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        int idEmpleado = reader.GetInt32(0);
-                        string nombreEmpleado = reader.GetString(1);
-                        empleados.Add(new Employee { Id_Empleado = idEmpleado, Nom_Ape = nombreEmpleado });
-                    }
-                }
-                reader.Close();
-                CheckBoxListEmpleados.DataSource = empleados;
-                CheckBoxListEmpleados.DataTextField = "Nom_Ape";
-                CheckBoxListEmpleados.DataValueField = "Id_Empleado";
-                CheckBoxListEmpleados.DataBind();
-
-                // Generar el código JavaScript para cargar los nombres de empleados en el cliente
-                List<string> empleadosNombres = new List<string>();
-                foreach (Employee empleado in empleados)
-                {
-                    empleadosNombres.Add(empleado.Nom_Ape);
-                }
-                string empleadosNombresJson = string.Join(",", empleadosNombres.Select(name => "\"" + name + "\""));
-                Page.ClientScript.RegisterStartupScript(GetType(), "LoadEmployees", $"var empleados = [{empleadosNombresJson}];", true);
-            }
-        }
+        //}      
         protected void AgregarEmpleados_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Id_Empleado", typeof(int));
-            dt.Columns.Add("Nom_Ape", typeof(string));
-            foreach (ListItem item in CheckBoxListEmpleados.Items)
+            // Obtener el DataTable desde el ViewState
+            DataTable dt;
+            if (ViewState["EmpleadosDataTable"] != null)
             {
-                if (item.Selected)
-                {
-                    // Agregar empleado al DataTable
-                    DataRow dr = dt.NewRow();
-                    dr["Id_Empleado"] = Convert.ToInt32(item.Value);
-                    dr["Nom_Ape"] = item.Text;
-                    dt.Rows.Add(dr);
-                }
+                dt = (DataTable)ViewState["EmpleadosDataTable"];
             }
+            else
+            {
+                dt = new DataTable();
+                dt.Columns.Add("Id_Lote", typeof(int));
+                dt.Columns.Add("Id_Proceso", typeof(int));
+                dt.Columns.Add("Actividad1", typeof(int));
+                dt.Columns.Add("Id_Proveedor", typeof(int));
+                dt.Columns.Add("Tipo_Pago", typeof(int));
+                dt.Columns.Add("Cantidad1", typeof(decimal));
+                ViewState["EmpleadosDataTable"] = dt;
+            }
+
+            // Obtener los valores de los controles
+            int idLote = Convert.ToInt32(ddlLotes.SelectedValue);
+            int idProceso = Convert.ToInt32(ddlProcesos.SelectedValue);
+            int idActividad = Convert.ToInt32(ddlActividad1.SelectedValue);
+            int idProveedor = Convert.ToInt32(txtIdProveedor.Text);
+            decimal cantidad1 = Convert.ToDecimal(txtCantidad1.Text);
+            // Agrega aquí las líneas para obtener los valores de los otros controles
+
+            // Agregar una nueva fila al DataTable
+            DataRow newRow = dt.NewRow();
+            newRow["Id_Lote"] = idLote;
+            newRow["Id_Proceso"] = idProceso;
+            newRow["Actividad1"] = idActividad;
+            newRow["Id_Proveedor"] = idProveedor;
+            newRow["Cantidad1"] = cantidad1;
+            // Agrega aquí las líneas para asignar valores a otras columnas
+
+            // Agregar la nueva fila al DataTable
+            dt.Rows.Add(newRow);
+
             // Enlazar el DataTable al GridView
             GridViewCalificaciones.DataSource = dt;
             GridViewCalificaciones.DataBind();
-            // Evaluar si ddlActividad2 o ddlActividad3 fueron seleccionados
-            bool ddlActividad2Selected = ddlActividad2.SelectedIndex > 0;
-            bool ddlActividad3Selected = ddlActividad3.SelectedIndex > 0;
-            // Mostrar u ocultar las columnas según las selecciones
-            GridViewCalificaciones.Columns[5].Visible = ddlActividad2Selected; // Índice de la columna "Cantidad2"
-            GridViewCalificaciones.Columns[6].Visible = ddlActividad3Selected; // Índice de la columna "Cantidad3"
-            ViewState["EmpleadosDataTable"] = dt; // Guardar DataTable en ViewState
-            Insertar.Visible = true;
+
+            // Guardar el DataTable actualizado en el ViewState
+            ViewState["EmpleadosDataTable"] = dt;
         }
+
         protected void GridViewCalificaciones_RowCreated(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -269,8 +247,8 @@ namespace IT_Finca.Pages.Forms
                     cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlLotes.Text);
                     cmd.Parameters.Add("@Id_Proceso", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlProcesos.Text);
                     cmd.Parameters.Add("@Id_Actividad1", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad1.Text);
-                    cmd.Parameters.Add("@Id_Actividad2", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad2.Text);
-                    cmd.Parameters.Add("@Id_Actividad3", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad3.Text);
+                    //cmd.Parameters.Add("@Id_Actividad2", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad2.Text);
+                    //cmd.Parameters.Add("@Id_Actividad3", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad3.Text);
                     cmd.Parameters.Add("@Id_Tipo_Actividad1", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlTipo_Actividad.SelectedValue);
                     cmd.Parameters.Add("@Cantidad1", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad1.Text);
                     cmd.Parameters.Add("@Cantidad2", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad2.Text);
@@ -278,7 +256,7 @@ namespace IT_Finca.Pages.Forms
                     cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Empresa"]);
                     con.Open();
                     cmd.ExecuteNonQuery();
-                    con.Close();                    
+                    con.Close();
                     Insertar.Visible = false;
                     Response.Redirect("~/Pages/Forms/FormsV2.aspx");
                 }

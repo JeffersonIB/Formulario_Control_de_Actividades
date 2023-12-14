@@ -187,10 +187,7 @@
     <Content Include="Pages\Img\visa.png" />
     <Content Include="Pages\js\datepicker\daterangepicker.js" />
     <Content Include="Pages\js\moment\moment.min.js" />
-    <Content Include="Pages\Test\FormsV2_1.aspx" />
-    <Content Include="Pages\Test\FormsV2_2.aspx" />
-    <Content Include="Pages\Test\FormsV2_Test.aspx" />
-    <Content Include="Pages\Test\Test.aspx" />
+    <Content Include="Pages\Test\FormsV3_1.aspx" />
     <Content Include="src\js\custom.js" />
     <Content Include="src\js\examples.js" />
     <Content Include="src\js\helpers\smartresize.js" />
@@ -2479,33 +2476,12 @@
     <Compile Include="Pages\Forms\Linea18.aspx.designer.cs">
       <DependentUpon>Linea18.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Test\FormsV2_1.aspx.cs">
-      <DependentUpon>FormsV2_1.aspx</DependentUpon>
+    <Compile Include="Pages\Test\FormsV3_1.aspx.cs">
+      <DependentUpon>FormsV3_1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Test\FormsV2_1.aspx.designer.cs">
-      <DependentUpon>FormsV2_1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Test\FormsV2_2.aspx.cs">
-      <DependentUpon>FormsV2_2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Test\FormsV2_2.aspx.designer.cs">
-      <DependentUpon>FormsV2_2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Test\FormsV2_Test.aspx.cs">
-      <DependentUpon>FormsV2_Test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Test\FormsV2_Test.aspx.designer.cs">
-      <DependentUpon>FormsV2_Test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Test\Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Test\Test.aspx.designer.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
+    <Compile Include="Pages\Test\FormsV3_1.aspx.designer.cs">
+      <DependentUpon>FormsV3_1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

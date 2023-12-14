@@ -15,7 +15,6 @@
         <%--<script src="<%= ResolveClientUrl("~/JS/Forms.js") %>"> </script>--%>
         <script type="text/javascript">
             var color = 'White';
-
             function changeColor(obj) {
                 var rowObject = getParentRow(obj);
                 var parentTable = document.getElementById("<%=CheckBoxListEmpleados.ClientID%>");
@@ -29,7 +28,6 @@
                     color = 'White';
                 }
             }
-
             // Este método devuelve la fila padre del objeto
             function getParentRow(obj) {
                 do {
@@ -37,7 +35,6 @@
                 } while (obj.tagName !== "TR");
                 return obj;
             }
-
             function TurnCheckBoixGridView(id) {
                 var checkBoxList = document.getElementById("<%= CheckBoxListEmpleados.ClientID %>");
                 var checkboxes = checkBoxList.getElementsByTagName("input");
@@ -49,7 +46,6 @@
                     }
                 }
             }
-
             function SelectAll(id) {
                 var parentTable = document.getElementById("<%=CheckBoxListEmpleados.ClientID%>");
                 var color = document.getElementById(id).checked ? '#A3B1D8' : 'White';
@@ -62,10 +58,7 @@
 
                 TurnCheckBoixGridView(id);
             }
-
-
         </script>
-
         <style type="text/css">
             .scroll_checkboxes {
                 height: 120px;
@@ -84,7 +77,6 @@
                 border-radius: .25rem;
                 transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
             }
-
             .scroll_checkboxess {
                 height: 120px;
                 width: 200px;
@@ -92,7 +84,6 @@
                 overflow: auto;
                 border: 1px solid #ccc;
             }
-
             .FormText {
                 FONT-SIZE: 11px;
                 FONT-FAMILY: tahoma,sans-serif
