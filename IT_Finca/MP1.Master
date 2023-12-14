@@ -42,7 +42,8 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="<%= Page.ResolveUrl("~/index2.aspx") %>" class="site_title"><i class="fa fa-leaf"></i><span>     <asp:Label CssClass="navbar-link" runat="server" ID="lblFinca">  </asp:Label></span></a>
+                            <a href="<%= Page.ResolveUrl("~/index2.aspx") %>" class="site_title"><i class="fa fa-leaf"></i><span>
+                                <asp:Label CssClass="navbar-link" runat="server" ID="lblFinca">  </asp:Label></span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -120,18 +121,20 @@
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Forms/FormsV2.aspx") %>">Formulario V2</a>
                                             </li>
                                             <li id="DecimaSexta_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Cosecha.aspx") %>">Formulario cosecha</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/FormsV3.aspx") %>">Formulario V3</a>
                                             </li>
                                             <li id="DecimaSeptima_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Cosecha.aspx") %>">Formulario cosecha</a>
+                                            </li>
+                                            <li id="DecimaOctava_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Beneficio.aspx") %>">Formulario beneficio</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li id="Tercer_Men" runat="server" visible="false"><a><i class="fa fa-desktop"></i>Elementos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li id="DecimaOctava_Pag" runat="server"><a href="general_elements.html">General Elements</a></li>
-                                            <li id="DecimaNovena_Pag" runat="server"><a href="media_gallery.html">Media Gallery</a></li>
-                                            <li id="Vigesima_Pag" runat="server"><a href="typography.html">Typography</a></li>
+                                            <li id="DecimaNovena_Pag" runat="server"><a href="general_elements.html">General Elements</a></li>
+                                            <li id="Vigesima_Pag" runat="server"><a href="media_gallery.html">Media Gallery</a></li>
                                             <li id="VigesimaPrimera_Pag" runat="server"><a href="icons.html">Icons</a></li>
                                             <li id="VigesimaSegunda_Pag" runat="server"><a href="glyphicons.html">Glyphicons</a></li>
                                             <li id="VigesimaTercera_Pag" runat="server"><a href="widgets.html">Widgets</a></li>

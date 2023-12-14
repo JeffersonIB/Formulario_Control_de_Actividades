@@ -295,12 +295,12 @@ namespace IT_Finca
                             DecimaoctavaPag = Convert.ToBoolean(reader[1].ToString());
                             if (DecimaoctavaPag)
                             {
-                                Tercer_Men.Visible = true;
+                                Segundo_Men.Visible = true;
                                 DecimaOctava_Pag.Visible = true;
                             }
                             else
                             {
-                                //Tercer_Men.Visible = false;
+                                //Segundo_Men.Visible = false;
                                 DecimaOctava_Pag.Visible = false;
                             }
                             break;
