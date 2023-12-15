@@ -207,17 +207,17 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="Id_Proveedor" HeaderText="Id_Proveedor" Visible="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center"/>
-                                    <asp:TemplateField HeaderText="Id_Proveedor" ItemStyle-CssClass="hidden-column" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <asp:TemplateField HeaderText="Id proveedor" ItemStyle-CssClass="hidden-column" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
                                             <asp:Label ID="lblId_Proveedor" runat="server" Text='<%# Eval("Id_Proveedor") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Tipo_Pago">
+                                    <asp:TemplateField HeaderText="Tipo de pago" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
                                             <asp:DropDownList ID="ddlTipo_Actividad" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="Cantidad1" HeaderText="Cantidad1" Visible="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center"/>
+                                    <asp:BoundField DataField="Cantidad" HeaderText="Cantidad1" Visible="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center"/>
                                     <asp:TemplateField HeaderText="Cantidad1" ItemStyle-CssClass="hidden-column" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtCantidad1" runat="server" Text='<%# Eval("Cantidad1") %>'></asp:TextBox>

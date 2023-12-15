@@ -288,9 +288,8 @@ namespace IT_Finca.Pages.Forms
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
-
                 Insertar.Visible = false;
-                Response.Redirect("~/Pages/Test/FormsV3_1.aspx");
+                Response.Redirect("~/Pages/Forms/FormsV3.aspx");
             }
             catch (Exception)
             {
