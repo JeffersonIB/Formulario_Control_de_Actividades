@@ -129,11 +129,13 @@
                                             <li id="DecimaOctava_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Beneficio.aspx") %>">Formulario beneficio</a>
                                             </li>
+                                            <li id="DecimaNovena_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Secado.aspx") %>">Formulario secado</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li id="Tercer_Men" runat="server" visible="false"><a><i class="fa fa-desktop"></i>Elementos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li id="DecimaNovena_Pag" runat="server"><a href="general_elements.html">General Elements</a></li>
                                             <li id="Vigesima_Pag" runat="server"><a href="media_gallery.html">Media Gallery</a></li>
                                             <li id="VigesimaPrimera_Pag" runat="server"><a href="icons.html">Icons</a></li>
                                             <li id="VigesimaSegunda_Pag" runat="server"><a href="glyphicons.html">Glyphicons</a></li>

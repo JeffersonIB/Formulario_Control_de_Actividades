@@ -308,7 +308,7 @@ namespace IT_Finca
                             DecimanovenaPag = Convert.ToBoolean(reader[1].ToString());
                             if (DecimanovenaPag)
                             {
-                                Tercer_Men.Visible = true;
+                                Segundo_Men.Visible = true;
                                 DecimaNovena_Pag.Visible = true;
                             }
                             else
