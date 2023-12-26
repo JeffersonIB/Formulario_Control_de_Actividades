@@ -40,8 +40,8 @@
                 <ContentTemplate>
                     <table>
                         <tr>
-                            <td>
-                                <div class="row">
+                            <td align="center">
+                                <div class="row" align="center">
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">
                                             <h5>Fecha
@@ -58,14 +58,16 @@
                                             }
                                         </script>
                                     </div>
-                                    <div class="ml-auto">
-                                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
-                                    </div>
                                 </div>
+                            </td>
+                            <td align="center">
+
+                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
+
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="2">
                                 <asp:GridView ID="gvBeneficio" runat="server"
                                     DataKeyNames="Id_Beneficio_R"
                                     PageSize="17"
@@ -81,7 +83,6 @@
                                     RowStyle-CssClass="rows"
                                     PagerStyle-CssClass="pager"
                                     HeaderStyle-CssClass="header"
-                                    OnRowDataBound="gvBeneficio_RowDataBound"
                                     OnPageIndexChanging="gvBeneficio_OnPageIndexChanging">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Id_Beneficio_R" Visible="false">
@@ -127,24 +128,28 @@
                                                     <asp:Label ID="lbl_Maduro" runat="server" align="center" Text='<%# String.Format("{0:N}", Eval("Maduro") )%>'></asp:Label>
                                                 </div>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Tipo de secado" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                        </asp:TemplateField>                                       
+                                        <asp:TemplateField>
                                             <ItemTemplate>
-                                                <asp:DropDownList ID="ddlTipo_Secado" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="No partida" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
-                                            <ItemTemplate>
-                                                <asp:DropDownList ID="ddlPartida" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Confirmar">
-                                            <ItemTemplate>
-                                                <asp:ImageButton ID="btn_Confir" runat="server" ImageUrl="~/Pages/Img/Calificado.gif" OnClick="btn_Confir_Click" CommandArgument='<%#Eval("Id_Beneficio_R") %>' Style="display: block; margin: 0 auto;" />
+                                                <input ID="chkRow" runat="server" type="checkbox" class="flat">
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br />
+                                <bh></bh>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center"><strong>Tipo secado</strong>
+                                <asp:DropDownList ID="ddlTipo_Secado" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
+                            </td>
+                            <td align="center"><strong>No partida</strong>
+                                <asp:DropDownList ID="ddlPartida" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
                             </td>
                         </tr>
                     </table>

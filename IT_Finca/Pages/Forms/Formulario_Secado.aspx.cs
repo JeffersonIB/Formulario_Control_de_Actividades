@@ -21,6 +21,8 @@ namespace IT_Finca.Pages.Forms
                 if (!IsPostBack && Session["Usuario"] != null)
                 {
                     TB_Beneficio();
+                    CargarTipoSecado();
+                    CargarPartidas();
                 }
             }
             catch
@@ -73,44 +75,86 @@ namespace IT_Finca.Pages.Forms
                 throw;
             }
         }
-        protected void gvBeneficio_RowDataBound(object sender, GridViewRowEventArgs e)
+        //Cargar DropDowList de Tipo secado
+        void CargarTipoSecado()
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            try
             {
-                DropDownList ddlTipo_Secado = (DropDownList)e.Row.FindControl("ddlTipo_Secado");
-                DropDownList ddlPartida = (DropDownList)e.Row.FindControl("ddlPartida");
-                if (ddlTipo_Secado != null)
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("SP_FNC00403", con);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    sda.Fill(dt);
-                    con.Close();
-                    ddlTipo_Secado.DataSource = dt;
-                    ddlTipo_Secado.DataTextField = "Tipo_Secado";
-                    ddlTipo_Secado.DataValueField = "Id_Tipo_Secado";
-                    ddlTipo_Secado.DataBind();
-                    //ddlTipo_Actividad.Items.Insert(0, new ListItem("--Select Qualification--", "0"));
-                }
-                if (ddlPartida != null)
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("SP_FNC00404", con);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    sda.Fill(dt);
-                    con.Close();
-                    ddlPartida.DataSource = dt;
-                    ddlPartida.DataTextField = "Partida";
-                    ddlPartida.DataValueField = "Id_Partida";
-                    ddlPartida.DataBind();
-                    //ddlTipo_Actividad.Items.Insert(0, new ListItem("--Select Qualification--", "0"));
-                }
+                SqlCommand cmd = new SqlCommand("SP_FNC00403", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                ddlTipo_Secado.Items.Clear();
+                con.Open();
+                ddlTipo_Secado.DataSource = cmd.ExecuteReader();
+                ddlTipo_Secado.DataTextField = "Tipo_Secado";
+                ddlTipo_Secado.DataValueField = "Id_Tipo_Secado";
+                ddlTipo_Secado.DataBind();
+                //ddlTipo_Secado.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                con.Close();
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
+        //Cargar DropDowList de Lotes
+        void CargarPartidas()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_FNC00404", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                ddlPartida.Items.Clear();
+                con.Open();
+                ddlPartida.DataSource = cmd.ExecuteReader();
+                ddlPartida.DataTextField = "Partida";
+                ddlPartida.DataValueField = "Id_Partida";
+                ddlPartida.DataBind();
+                //ddlPartida.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                con.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        //protected void gvBeneficio_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        DropDownList ddlTipo_Secado = (DropDownList)e.Row.FindControl("ddlTipo_Secado");
+        //        DropDownList ddlPartida = (DropDownList)e.Row.FindControl("ddlPartida");
+        //        if (ddlTipo_Secado != null)
+        //        {
+        //            con.Open();
+        //            SqlCommand cmd = new SqlCommand("SP_FNC00403", con);
+        //            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+        //            DataTable dt = new DataTable();
+        //            sda.Fill(dt);
+        //            con.Close();
+        //            ddlTipo_Secado.DataSource = dt;
+        //            ddlTipo_Secado.DataTextField = "Tipo_Secado";
+        //            ddlTipo_Secado.DataValueField = "Id_Tipo_Secado";
+        //            ddlTipo_Secado.DataBind();
+        //            //ddlTipo_Actividad.Items.Insert(0, new ListItem("--Select Qualification--", "0"));
+        //        }
+        //        if (ddlPartida != null)
+        //        {
+        //            con.Open();
+        //            SqlCommand cmd = new SqlCommand("SP_FNC00404", con);
+        //            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+        //            DataTable dt = new DataTable();
+        //            sda.Fill(dt);
+        //            con.Close();
+        //            ddlPartida.DataSource = dt;
+        //            ddlPartida.DataTextField = "Partida";
+        //            ddlPartida.DataValueField = "Id_Partida";
+        //            ddlPartida.DataBind();
+        //            //ddlTipo_Actividad.Items.Insert(0, new ListItem("--Select Qualification--", "0"));
+        //        }
+        //    }
+        //}
         protected void gvBeneficio_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView gv = (GridView)sender;

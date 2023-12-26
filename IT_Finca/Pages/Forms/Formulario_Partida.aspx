@@ -29,104 +29,76 @@
                     <td>
                         <div class="row">
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">
-                                    <h5>No. Partida
-                                    </h5>
-                                </label>
+                                <h5>No. partida</h5>
                             </div>
                             <div class="item form-group">
                                 <asp:DropDownList ID="ddlPartida" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
                             </div>
-                            <div class="ml-auto">
+                            <%--<div class="ml-auto">
                                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
-                            </div>
+                            </div>--%>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <asp:GridView ID="gvBeneficio" runat="server"
-                            DataKeyNames="Id_Beneficio_R"
-                            PageSize="17"
-                            CssClass="mydatagrid"
-                            GridLines="both"
-                            GroupingEnabled="true"
-                            AllowPaging="true"
-                            HorizontalAlign="Center"
-                            ShowHeaderWhenEmpty="True"
-                            AutoGenerateColumns="False"
-                            EmptyDataText="Sin registros"
-                            EmptyDataRowStyle-ForeColor="Red"
-                            RowStyle-CssClass="rows"
-                            PagerStyle-CssClass="pager"
-                            HeaderStyle-CssClass="header"
-                            OnRowDataBound="gvBeneficio_RowDataBound"
-                            OnPageIndexChanging="gvBeneficio_OnPageIndexChanging">
-                            <Columns>
-                                <asp:TemplateField HeaderText="Id_Beneficio_R" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbl_Id_Beneficio_R" runat="server" Text='<%#Eval("Id_Beneficio_R") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Fecha beneficio">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbl_Fecha_Crea" runat="server" Text='<%#Eval("Fecha_Crea") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_Finca" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbl_Id_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Finca">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbl_Finca" runat="server" Text='<%#Eval("Finca") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_Lote" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbl_Id_Lote" runat="server" Text='<%#Eval("Id_Lote") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Lote">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbl_Lote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Verde">
-                                    <ItemTemplate>
-                                        <div align="center">
-                                            <asp:Label ID="lbl_Verde" runat="server" align="center" Text='<%# String.Format("{0:N}", Eval("Verde_R") )%>'></asp:Label>
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Maduro">
-                                    <ItemTemplate>
-                                        <div align="center">
-                                            <asp:Label ID="lbl_Maduro" runat="server" align="center" Text='<%# String.Format("{0:N}", Eval("Maduro_R") )%>'></asp:Label>
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Tipo de secado" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <asp:DropDownList ID="ddlTipo_Secado" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="No partida" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <asp:DropDownList ID="ddlPartida" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Confirmar">
-                                    <ItemTemplate>
-                                        <asp:ImageButton ID="btn_Confir" runat="server" ImageUrl="~/Pages/Img/Calificado.gif" OnClick="btn_Confir_Click" CommandArgument='<%#Eval("Id_Beneficio_R") %>' Style="display: block; margin: 0 auto;" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                    </td>
-                </tr>
             </table>
+            <table class="table table-striped jambo_table bulk_action">
+                <thead>
+                    <tr class="headings">
+                        <th class="column-title">Descripción </th>
+                        <th class="column-title">Cantidad </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="even pointer">
+                        <td class="a-center ">Humedad</td>
+                        <td class="a-center ">
+                            <asp:TextBox ID="CantHumedad" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr class="even pointer">
+                        <td class="a-center ">Tipo de café </td>
+                        <td class="a-center ">
+                            <asp:TextBox ID="CantTipoCafe" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox></td>
+                    </tr>
+                    <tr class="even pointer">
+                        <td class="a-center ">Pergamino (QQ) </td>
+                        <td class="a-center ">
+                            <asp:TextBox ID="CantPergamino" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox></td>
+                    </tr>
+                    <tr class="even pointer">
+                        <td class="a-center ">Chibolita natural (QQ) </td>
+                        <td class="a-center ">
+                            <asp:TextBox ID="CantChibolita" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox></td>
+                    </tr>
+                    <tr class="even pointer">
+                        <td class="a-center ">Segunda (QQ) </td>
+                        <td class="a-center ">
+                            <asp:TextBox ID="CantSegunda" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox></td>
+                    </tr>
+                    <tr class="even pointer">
+                        <td class="a-center ">Natas (QQ) </td>
+                        <td class="a-center ">
+                            <asp:TextBox ID="CantNatas" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox></td>
+                    </tr>
+                    <tr class="even pointer">
+                        <td class="a-center ">Flotes (QQ) </td>
+                        <td class="a-center ">
+                            <asp:TextBox ID="CantFlotes" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox></td>
+                    </tr>
+                    <tr class="even pointer">
+                        <td class="a-center ">Chibolita Seco / Verde (QQ) </td>
+                        <td class="a-center ">
+                            <asp:TextBox ID="CantiChibolitaSecoVerde" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox></td>
+                    </tr>
+                    <tr class="even pointer">
+                        <td class="a-center ">
+                            <asp:DropDownList ID="ddlSacoJumbo" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList></td>
+                        <td class="a-center ">
+                            <asp:TextBox ID="CantSacoJumbo" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox></td>
+                    </tr>
+                </tbody>
+            </table>
+            <asp:Button Text="Confirmar" runat="server" OnClientClick="btn_Confir_Click" />
         </center>
     </body>
     </html>

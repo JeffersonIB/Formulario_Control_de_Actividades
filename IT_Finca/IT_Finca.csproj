@@ -190,6 +190,8 @@
     <Content Include="Pages\js\datepicker\daterangepicker.js" />
     <Content Include="Pages\js\moment\moment.min.js" />
     <Content Include="Pages\Test\FormsV3_1.aspx" />
+    <Content Include="Pages\Test\Select_GridView.aspx" />
+    <Content Include="Pages\Test\Select_GridView2.aspx" />
     <Content Include="src\js\custom.js" />
     <Content Include="src\js\examples.js" />
     <Content Include="src\js\helpers\smartresize.js" />
@@ -2498,6 +2500,20 @@
     </Compile>
     <Compile Include="Pages\Test\FormsV3_1.aspx.designer.cs">
       <DependentUpon>FormsV3_1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Test\Select_GridView.aspx.cs">
+      <DependentUpon>Select_GridView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Test\Select_GridView.aspx.designer.cs">
+      <DependentUpon>Select_GridView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Test\Select_GridView2.aspx.cs">
+      <DependentUpon>Select_GridView2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Test\Select_GridView2.aspx.designer.cs">
+      <DependentUpon>Select_GridView2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
