@@ -11,35 +11,17 @@ namespace IT_Finca.Pages.Forms
 {
 
 
-    public partial class Formualario_Secado
+    public partial class Formulario_Partida
     {
 
         /// <summary>
-        /// Control ScriptManager1.
+        /// Control ddlPartida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-
-        /// <summary>
-        /// Control UpdatePanel1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-
-        /// <summary>
-        /// Control Calendario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Calendario;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPartida;
 
         /// <summary>
         /// Control btnBuscar.

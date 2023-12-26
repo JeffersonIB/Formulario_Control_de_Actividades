@@ -313,7 +313,7 @@ namespace IT_Finca
                             }
                             else
                             {
-                                //Tercer_Men.Visible = false;
+                                //Segundo_Men.Visible = false;
                                 DecimaNovena_Pag.Visible = false;
                             }
                             break;
@@ -321,12 +321,12 @@ namespace IT_Finca
                             VigesimaPag = Convert.ToBoolean(reader[1].ToString());
                             if (VigesimaPag)
                             {
-                                Tercer_Men.Visible = true;
+                                Segundo_Men.Visible = true;
                                 Vigesima_Pag.Visible = true;
                             }
                             else
                             {
-                                //Tercer_Men.Visible = false;
+                                //Segundo_Men.Visible = false;
                                 Vigesima_Pag.Visible = false;
                             }
                             break;

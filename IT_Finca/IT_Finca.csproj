@@ -149,6 +149,7 @@
     <Content Include="Pages\Forms\FormsV1.aspx" />
     <Content Include="Pages\Forms\FormsV2.aspx" />
     <Content Include="Pages\Forms\FormsV3.aspx" />
+    <Content Include="Pages\Forms\Formulario_Partida.aspx" />
     <Content Include="Pages\Forms\Formulario_Secado.aspx" />
     <Content Include="Pages\Forms\Formulario_Beneficio.aspx" />
     <Content Include="Pages\Forms\Formulario_Cosecha.aspx" />
@@ -2441,6 +2442,13 @@
     </Compile>
     <Compile Include="Pages\Forms\FormsV3.aspx.designer.cs">
       <DependentUpon>FormsV3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Forms\Formulario_Partida.aspx.cs">
+      <DependentUpon>Formulario_Partida.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Forms\Formulario_Partida.aspx.designer.cs">
+      <DependentUpon>Formulario_Partida.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Forms\Formulario_Secado.aspx.cs">
       <DependentUpon>Formulario_Secado.aspx</DependentUpon>
