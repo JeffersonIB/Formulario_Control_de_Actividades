@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace IT_Finca.Pages.Forms
+namespace IT_Finca.Pages.Test
 {
 
 
-    public partial class Formualario_Secado
+    public partial class Formulario_Secado
     {
 
         /// <summary>
@@ -33,13 +33,13 @@ namespace IT_Finca.Pages.Forms
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// Control ddlCafe.
+        /// Control Calendario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCafe;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Calendario;
 
         /// <summary>
         /// Control btnBuscar.

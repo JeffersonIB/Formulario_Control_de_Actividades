@@ -131,9 +131,9 @@
                                         </div>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Fecha cosecha">
+                                <asp:TemplateField HeaderText="Fecha cosecha" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:Label ID="lbl_Fecha_Crea" runat="server" Text='<%#Eval("Fecha_Crea") %>'></asp:Label>
+                                        <asp:Label ID="lbl_Fecha_Crea" runat="server" Text='<%# Eval("Fecha_Crea", "{0:dd/MM/yyyy}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Editar">

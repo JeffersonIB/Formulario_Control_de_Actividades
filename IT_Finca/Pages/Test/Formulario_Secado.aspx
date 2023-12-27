@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Secado.aspx.cs" Inherits="IT_Finca.Pages.Forms.Formualario_Secado" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Secado.aspx.cs" Inherits="IT_Finca.Pages.Test.Formulario_Secado" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
     Formuario Secado
 </asp:Content>
@@ -13,6 +12,16 @@
         </title>
         <link href="<%= ResolveClientUrl("~/CSS/Admin.css") %>" rel="stylesheet" />
         <script src="<%= ResolveClientUrl("~/JS/Cale.js") %>"> </script>
+        <script>
+            $(function () {
+                $("#Calendario").datepicker({
+                    dateFormat: 'dd-mm-yy',
+                    showButtonPanel: true,
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+        </script>
     </head>
     <body>
         <div class="container box">
@@ -31,11 +40,29 @@
                     <table>
                         <tr>
                             <td align="center">
-                                <asp:DropDownList ID="ddlCafe" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;">
-                                </asp:DropDownList>
+                                <div class="row" align="center">
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            <h5>Fecha
+                                            </h5>
+                                        </label>
+                                    </div>
+                                    <div class="item form-group">
+                                        <input id="Calendario" runat="server" class="date-picker form-control" placeholder="dd/mm/aaaa" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                        <script>
+                                            function timeFunctionLong(input) {
+                                                setTimeout(function () {
+                                                    input.type = 'text';
+                                                }, 60000);
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
                             </td>
                             <td align="center">
+
                                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
+
                             </td>
                         </tr>
                         <tr>
@@ -87,14 +114,14 @@
                                                 <asp:Label ID="lbl_Lote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Verde" Visible="false">
+                                        <asp:TemplateField HeaderText="Verde">
                                             <ItemTemplate>
                                                 <div align="center">
                                                     <asp:Label ID="lbl_Verde" runat="server" align="center" Text='<%# String.Format("{0:N}", Eval("Verde") )%>'></asp:Label>
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Maduro" Visible="false">
+                                        <asp:TemplateField HeaderText="Maduro">
                                             <ItemTemplate>
                                                 <div align="center">
                                                     <asp:Label ID="lbl_Maduro" runat="server" align="center" Text='<%# String.Format("{0:N}", Eval("Maduro") )%>'></asp:Label>

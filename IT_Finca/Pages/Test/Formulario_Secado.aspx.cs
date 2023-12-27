@@ -8,9 +8,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace IT_Finca.Pages.Forms
+namespace IT_Finca.Pages.Test
 {
-    public partial class Formualario_Secado : System.Web.UI.Page
+    public partial class Formulario_Secado : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +23,6 @@ namespace IT_Finca.Pages.Forms
                     TB_Beneficio();
                     CargarTipoSecado();
                     CargarPartidas();
-                    CargarTipoCafe();
                 }
             }
             catch
@@ -32,72 +31,20 @@ namespace IT_Finca.Pages.Forms
             }
         }
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ToString());
-        void CargarTipoCafe()
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SP_FNC00405", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                ddlCafe.Items.Clear();
-                con.Open();
-                ddlCafe.DataSource = cmd.ExecuteReader();
-                ddlCafe.DataTextField = "Id_Tipo_Cafe";
-                ddlCafe.DataValueField = "Id_Tipo_Cafe";
-                ddlCafe.DataBind();
-                ddlCafe.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
+                string fecha = Calendario.Value;
+                DataTable dt = GetFilteredData(fecha);
+                gvBeneficio.DataSource = dt;
+                gvBeneficio.DataBind();
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ddlCafe.SelectedIndex > 0)
-                {
-                    int idTipoCafe = Convert.ToInt32(ddlCafe.SelectedValue);
-
-                    foreach (GridViewRow row in gvBeneficio.Rows)
-                    {
-                        Label lblVerde = (Label)row.FindControl("lbl_Verde");
-                        Label lblMaduro = (Label)row.FindControl("lbl_Maduro");
-
-                        // Restablecer la visibilidad
-                        lblVerde.Visible = false;
-                        lblMaduro.Visible = false;
-
-                        // Mostrar la columna correspondiente según el tipo de café
-                        switch (idTipoCafe)
-                        {
-                            case 1:
-                                lblVerde.Visible = true;
-                                break;
-                            case 2:
-                                lblMaduro.Visible = true;
-                                break;
-                                // Agrega más casos según sea necesario
-                        }
-                    }
-
-                    // Cargar los datos en el GridView
-                    DataTable dt = GetFilteredData("");
-                    gvBeneficio.DataSource = dt;
-                    gvBeneficio.DataBind();
-                }
-                else
-                {
-                    // Manejar el caso donde no se selecciona ningún tipo de café
-                }
-            }
-            catch (Exception ex)
-            {
-                // Manejar la excepción de manera apropiada
-            }
-        }
-
         private DataTable GetFilteredData(string fecha)
         {
             SqlCommand cmd = new SqlCommand("SELECT * FROM VW_FNC00602_2 ORDER BY Fecha_Crea,Finca,Lote ASC", con);
@@ -119,46 +66,13 @@ namespace IT_Finca.Pages.Forms
         {
             try
             {
-                if (ddlCafe.SelectedIndex > 0)
-                {
-                    int idTipoCafe = Convert.ToInt32(ddlCafe.SelectedValue);
-
-                    // Recorrer las filas del GridView y establecer visibilidad según el tipo de café
-                    foreach (GridViewRow row in gvBeneficio.Rows)
-                    {
-                        Label lblVerde = (Label)row.FindControl("lbl_Verde");
-                        Label lblMaduro = (Label)row.FindControl("lbl_Maduro");
-
-                        // Restablecer la visibilidad
-                        lblVerde.Visible = false;
-                        lblMaduro.Visible = false;
-
-                        // Mostrar la columna correspondiente según el tipo de café
-                        switch (idTipoCafe)
-                        {
-                            case 1:
-                                lblVerde.Visible = true;
-                                break;
-                            case 2:
-                                lblMaduro.Visible = true;
-                                break;
-                                // Agrega más casos según sea necesario
-                        }
-                    }
-
-                    // Cargar los datos en el GridView
-                    DataTable dt = GetFilteredData("");
-                    gvBeneficio.DataSource = dt;
-                    gvBeneficio.DataBind();
-                }
-                else
-                {
-                    // Manejar el caso donde no se selecciona ningún tipo de café
-                }
+                DataTable dt = GetFilteredData("");
+                gvBeneficio.DataSource = dt;
+                gvBeneficio.DataBind();
             }
             catch (Exception)
             {
-                // Manejar la excepción de manera apropiada
+                throw;
             }
         }
         //Cargar DropDowList de Tipo secado
@@ -203,20 +117,6 @@ namespace IT_Finca.Pages.Forms
                 throw;
             }
         }
-        protected void gvBeneficio_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                // Obtener las etiquetas en cada fila
-                Label lblVerde = (Label)e.Row.FindControl("lbl_Verde");
-                Label lblMaduro = (Label)e.Row.FindControl("lbl_Maduro");
-
-                // Establecer la visibilidad inicial como false
-                lblVerde.Visible = false;
-                lblMaduro.Visible = false;
-            }
-        }
-
         //protected void gvBeneficio_RowDataBound(object sender, GridViewRowEventArgs e)
         //{
         //    if (e.Row.RowType == DataControlRowType.DataRow)
