@@ -31,7 +31,7 @@
                     <table>
                         <tr>
                             <td align="center">
-                                <asp:DropDownList ID="ddlCafe" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;">
+                                <asp:DropDownList ID="ddlCafe" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCafeOnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
                                 </asp:DropDownList>
                             </td>
                             <td align="center">
@@ -87,14 +87,14 @@
                                                 <asp:Label ID="lbl_Lote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Verde" Visible="false">
+                                        <asp:TemplateField HeaderText="Verde">
                                             <ItemTemplate>
                                                 <div align="center">
                                                     <asp:Label ID="lbl_Verde" runat="server" align="center" Text='<%# String.Format("{0:N}", Eval("Verde") )%>'></asp:Label>
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Maduro" Visible="false">
+                                        <asp:TemplateField HeaderText="Maduro">
                                             <ItemTemplate>
                                                 <div align="center">
                                                     <asp:Label ID="lbl_Maduro" runat="server" align="center" Text='<%# String.Format("{0:N}", Eval("Maduro") )%>'></asp:Label>
@@ -117,12 +117,21 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center"><strong>Tipo secado</strong>
-                                <asp:DropDownList ID="ddlTipo_Secado" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
+                            <div id="Tipo_Secado" runat="server" visible="false">
+                                <td align="center"><strong>Tipo secado</strong>
+                                    <asp:DropDownList ID="ddlTipo_Secado" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
+                                </td>
+                                <td align="center"><strong>No partida</strong>
+                                    <asp:DropDownList ID="ddlPartida" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div id="Confirmar" runat="server" visible="false">
+                            <td colspan="2" align="center">
+                                <asp:Button ID="BtnConfirmar" runat="server" Text="Confirmar" class="btn btn-round btn-success" OnClick="btn_Confir_Click" />
                             </td>
-                            <td align="center"><strong>No partida</strong>
-                                <asp:DropDownList ID="ddlPartida" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
-                            </td>
+                            </div>
                         </tr>
                     </table>
                 </ContentTemplate>

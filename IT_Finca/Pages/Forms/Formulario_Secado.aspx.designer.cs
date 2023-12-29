@@ -60,6 +60,15 @@ namespace IT_Finca.Pages.Forms
         protected global::System.Web.UI.WebControls.GridView gvBeneficio;
 
         /// <summary>
+        /// Control Tipo_Secado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Tipo_Secado;
+
+        /// <summary>
         /// Control ddlTipo_Secado.
         /// </summary>
         /// <remarks>
@@ -76,5 +85,23 @@ namespace IT_Finca.Pages.Forms
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPartida;
+
+        /// <summary>
+        /// Control Confirmar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Confirmar;
+
+        /// <summary>
+        /// Control BtnConfirmar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnConfirmar;
     }
 }
