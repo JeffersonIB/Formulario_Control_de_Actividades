@@ -192,6 +192,7 @@
     <Content Include="Pages\Test\DDL_GW.aspx" />
     <Content Include="Pages\Test\FormsV3_1.aspx" />
     <Content Include="Pages\Test\Formulario_Secado.aspx" />
+    <Content Include="Pages\Test\Formulario_Secado2.aspx" />
     <Content Include="Pages\Test\Select_GridView.aspx" />
     <Content Include="Pages\Test\Select_GridView2.aspx" />
     <Content Include="src\js\custom.js" />
@@ -2516,6 +2517,13 @@
     </Compile>
     <Compile Include="Pages\Test\Formulario_Secado.aspx.designer.cs">
       <DependentUpon>Formulario_Secado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Test\Formulario_Secado2.aspx.cs">
+      <DependentUpon>Formulario_Secado2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Test\Formulario_Secado2.aspx.designer.cs">
+      <DependentUpon>Formulario_Secado2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Test\Select_GridView.aspx.cs">
       <DependentUpon>Select_GridView.aspx</DependentUpon>

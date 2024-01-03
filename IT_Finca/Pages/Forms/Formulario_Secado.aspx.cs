@@ -7,6 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+using static System.Net.Mime.MediaTypeNames;
+using System.Configuration.Provider;
+using System.Xml.Linq;
 
 namespace IT_Finca.Pages.Forms
 {
@@ -20,10 +24,9 @@ namespace IT_Finca.Pages.Forms
             {
                 if (!IsPostBack && Session["Usuario"] != null)
                 {
-                    TB_Beneficio();
-                    CargarTipoSecado();
-                    CargarPartidas();
-                    CargarTipoCafe();
+                    DDLTipoCafe();
+                    DDLTipoSecado();
+                    DDLPartidas();
                 }
             }
             catch
@@ -32,7 +35,8 @@ namespace IT_Finca.Pages.Forms
             }
         }
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ToString());
-        void CargarTipoCafe()
+        //Cargar DropDownList para selecciónar tipo de café
+        void DDLTipoCafe()
         {
             try
             {
@@ -52,127 +56,82 @@ namespace IT_Finca.Pages.Forms
                 throw;
             }
         }
-        protected void ddlCafeOnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            int selectedValue = Convert.ToInt32(ddlCafe.SelectedValue);
-
-            // Configurar visibilidad de las columnas basado en la selección del DropDownList
-            gvBeneficio.Columns[6].Visible = selectedValue == 1; // Country1
-            gvBeneficio.Columns[7].Visible = selectedValue == 2; // Country2
-        }
-        protected void btnBuscar_Click(object sender, EventArgs e)
+        // Cargar tabla según elección en DropDownList Tipo Café
+        protected void BTNBuscar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (ddlCafe.SelectedIndex > 0)
+                if (ddlCafe.SelectedIndex <= 0)
                 {
-                    int idTipoCafe = Convert.ToInt32(ddlCafe.SelectedValue);
-
-                    foreach (GridViewRow row in gvBeneficio.Rows)
-                    {
-                        Label lblVerde = (Label)row.FindControl("lbl_Verde");
-                        Label lblMaduro = (Label)row.FindControl("lbl_Maduro");
-
-                        // Restablecer la visibilidad
-                        lblVerde.Visible = false;
-                        lblMaduro.Visible = false;
-
-                        // Mostrar la columna correspondiente según el tipo de café
-                        switch (idTipoCafe)
-                        {
-                            case 1:
-                                lblVerde.Visible = true;
-                                break;
-                            case 2:
-                                lblMaduro.Visible = true;
-                                break;
-                                // Agrega más casos según sea necesario
-                        }
-                    }
-
-                    // Cargar los datos en el GridView
-                    DataTable dt = GetFilteredData("");
-                    gvBeneficio.DataSource = dt;
-                    gvBeneficio.DataBind();
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                   "swal('Error!', 'Debe seleccionar el tipo de café !', 'error')", true);
                 }
-                else
+                if (ddlCafe.SelectedIndex > 0 && ddlCafe.SelectedIndex < 2)
                 {
-                    // Manejar el caso donde no se selecciona ningún tipo de café
+                    TB_Secado1();
+                    GVSecado.Columns[6].Visible = true;
+                    GVSecado.Columns[7].Visible = false;
+                    Tipo_Secado.Visible = true;
+                    Agregar.Visible = true;
+                    Confirmar.Visible = true;
+                }
+                else if (ddlCafe.SelectedIndex > 1)
+                {
+                    TB_Secado2();
+                    GVSecado.Columns[6].Visible = false;
+                    GVSecado.Columns[7].Visible = true;
+                    Tipo_Secado.Visible = true;
+                    Agregar.Visible = true;
+                    Confirmar.Visible = true;
                 }
             }
             catch (Exception)
             {
-                // Manejar la excepción de manera apropiada
+                throw;
             }
-            Tipo_Secado.Visible = true;
-            Confirmar.Visible = true;
         }
-
-        private DataTable GetFilteredData(string fecha)
-        {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM VW_FNC00602_3 ORDER BY Fecha_Crea,Finca,Lote ASC", con);
-            cmd.CommandType = System.Data.CommandType.Text;
-            con.Open();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if (!string.IsNullOrEmpty(fecha))
-            {
-                string formattedFecha = DateTime.Parse(fecha).ToString("yyyy-MM-dd");
-                dt.DefaultView.RowFilter = $"Fecha_Crea = #{formattedFecha}#";
-                dt = dt.DefaultView.ToTable();
-            }
-            con.Close();
-            return dt;
-        }
-        void TB_Beneficio()
+        // GridView Tipo café Verde
+        void TB_Secado1()
         {
             try
             {
-                if (ddlCafe.SelectedIndex > 0)
-                {
-                    int idTipoCafe = Convert.ToInt32(ddlCafe.SelectedValue);
-
-                    // Recorrer las filas del GridView y establecer visibilidad según el tipo de café
-                    foreach (GridViewRow row in gvBeneficio.Rows)
-                    {
-                        Label lblVerde = (Label)row.FindControl("lbl_Verde");
-                        Label lblMaduro = (Label)row.FindControl("lbl_Maduro");
-
-                        // Restablecer la visibilidad
-                        lblVerde.Visible = false;
-                        lblMaduro.Visible = false;
-
-                        // Mostrar la columna correspondiente según el tipo de café
-                        switch (idTipoCafe)
-                        {
-                            case 1:
-                                lblVerde.Visible = true;
-                                break;
-                            case 2:
-                                lblMaduro.Visible = true;
-                                break;
-                                // Agrega más casos según sea necesario
-                        }
-                    }
-
-                    // Cargar los datos en el GridView
-                    DataTable dt = GetFilteredData("");
-                    gvBeneficio.DataSource = dt;
-                    gvBeneficio.DataBind();
-                }
-                else
-                {
-                    // Manejar el caso donde no se selecciona ningún tipo de café
-                }
+                SqlCommand cmd = new SqlCommand("SP_TB_FNC00602_3", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                GVSecado.DataSource = dt;
+                GVSecado.DataBind();
+                con.Close();
             }
             catch (Exception)
             {
-                // Manejar la excepción de manera apropiada
+                throw;
+            }
+        }
+        // GridView Tipo café Maduro
+        void TB_Secado2()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_TB_FNC00602_4", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                con.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                GVSecado.DataSource = dt;
+                GVSecado.DataBind();
+                con.Close();
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
         //Cargar DropDowList de Tipo secado
-        void CargarTipoSecado()
+        void DDLTipoSecado()
         {
             try
             {
@@ -192,8 +151,8 @@ namespace IT_Finca.Pages.Forms
                 throw;
             }
         }
-        //Cargar DropDowList de Lotes
-        void CargarPartidas()
+        //Cargar DropDowList de partidas
+        void DDLPartidas()
         {
             try
             {
@@ -213,77 +172,119 @@ namespace IT_Finca.Pages.Forms
                 throw;
             }
         }
-        protected void gvBeneficio_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                // Obtener las etiquetas en cada fila
-                Label lblVerde = (Label)e.Row.FindControl("lbl_Verde");
-                Label lblMaduro = (Label)e.Row.FindControl("lbl_Maduro");
-
-                // Establecer la visibilidad inicial como false
-                lblVerde.Visible = false;
-                lblMaduro.Visible = false;
-            }
-        }
-
-        //protected void gvBeneficio_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        DropDownList ddlTipo_Secado = (DropDownList)e.Row.FindControl("ddlTipo_Secado");
-        //        DropDownList ddlPartida = (DropDownList)e.Row.FindControl("ddlPartida");
-        //        if (ddlTipo_Secado != null)
-        //        {
-        //            con.Open();
-        //            SqlCommand cmd = new SqlCommand("SP_FNC00403", con);
-        //            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-        //            DataTable dt = new DataTable();
-        //            sda.Fill(dt);
-        //            con.Close();
-        //            ddlTipo_Secado.DataSource = dt;
-        //            ddlTipo_Secado.DataTextField = "Tipo_Secado";
-        //            ddlTipo_Secado.DataValueField = "Id_Tipo_Secado";
-        //            ddlTipo_Secado.DataBind();
-        //            //ddlTipo_Actividad.Items.Insert(0, new ListItem("--Select Qualification--", "0"));
-        //        }
-        //        if (ddlPartida != null)
-        //        {
-        //            con.Open();
-        //            SqlCommand cmd = new SqlCommand("SP_FNC00404", con);
-        //            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-        //            DataTable dt = new DataTable();
-        //            sda.Fill(dt);
-        //            con.Close();
-        //            ddlPartida.DataSource = dt;
-        //            ddlPartida.DataTextField = "Partida";
-        //            ddlPartida.DataValueField = "Id_Partida";
-        //            ddlPartida.DataBind();
-        //            //ddlTipo_Actividad.Items.Insert(0, new ListItem("--Select Qualification--", "0"));
-        //        }
-        //    }
-        //}
-        protected void gvBeneficio_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            GridView gv = (GridView)sender;
-            gv.PageIndex = e.NewPageIndex;
-            TB_Beneficio();
-        }
-        protected void btn_Confir_Click(object sender, EventArgs e)
+        //Confirmar checkbox selecccionados en GridView
+        protected void BTNAgregar_Click(object sender, EventArgs e)
         {
             try
             {
-
-                gvBeneficio.EditIndex = -1;
-                TB_Beneficio();
+                if (ddlCafe.SelectedIndex <= 0)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                   "swal('Error!', 'Debe seleccionar el tipo de café !', 'error')", true);
+                }
+                if (ddlCafe.SelectedIndex > 0 && ddlCafe.SelectedIndex < 2)
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.AddRange(new DataColumn[7] { new DataColumn("Id_Beneficio_R"), new DataColumn("Fecha_Crea"), new DataColumn("Id_Finca"), new DataColumn("Finca"), new DataColumn("Id_Lote"), new DataColumn("Lote"), new DataColumn("Libras") });
+                    foreach (GridViewRow row in GVSecado.Rows)
+                    {
+                        if (row.RowType == DataControlRowType.DataRow)
+                        {
+                            HtmlInputCheckBox chkRow = (row.Cells[0].FindControl("chkRow") as HtmlInputCheckBox);
+                            if (chkRow != null && chkRow.Checked)
+                            {
+                                string id = (row.Cells[1].FindControl("lbl_Id_Beneficio_R") as Label).Text;
+                                string fecha = (row.Cells[2].FindControl("lbl_Fecha_Crea") as Label).Text;
+                                string idfinca = (row.Cells[3].FindControl("lbl_Id_Finca") as Label).Text;
+                                string finca = (row.Cells[4].FindControl("lbl_Finca") as Label).Text;
+                                string idlote = (row.Cells[5].FindControl("lbl_Id_Lote") as Label).Text;
+                                string lote = (row.Cells[6].FindControl("lbl_Lote") as Label).Text;
+                                string verde = (row.Cells[7].FindControl("lbl_Verde") as Label).Text;
+                                dt.Rows.Add(id, fecha, idfinca, finca, idlote, lote, verde);
+                            }
+                        }
+                    }
+                    GVSecado2.DataSource = dt;
+                    GVSecado2.DataBind();                    
+                }
+                else if (ddlCafe.SelectedIndex > 1)
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.AddRange(new DataColumn[7] { new DataColumn("Id_Beneficio_R"), new DataColumn("Fecha_Crea"), new DataColumn("Id_Finca"), new DataColumn("Finca"), new DataColumn("Id_Lote"), new DataColumn("Lote"), new DataColumn("Libras") });
+                    foreach (GridViewRow row in GVSecado.Rows)
+                    {
+                        if (row.RowType == DataControlRowType.DataRow)
+                        {
+                            HtmlInputCheckBox chkRow = (row.Cells[0].FindControl("chkRow") as HtmlInputCheckBox);
+                            if (chkRow != null && chkRow.Checked)
+                            {
+                                string id = (row.Cells[1].FindControl("lbl_Id_Beneficio_R") as Label).Text;
+                                string fecha = (row.Cells[2].FindControl("lbl_Fecha_Crea") as Label).Text;
+                                string idfinca = (row.Cells[3].FindControl("lbl_Id_Finca") as Label).Text;
+                                string finca = (row.Cells[4].FindControl("lbl_Finca") as Label).Text;
+                                string idlote = (row.Cells[5].FindControl("lbl_Id_Lote") as Label).Text;
+                                string lote = (row.Cells[6].FindControl("lbl_Lote") as Label).Text;
+                                string maduro = (row.Cells[8].FindControl("lbl_Maduro") as Label).Text;
+                                dt.Rows.Add(id, fecha, idfinca, finca, idlote, lote, maduro);
+                            }
+                        }
+                    }
+                    GVSecado2.DataSource = dt;
+                    GVSecado2.DataBind();                    
+                }
             }
             catch (Exception)
             {
-                // Manejar la excepción, por ejemplo, mostrar un mensaje o registrarla
+                throw;
             }
-
+        }
+        //Recorre GVSecado2 para trasladar los registros
+        protected void BTNInsertar_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in GVSecado2.Rows)
+            {
+                string id = (row.FindControl("lbl_Id_Beneficio_R") as Label).Text;
+                //string fecha = (row.FindControl("lbl_Fecha_Crea") as Label).Text;
+                string fechaStr = (row.FindControl("lbl_Fecha_Crea") as Label).Text;
+                DateTime fecha = DateTime.Parse(fechaStr);
+                int idfinca = Convert.ToInt32((row.FindControl("lbl_Id_Finca") as Label).Text);
+                string finca = (row.FindControl("lbl_Finca") as Label).Text;
+                int idlote = Convert.ToInt32((row.FindControl("lbl_Id_Lote") as Label).Text);
+                string lote = (row.FindControl("lbl_Lote") as Label).Text;
+                decimal libras = Convert.ToDecimal((row.FindControl("lbl_Libras") as Label).Text);
+                InsertarDatos(id, fecha, idfinca, finca, idlote, lote, libras);
+            }
+            GVSecado2.DataBind();
+            Response.Redirect("~/Pages/Forms/Formulario_Secado.aspx");
+        }
+        // Resive los registros e inserta en procedimiento
+        private void InsertarDatos(string id, DateTime fecha, int idfinca, string finca, int idlote, string lote,  decimal libras)
+        {
+            try
+            {
+                //using (SqlConnection con = new SqlConnection("tu_cadena_de_conexion"))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SP_AG_FNC00606", con);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id_Beneficio_R", SqlDbType.VarChar).Value = id;
+                    cmd.Parameters.AddWithValue("@Fecha_Crea_R", SqlDbType.DateTime).Value = fecha;
+                    cmd.Parameters.AddWithValue("@Id_Finca", SqlDbType.Int).Value = idfinca;
+                    cmd.Parameters.AddWithValue("@Finca", SqlDbType.VarChar).Value = finca;
+                    cmd.Parameters.AddWithValue("@Id_Lote", SqlDbType.Int).Value = idlote;
+                    cmd.Parameters.AddWithValue("@Lote", SqlDbType.VarChar).Value = lote;
+                    cmd.Parameters.AddWithValue("@Libras", SqlDbType.Decimal).Value = libras;
+                    cmd.Parameters.AddWithValue("@Id_Tipo_Secado", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlTipo_Secado.Text);
+                    cmd.Parameters.AddWithValue("@Id_Partida", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlPartida.Text);
+                    cmd.Parameters.AddWithValue("@Id_Usr_Crea", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Usuario"]);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         //Error con texto en mayuscula
         protected void Application_Start(object sender, EventArgs e)

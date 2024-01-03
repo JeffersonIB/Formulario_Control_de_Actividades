@@ -38,7 +38,6 @@ namespace IT_Finca.Pages.Admin
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-
             if (idRegistro != 0)
             {
                 dt.DefaultView.RowFilter = string.Format("Id_Registro = {0}", idRegistro);

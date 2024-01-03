@@ -57,7 +57,10 @@
         <hr />
         <u>Selected Rows</u>
         <br />
-        <asp:GridView ID="gvSelected" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White" AutoGenerateColumns="false">
+        <asp:GridView ID="gvSelected" runat="server" 
+            HeaderStyle-BackColor="#3AC0F2" 
+            HeaderStyle-ForeColor="White" 
+            AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField DataField="Finca" HeaderText="Finca" ItemStyle-Width="150" />
                 <asp:BoundField DataField="Maduro" HeaderText="Maduro" ItemStyle-Width="150" />

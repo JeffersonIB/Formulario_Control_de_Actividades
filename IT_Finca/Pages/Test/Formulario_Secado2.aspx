@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Secado.aspx.cs" Inherits="IT_Finca.Pages.Forms.Formualario_Secado" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Secado2.aspx.cs" Inherits="IT_Finca.Pages.Test.Formulario_Secado2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Formuario Secado
+    Formuario Secado 2
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -31,16 +31,16 @@
                     <table>
                         <tr>
                             <td align="center">
-                                <asp:DropDownList ID="ddlCafe" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;">
+                                <asp:DropDownList ID="ddlCafe" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCafeOnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
                                 </asp:DropDownList>
                             </td>
                             <td align="center">
-                                <asp:Button ID="BTNBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="BTNBuscar_Click" />
+                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <asp:GridView ID="GVSecado" runat="server"
+                                <asp:GridView ID="gvBeneficio" runat="server"
                                     DataKeyNames="Id_Beneficio_R"
                                     PageSize="17"
                                     CssClass="mydatagrid"
@@ -54,7 +54,8 @@
                                     EmptyDataRowStyle-ForeColor="Red"
                                     RowStyle-CssClass="rows"
                                     PagerStyle-CssClass="pager"
-                                    HeaderStyle-CssClass="header">
+                                    HeaderStyle-CssClass="header"
+                                    OnPageIndexChanging="gvBeneficio_OnPageIndexChanging">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Id_Beneficio_R" Visible="false">
                                             <ItemTemplate>
@@ -66,7 +67,7 @@
                                                 <asp:Label ID="lbl_Fecha_Crea" runat="server" Text='<%# Eval("Fecha_Crea", "{0:dd/MM/yyyy}") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Id_Finca">
+                                        <asp:TemplateField HeaderText="Id_Finca" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbl_Id_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
                                             </ItemTemplate>
@@ -126,88 +127,15 @@
                             </div>
                         </tr>
                         <tr>
-                            <td align="center">
-                                <asp:RequiredFieldValidator
-                                    ID="RequiredFieldValidator1" runat="server"
-                                    ControlToValidate="ddlTipo_Secado"
-                                    ErrorMessage="Campo obligatorio"
-                                    ForeColor="Red"
-                                    ValidationGroup="Validate"
-                                    InitialValue="0">
-                                </asp:RequiredFieldValidator>
+                            <div id="Confirmar" runat="server" visible="false">
+                            <td colspan="2" align="center">
+                                <asp:Button ID="BtnConfirmar" runat="server" Text="Confirmar" class="btn btn-round btn-success" OnClick="btn_Confir_Click" />
                             </td>
-                            <td align="center">
-                                <asp:RequiredFieldValidator
-                                    ID="RequiredFieldValidator2" runat="server"
-                                    ControlToValidate="ddlPartida"
-                                    ErrorMessage="Campo obligatorio"
-                                    ForeColor="Red"
-                                    ValidationGroup="Validate"
-                                    InitialValue="0">
-                                </asp:RequiredFieldValidator>
-                            </td>
-                        </tr>
-                        <tr>
-                            <div id="Agregar" runat="server" visible="false">
-                                <td colspan="2" align="center">
-                                    <asp:Button ID="BTNAgregar" runat="server" ValidationGroup="Validate" Text="Agregar selección" class="btn btn-round btn-info" OnClick="BTNAgregar_Click" />
-                                </td>
                             </div>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <td>
-                                <asp:GridView ID="GVSecado2" runat="server"
-                                    AutoGenerateColumns="False">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Id_Beneficio_R">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lbl_Id_Beneficio_R" runat="server" Text='<%#Eval("Id_Beneficio_R") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Fecha beneficio" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lbl_Fecha_Crea" runat="server" Text='<%# Eval("Fecha_Crea", "{0:dd/MM/yyyy}") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Id_Finca">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lbl_Id_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Finca">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lbl_Finca" runat="server" Text='<%#Eval("Finca") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Id_Lote" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lbl_Id_Lote" runat="server" Text='<%#Eval("Id_Lote") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Lote">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lbl_Lote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Libras">
-                                            <ItemTemplate>
-                                                <div align="center">
-                                                    <asp:Label ID="lbl_Libras" runat="server" align="center" Text='<%# String.Format("{0:N}", Eval("Libras") )%>'></asp:Label>
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </td>
                         </tr>
                     </table>
                 </ContentTemplate>
             </asp:UpdatePanel>
-            <div id="Confirmar" runat="server">
-                <asp:Button ID="BTNInsertar" runat="server" Text="Insertar" class="btn btn-primary" OnClick="BTNInsertar_Click" />
-            </div>
         </center>
     </body>
     </html>

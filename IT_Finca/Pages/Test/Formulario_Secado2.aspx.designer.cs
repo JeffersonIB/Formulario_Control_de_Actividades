@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace IT_Finca.Pages.Forms
+namespace IT_Finca.Pages.Test
 {
 
 
-    public partial class Formualario_Secado
+    public partial class Formulario_Secado2
     {
 
         /// <summary>
@@ -42,22 +42,22 @@ namespace IT_Finca.Pages.Forms
         protected global::System.Web.UI.WebControls.DropDownList ddlCafe;
 
         /// <summary>
-        /// Control BTNBuscar.
+        /// Control btnBuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTNBuscar;
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
-        /// Control GVSecado.
+        /// Control gvBeneficio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVSecado;
+        protected global::System.Web.UI.WebControls.GridView gvBeneficio;
 
         /// <summary>
         /// Control Tipo_Secado.
@@ -87,51 +87,6 @@ namespace IT_Finca.Pages.Forms
         protected global::System.Web.UI.WebControls.DropDownList ddlPartida;
 
         /// <summary>
-        /// Control RequiredFieldValidator1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
-        /// Control RequiredFieldValidator2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-
-        /// <summary>
-        /// Control Agregar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Agregar;
-
-        /// <summary>
-        /// Control BTNAgregar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTNAgregar;
-
-        /// <summary>
-        /// Control GVSecado2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVSecado2;
-
-        /// <summary>
         /// Control Confirmar.
         /// </summary>
         /// <remarks>
@@ -141,12 +96,12 @@ namespace IT_Finca.Pages.Forms
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Confirmar;
 
         /// <summary>
-        /// Control BTNInsertar.
+        /// Control BtnConfirmar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTNInsertar;
+        protected global::System.Web.UI.WebControls.Button BtnConfirmar;
     }
 }

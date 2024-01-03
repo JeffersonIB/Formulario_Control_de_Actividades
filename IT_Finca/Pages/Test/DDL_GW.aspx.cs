@@ -55,9 +55,8 @@ namespace IT_Finca.Pages.Test
                 ddlCafe.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
                 con.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                // Manejo de excepciones
                 throw;
             }
         }
