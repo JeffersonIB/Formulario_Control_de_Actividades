@@ -66,7 +66,7 @@
                                                 <asp:Label ID="lbl_Fecha_Crea" runat="server" Text='<%# Eval("Fecha_Crea", "{0:dd/MM/yyyy}") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Id_Finca">
+                                        <asp:TemplateField HeaderText="Id_Finca" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbl_Id_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
                                             </ItemTemplate>
@@ -155,13 +155,15 @@
                             </div>
                         </tr>
                     </table>
+                    <br />
                     <table>
                         <tr>
                             <td>
                                 <asp:GridView ID="GVSecado2" runat="server"
-                                    AutoGenerateColumns="False">
+                                    AutoGenerateColumns="False"
+                                    Visible="false">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Id_Beneficio_R">
+                                        <asp:TemplateField HeaderText="Id_Beneficio_R" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbl_Id_Beneficio_R" runat="server" Text='<%#Eval("Id_Beneficio_R") %>'></asp:Label>
                                             </ItemTemplate>
@@ -171,7 +173,7 @@
                                                 <asp:Label ID="lbl_Fecha_Crea" runat="server" Text='<%# Eval("Fecha_Crea", "{0:dd/MM/yyyy}") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Id_Finca">
+                                        <asp:TemplateField HeaderText="Id_Finca" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbl_Id_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
                                             </ItemTemplate>
@@ -205,7 +207,7 @@
                     </table>
                 </ContentTemplate>
             </asp:UpdatePanel>
-            <div id="Confirmar" runat="server">
+            <div id="Confirmar" runat="server" visible="false">
                 <asp:Button ID="BTNInsertar" runat="server" Text="Insertar" class="btn btn-primary" OnClick="BTNInsertar_Click" />
             </div>
         </center>

@@ -205,7 +205,7 @@ namespace IT_Finca.Pages.Forms
                         }
                     }
                     GVSecado2.DataSource = dt;
-                    GVSecado2.DataBind();                    
+                    GVSecado2.DataBind();
                 }
                 else if (ddlCafe.SelectedIndex > 1)
                 {
@@ -230,8 +230,9 @@ namespace IT_Finca.Pages.Forms
                         }
                     }
                     GVSecado2.DataSource = dt;
-                    GVSecado2.DataBind();                    
+                    GVSecado2.DataBind();
                 }
+                BTNInsertar_Click(sender, e);
             }
             catch (Exception)
             {
@@ -255,10 +256,10 @@ namespace IT_Finca.Pages.Forms
                 InsertarDatos(id, fecha, idfinca, finca, idlote, lote, libras);
             }
             GVSecado2.DataBind();
-            Response.Redirect("~/Pages/Forms/Formulario_Secado.aspx");
+            Response.Redirect("~/Pages/Test/Formulario_Secado.aspx");
         }
         // Resive los registros e inserta en procedimiento
-        private void InsertarDatos(string id, DateTime fecha, int idfinca, string finca, int idlote, string lote,  decimal libras)
+        private void InsertarDatos(string id, DateTime fecha, int idfinca, string finca, int idlote, string lote, decimal libras)
         {
             try
             {
