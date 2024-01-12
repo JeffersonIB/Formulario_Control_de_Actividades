@@ -77,7 +77,7 @@ namespace IT_Finca.Pages.Forms
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString))
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SP_AG_FNC00607", con);
+                    SqlCommand cmd = new SqlCommand("SP_AG_FNC00608", con);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Id_Partida", Convert.ToInt32(ddlPartida.SelectedValue));
                     cmd.Parameters.AddWithValue("@Humedad", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(CantHumedad.Text);

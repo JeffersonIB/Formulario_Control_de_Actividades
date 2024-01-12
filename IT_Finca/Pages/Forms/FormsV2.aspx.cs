@@ -168,9 +168,9 @@ namespace IT_Finca.Pages.Forms
         {
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("SP_CN_FNC202", con);
+                SqlCommand cmd = new SqlCommand("SP_FNC00202", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = IdEmpresa;
+                cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Finca"]);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Employee> empleados = new List<Employee>();
@@ -253,41 +253,60 @@ namespace IT_Finca.Pages.Forms
         {
             try
             {
+                List<SqlParameter[]> parametrosList = new List<SqlParameter[]>();
+
                 foreach (GridViewRow row in GridViewCalificaciones.Rows)
                 {
-                    //int idEmpleado = Convert.ToInt32(row.Cells[0].Text);
                     int idEmpleado = Convert.ToInt32((row.FindControl("lblIdEmpleado") as Label)?.Text);
                     string nomApe = row.Cells[1].Text;
                     DropDownList ddlTipo_Actividad = (DropDownList)row.FindControl("ddlTipo_Actividad");
                     TextBox txtCantidad1 = (TextBox)row.FindControl("txtCantidad1");
                     TextBox txtCantidad2 = (TextBox)row.FindControl("txtCantidad2");
                     TextBox txtCantidad3 = (TextBox)row.FindControl("txtCantidad3");
-                    SqlCommand cmd = new SqlCommand("SP_AG_FNC00600_2", con);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Finca"]);
-                    cmd.Parameters.Add("@Id_Empleado", System.Data.SqlDbType.Int).Value = idEmpleado;
-                    cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlLotes.Text);
-                    cmd.Parameters.Add("@Id_Proceso", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlProcesos.Text);
-                    cmd.Parameters.Add("@Id_Actividad1", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad1.Text);
-                    cmd.Parameters.Add("@Id_Actividad2", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad2.Text);
-                    cmd.Parameters.Add("@Id_Actividad3", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlActividad3.Text);
-                    cmd.Parameters.Add("@Id_Tipo_Actividad1", System.Data.SqlDbType.Int).Value = Convert.ToInt32(ddlTipo_Actividad.SelectedValue);
-                    cmd.Parameters.Add("@Cantidad1", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad1.Text);
-                    cmd.Parameters.Add("@Cantidad2", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad2.Text);
-                    cmd.Parameters.Add("@Cantidad3", System.Data.SqlDbType.Decimal).Value = Decimal.Parse(txtCantidad3.Text);
-                    cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Empresa"]);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();                    
-                    Insertar.Visible = false;
-                    Response.Redirect("~/Pages/Forms/FormsV2.aspx");
+
+                    SqlParameter[] parametros = new SqlParameter[]
+                    {
+                new SqlParameter("@Id_Finca", SqlDbType.Int) { Value = Convert.ToInt32(Session["Id_Finca"]) },
+                new SqlParameter("@Id_Empleado", SqlDbType.Int) { Value = idEmpleado },
+                new SqlParameter("@Id_Lote", SqlDbType.Int) { Value = Convert.ToInt32(ddlLotes.Text) },
+                new SqlParameter("@Id_Proceso", SqlDbType.Int) { Value = Convert.ToInt32(ddlProcesos.Text) },
+                new SqlParameter("@Id_Actividad1", SqlDbType.Int) { Value = Convert.ToInt32(ddlActividad1.Text) },
+                new SqlParameter("@Id_Actividad2", SqlDbType.Int) { Value = Convert.ToInt32(ddlActividad2.Text) },
+                new SqlParameter("@Id_Actividad3", SqlDbType.Int) { Value = Convert.ToInt32(ddlActividad3.Text) },
+                new SqlParameter("@Id_Tipo_Actividad1", SqlDbType.Int) { Value = Convert.ToInt32(ddlTipo_Actividad.SelectedValue) },
+                new SqlParameter("@Cantidad1", SqlDbType.Decimal) { Value = Decimal.Parse(txtCantidad1.Text) },
+                new SqlParameter("@Cantidad2", SqlDbType.Decimal) { Value = Decimal.Parse(txtCantidad2.Text) },
+                new SqlParameter("@Cantidad3", SqlDbType.Decimal) { Value = Decimal.Parse(txtCantidad3.Text) },
+                new SqlParameter("@Id_Empresa", SqlDbType.Int) { Value = Convert.ToInt32(Session["Id_Empresa"]) }
+                    };
+
+                    parametrosList.Add(parametros);
                 }
+
+                // Realizar la inserción fuera del bucle
+                SqlCommand cmd = new SqlCommand("SP_AG_FNC00600_2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                con.Open();
+
+                foreach (SqlParameter[] parametros in parametrosList)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddRange(parametros);
+                    cmd.ExecuteNonQuery();
+                }
+
+                con.Close();
+
+                Insertar.Visible = false;
+                Response.Redirect("~/Pages/Forms/FormsV2.aspx");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
-                    "swal('Error!', 'Error en validación de datos!', 'error')", true);
+                    $"swal('Error!', 'Error en validación de datos: {ex.Message}', 'error')", true);
             }
         }
+
     }
 }
