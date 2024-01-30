@@ -273,7 +273,7 @@ namespace IT_Finca.Pages.Admin
                 cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = dEmpresas.Text;
                 cmd.Parameters.Add("@Codigo_Empleado", System.Data.SqlDbType.VarChar).Value = tCodigo_Empleado.Text;
                 cmd.Parameters.Add("@Nom_Ape", System.Data.SqlDbType.VarChar).Value = tNom_Ape.Text;
-                cmd.Parameters.Add("@DPI", System.Data.SqlDbType.Int).Value = tDPI.Text;
+                cmd.Parameters.Add("@DPI", System.Data.SqlDbType.Decimal).Value = tDPI.Text;
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
