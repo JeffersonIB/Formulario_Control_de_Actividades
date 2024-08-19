@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="FormsV2.aspx.cs" Inherits="IT_Finca.Pages.Forms.FormsV2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_ActividadV2.aspx.cs" Inherits="IT_Finca.Pages.Forms.FormsV2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
     Formuario V2
@@ -77,6 +77,7 @@
                 border-radius: .25rem;
                 transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
             }
+
             .scroll_checkboxess {
                 height: 120px;
                 width: 200px;
@@ -84,6 +85,7 @@
                 overflow: auto;
                 border: 1px solid #ccc;
             }
+
             .FormText {
                 FONT-SIZE: 11px;
                 FONT-FAMILY: tahoma,sans-serif
@@ -94,7 +96,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Agregar actividades V2 <strong>"
+                    <h5 class="modal-title">Agregar actividades <strong>"
                         <asp:Label CssClass="navbar-link" runat="server" ID="lblFinca"> </asp:Label>
                         "</strong>
                     </h5>
@@ -235,7 +237,7 @@
                                         <asp:GridView ID="GridViewCalificaciones" runat="server" AutoGenerateColumns="False" OnRowCreated="GridViewCalificaciones_RowCreated">
                                             <Columns>
                                                 <asp:BoundField DataField="Id_Empleado" HeaderText="ID Proveedor" Visible="false" />
-                                                <asp:TemplateField HeaderText="Id_Empleado" ItemStyle-CssClass="hidden-column" Visible="false" >
+                                                <asp:TemplateField HeaderText="Id_Empleado" ItemStyle-CssClass="hidden-column" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblIdEmpleado" runat="server" Text='<%# Eval("Id_Empleado") %>'></asp:Label>
                                                     </ItemTemplate>
@@ -246,7 +248,12 @@
                                                         <asp:DropDownList ID="ddlTipo_Actividad" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Cantidad1">
+                                                <asp:TemplateField HeaderText="Manzanas" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txtManzanas" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Rendimiento Actividad 1">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtCantidad1" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
                                                         <asp:RequiredFieldValidator
@@ -260,16 +267,17 @@
                                                         </asp:RequiredFieldValidator>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Cantidad2" Visible="false">
+                                                <asp:TemplateField HeaderText="Rendimiento Actividad 2" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtCantidad2" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Cantidad3" Visible="false">
+                                                <asp:TemplateField HeaderText="Rendimiento Actividad 3" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtCantidad3" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+
                                             </Columns>
                                         </asp:GridView>
                                     </ContentTemplate>

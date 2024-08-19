@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Desoriente.aspx.cs" Inherits="IT_Finca.Pages.Forms.Desoriente" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="ElDesoriente.aspx.cs" Inherits="IT_Finca.Pages.Forms.Desoriente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
 </asp:Content>

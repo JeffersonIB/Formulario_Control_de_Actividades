@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP.Master" AutoEventWireup="true" CodeBehind="FormsV1.aspx.cs" Inherits="IT_Finca.Pages.Test.FromV1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP.Master" AutoEventWireup="true" CodeBehind="Formulario_ActividadV1.aspx.cs" Inherits="IT_Finca.Pages.Test.FromV1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
     GRUPO ENLASA

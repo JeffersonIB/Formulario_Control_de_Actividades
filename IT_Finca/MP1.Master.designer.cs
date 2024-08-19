@@ -105,15 +105,6 @@ namespace IT_Finca
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Segunda_Pag;
 
         /// <summary>
-        /// Control Tercera_Pag.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Tercera_Pag;
-
-        /// <summary>
         /// Control Cuarta_Pag.
         /// </summary>
         /// <remarks>
@@ -130,6 +121,42 @@ namespace IT_Finca
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Quinta_Pag;
+
+        /// <summary>
+        /// Control VigesimaSegunda_Pag.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl VigesimaSegunda_Pag;
+
+        /// <summary>
+        /// Control VigesimaPrimera_Pag.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl VigesimaPrimera_Pag;
+
+        /// <summary>
+        /// Control VigesimaTercera_Pag.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl VigesimaTercera_Pag;
+
+        /// <summary>
+        /// Control Tercera_Pag.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Tercera_Pag;
 
         /// <summary>
         /// Control Sexta_Pag.
@@ -276,42 +303,6 @@ namespace IT_Finca
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Vigesima_Pag;
 
         /// <summary>
-        /// Control Tercer_Men.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Tercer_Men;
-
-        /// <summary>
-        /// Control VigesimaPrimera_Pag.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl VigesimaPrimera_Pag;
-
-        /// <summary>
-        /// Control VigesimaSegunda_Pag.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl VigesimaSegunda_Pag;
-
-        /// <summary>
-        /// Control VigesimaTercera_Pag.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl VigesimaTercera_Pag;
-
-        /// <summary>
         /// Control VigesimaCuarta_Pag.
         /// </summary>
         /// <remarks>
@@ -319,6 +310,15 @@ namespace IT_Finca
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl VigesimaCuarta_Pag;
+
+        /// <summary>
+        /// Control Tercer_Men.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Tercer_Men;
 
         /// <summary>
         /// Control VigesimaQuinta_Pag.

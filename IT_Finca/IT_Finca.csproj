@@ -134,21 +134,26 @@
     <Content Include="JS\popper.min.js" />
     <Content Include="LICENSE.txt" />
     <Content Include="Pages\Admin\Actividades.aspx" />
-    <Content Include="Pages\Admin\Cosecha.aspx" />
+    <Content Include="Pages\Admin\CentroAnalisis.aspx" />
+    <Content Include="Pages\Admin\CentroGasto.aspx" />
+    <Content Include="Pages\Admin\Clasificacion.aspx" />
+    <Content Include="Pages\Admin\RegistroCosecha.aspx" />
     <Content Include="Pages\Admin\Fincas.aspx" />
     <Content Include="Pages\Admin\Lotes.aspx" />
     <Content Include="Pages\Admin\Procesos.aspx" />
     <Content Include="Pages\Admin\Proveedores.aspx" />
-    <Content Include="Pages\Admin\Registros.aspx" />
+    <Content Include="Pages\Admin\RegistroActividades.aspx" />
     <Content Include="Pages\Admin\Usuarios.aspx" />
     <Content Include="Pages\css\maps\jquery-jvectormap-2.0.3.css" />
     <Content Include="Pages\Extras\Contrasena.aspx" />
     <Content Include="Pages\Forms\Bilbao.aspx" />
-    <Content Include="Pages\Forms\Desoriente.aspx" />
+    <Content Include="Pages\Forms\ControlDieselGasolina.aspx" />
+    <Content Include="Pages\Forms\ElDesoriente.aspx" />
     <Content Include="Pages\Forms\DonPatricio.aspx" />
-    <Content Include="Pages\Forms\FormsV1.aspx" />
-    <Content Include="Pages\Forms\FormsV2.aspx" />
-    <Content Include="Pages\Forms\FormsV3.aspx" />
+    <Content Include="Pages\Forms\Formulario_ActividadV1.aspx" />
+    <Content Include="Pages\Forms\Formulario_ActividadV2.aspx" />
+    <Content Include="Pages\Forms\Formulario_ActividadV3.aspx" />
+    <Content Include="Pages\Forms\Formulario_Combustible.aspx" />
     <Content Include="Pages\Forms\Formulario_Partida.aspx" />
     <Content Include="Pages\Forms\Formulario_Secado.aspx" />
     <Content Include="Pages\Forms\Formulario_Beneficio.aspx" />
@@ -189,6 +194,7 @@
     <Content Include="Pages\Img\visa.png" />
     <Content Include="Pages\js\datepicker\daterangepicker.js" />
     <Content Include="Pages\js\moment\moment.min.js" />
+    <Content Include="Pages\Test\CentroGastos.aspx" />
     <Content Include="Pages\Test\DDL_GW.aspx" />
     <Content Include="Pages\Test\FormsV3_1.aspx" />
     <Content Include="Pages\Test\Formulario_Secado.aspx" />
@@ -2350,12 +2356,33 @@
     <Compile Include="Pages\Admin\Actividades.aspx.designer.cs">
       <DependentUpon>Actividades.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\Cosecha.aspx.cs">
-      <DependentUpon>Cosecha.aspx</DependentUpon>
+    <Compile Include="Pages\Admin\CentroAnalisis.aspx.cs">
+      <DependentUpon>CentroAnalisis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\Cosecha.aspx.designer.cs">
-      <DependentUpon>Cosecha.aspx</DependentUpon>
+    <Compile Include="Pages\Admin\CentroAnalisis.aspx.designer.cs">
+      <DependentUpon>CentroAnalisis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\CentroGasto.aspx.cs">
+      <DependentUpon>CentroGasto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\CentroGasto.aspx.designer.cs">
+      <DependentUpon>CentroGasto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Clasificacion.aspx.cs">
+      <DependentUpon>Clasificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Clasificacion.aspx.designer.cs">
+      <DependentUpon>Clasificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\RegistroCosecha.aspx.cs">
+      <DependentUpon>RegistroCosecha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\RegistroCosecha.aspx.designer.cs">
+      <DependentUpon>RegistroCosecha.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\Fincas.aspx.cs">
       <DependentUpon>Fincas.aspx</DependentUpon>
@@ -2385,12 +2412,12 @@
     <Compile Include="Pages\Admin\Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\Registros.aspx.cs">
-      <DependentUpon>Registros.aspx</DependentUpon>
+    <Compile Include="Pages\Admin\RegistroActividades.aspx.cs">
+      <DependentUpon>RegistroActividades.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\Registros.aspx.designer.cs">
-      <DependentUpon>Registros.aspx</DependentUpon>
+    <Compile Include="Pages\Admin\RegistroActividades.aspx.designer.cs">
+      <DependentUpon>RegistroActividades.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
@@ -2413,12 +2440,19 @@
     <Compile Include="Pages\Forms\Bilbao.aspx.designer.cs">
       <DependentUpon>Bilbao.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Forms\Desoriente.aspx.cs">
-      <DependentUpon>Desoriente.aspx</DependentUpon>
+    <Compile Include="Pages\Forms\ControlDieselGasolina.aspx.cs">
+      <DependentUpon>ControlDieselGasolina.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Forms\Desoriente.aspx.designer.cs">
-      <DependentUpon>Desoriente.aspx</DependentUpon>
+    <Compile Include="Pages\Forms\ControlDieselGasolina.aspx.designer.cs">
+      <DependentUpon>ControlDieselGasolina.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Forms\ElDesoriente.aspx.cs">
+      <DependentUpon>ElDesoriente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Forms\ElDesoriente.aspx.designer.cs">
+      <DependentUpon>ElDesoriente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Forms\DonPatricio.aspx.cs">
       <DependentUpon>DonPatricio.aspx</DependentUpon>
@@ -2427,26 +2461,33 @@
     <Compile Include="Pages\Forms\DonPatricio.aspx.designer.cs">
       <DependentUpon>DonPatricio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Forms\FormsV1.aspx.cs">
-      <DependentUpon>FormsV1.aspx</DependentUpon>
+    <Compile Include="Pages\Forms\Formulario_ActividadV1.aspx.cs">
+      <DependentUpon>Formulario_ActividadV1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Forms\FormsV1.aspx.designer.cs">
-      <DependentUpon>FormsV1.aspx</DependentUpon>
+    <Compile Include="Pages\Forms\Formulario_ActividadV1.aspx.designer.cs">
+      <DependentUpon>Formulario_ActividadV1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Forms\FormsV2.aspx.cs">
-      <DependentUpon>FormsV2.aspx</DependentUpon>
+    <Compile Include="Pages\Forms\Formulario_ActividadV2.aspx.cs">
+      <DependentUpon>Formulario_ActividadV2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Forms\FormsV2.aspx.designer.cs">
-      <DependentUpon>FormsV2.aspx</DependentUpon>
+    <Compile Include="Pages\Forms\Formulario_ActividadV2.aspx.designer.cs">
+      <DependentUpon>Formulario_ActividadV2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Forms\FormsV3.aspx.cs">
-      <DependentUpon>FormsV3.aspx</DependentUpon>
+    <Compile Include="Pages\Forms\Formulario_ActividadV3.aspx.cs">
+      <DependentUpon>Formulario_ActividadV3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Forms\FormsV3.aspx.designer.cs">
-      <DependentUpon>FormsV3.aspx</DependentUpon>
+    <Compile Include="Pages\Forms\Formulario_ActividadV3.aspx.designer.cs">
+      <DependentUpon>Formulario_ActividadV3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Forms\Formulario_Combustible.aspx.cs">
+      <DependentUpon>Formulario_Combustible.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Forms\Formulario_Combustible.aspx.designer.cs">
+      <DependentUpon>Formulario_Combustible.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Forms\Formulario_Partida.aspx.cs">
       <DependentUpon>Formulario_Partida.aspx</DependentUpon>
@@ -2496,6 +2537,13 @@
     </Compile>
     <Compile Include="Pages\Forms\Linea18.aspx.designer.cs">
       <DependentUpon>Linea18.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Test\CentroGastos.aspx.cs">
+      <DependentUpon>CentroGastos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Test\CentroGastos.aspx.designer.cs">
+      <DependentUpon>CentroGastos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Test\DDL_GW.aspx.cs">
       <DependentUpon>DDL_GW.aspx</DependentUpon>

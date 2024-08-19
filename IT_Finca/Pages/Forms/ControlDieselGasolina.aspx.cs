@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlTypes;
 
 namespace IT_Finca.Pages.Forms
 {
-    public partial class FormsV3 : System.Web.UI.Page
+    public partial class ControlDieselGasolina : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!IsPostBack && Session["Usuario"] != null)
             {
                 DataTable dt = new DataTable();
                 Session["GridViewData"] = dt;
                 BindGridView();
-                //lblFinca.Text = Session["Finca"].ToString();
-                CargarLotes();
+                DDLCargarFincas();                
             }
             else
             {
@@ -28,13 +28,41 @@ namespace IT_Finca.Pages.Forms
             }
         }
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ToString());
-        void CargarLotes()
+        //Cargar Listado de Fincas en DropDownList
+        void DDLCargarFincas()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_FNC00100", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Empresa"]);
+                ddlFincas.Items.Clear();
+                con.Open();
+                ddlFincas.DataSource = cmd.ExecuteReader();
+                ddlFincas.DataTextField = "Finca";
+                ddlFincas.DataValueField = "Id_Finca";
+                ddlFincas.DataBind();
+                ddlFincas.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                con.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        protected void ddlFincas_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlLotes.ClearSelection();
+            DDLCargarLotes(int.Parse(ddlFincas.SelectedValue));            
+        }
+        //Cargar Listado de Lotes en DropDownList
+        void DDLCargarLotes(long IdFinca)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand("SP_FNC00500", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Finca"]);
+                cmd.Parameters.Add("@Id_Finca", SqlDbType.Int).Value = IdFinca;
                 ddlLotes.Items.Clear();
                 con.Open();
                 ddlLotes.DataSource = cmd.ExecuteReader();
@@ -52,10 +80,9 @@ namespace IT_Finca.Pages.Forms
         protected void ddlLotes_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             ddlProcesos.ClearSelection();
-            CargarProcesos(int.Parse(ddlLotes.SelectedValue));
-            ddlActividad1.ClearSelection();
+            DDLCargarProcesos(int.Parse(ddlLotes.SelectedValue));
         }
-        void CargarProcesos(long IdLote)
+        void DDLCargarProcesos(long IdLote)
         {
             try
             {
@@ -78,27 +105,23 @@ namespace IT_Finca.Pages.Forms
         }
         protected void ddlProcesos_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            ddlActividad1.ClearSelection();
-            //ddlActividad2.ClearSelection();
-            //ddlActividad3.ClearSelection();
-            CargarActividad1(long.Parse(ddlProcesos.SelectedValue));
-            //CargarActividad2(long.Parse(ddlProcesos.SelectedValue));
-            //CargarActividad3(long.Parse(ddlProcesos.SelectedValue));
+            ddlCentroGasto.ClearSelection();
+            DDLCargarCentroGasto(int.Parse(ddlProcesos.SelectedValue));
         }
-        void CargarActividad1(long IdProceso)
+        void DDLCargarCentroGasto(long IdProceso)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SP_FNC00400", con);
+                SqlCommand cmd = new SqlCommand("SP_FNC00407", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
-                ddlActividad1.Items.Clear();
+                ddlCentroGasto.Items.Clear();
                 con.Open();
-                ddlActividad1.DataSource = cmd.ExecuteReader();
-                ddlActividad1.DataTextField = "Actividad";
-                ddlActividad1.DataValueField = "Id_Actividad";
-                ddlActividad1.DataBind();
-                ddlActividad1.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                ddlCentroGasto.DataSource = cmd.ExecuteReader();
+                ddlCentroGasto.DataTextField = "CentroGasto";
+                ddlCentroGasto.DataValueField = "Id_CentroGasto";
+                ddlCentroGasto.DataBind();
+                //ddlCentroGasto.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
                 con.Close();
             }
             catch (Exception)
@@ -106,112 +129,128 @@ namespace IT_Finca.Pages.Forms
                 throw;
             }
         }
-        protected void ddlActividad1_OnSelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlCentroGasto_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlCentroGasto.ClearSelection();
+            DDLCargarClasificacion(int.Parse(ddlProcesos.SelectedValue));
+        }
+        void DDLCargarClasificacion(long IdCentroGasto)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_FNC00408", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Id_CentroGasto", SqlDbType.Int).Value = IdCentroGasto;
+                ddlClasificacion.Items.Clear();
+                con.Open();
+                ddlClasificacion.DataSource = cmd.ExecuteReader();
+                ddlClasificacion.DataTextField = "Clasificacion";
+                ddlClasificacion.DataValueField = "Id_Clasificacion";
+                ddlClasificacion.DataBind();
+                //ddlClasificacion.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                con.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        protected void ddlClasificacion_OnSelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-        //void CargarActividad2(long IdProceso)
-        //{
-        //    try
-        //    {
-        //        SqlCommand cmd = new SqlCommand("SP_FNC00400", con);
-        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //        cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
-        //        ddlActividad2.Items.Clear();
-        //        con.Open();
-        //        ddlActividad2.DataSource = cmd.ExecuteReader();
-        //        ddlActividad2.DataTextField = "Actividad";
-        //        ddlActividad2.DataValueField = "Id_Actividad";
-        //        ddlActividad2.DataBind();
-        //        ddlActividad2.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-        //        con.Close();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
-        //protected void ddlActividad2_OnSelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //}
-        //void CargarActividad3(long IdProceso)
-        //{
-        //    try
-        //    {
-        //        SqlCommand cmd = new SqlCommand("SP_FNC00400", con);
-        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //        cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
-        //        ddlActividad3.Items.Clear();
-        //        con.Open();
-        //        ddlActividad3.DataSource = cmd.ExecuteReader();
-        //        ddlActividad3.DataTextField = "Actividad";
-        //        ddlActividad3.DataValueField = "Id_Actividad";
-        //        ddlActividad3.DataBind();
-        //        ddlActividad3.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-        //        con.Close();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
-        //protected void ddlActividad3_OnSelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //}      
-        protected void AgregarEmpleados_Click(object sender, EventArgs e)
+        void DDLCargarTipo(long IdProceso)
         {
-            GridViewCalificaciones.Visible = true;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_FNC00407", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
+                ddlCentroGasto.Items.Clear();
+                con.Open();
+                ddlCentroGasto.DataSource = cmd.ExecuteReader();
+                ddlCentroGasto.DataTextField = "CentroGasto";
+                ddlCentroGasto.DataValueField = "Id_CentroGasto";
+                ddlCentroGasto.DataBind();
+                //ddlCentroGasto.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                con.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        protected void ddlTipo_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void AgregarRegistro_Click(object sender, EventArgs e)
+        {
+            GridViewRegistros.Visible = true;
             // Obtener el DataTable desde el ViewState
             DataTable dt;
-            if (ViewState["EmpleadosDataTable"] != null)
+            if (ViewState["RegistrosDataTable"] != null)
             {
-                dt = (DataTable)ViewState["EmpleadosDataTable"];
+                dt = (DataTable)ViewState["RegistrosDataTable"];
             }
             else
             {
                 dt = new DataTable();
+                dt.Columns.Add("Id_Finca", typeof(int));
                 dt.Columns.Add("Id_Lote", typeof(int));
                 dt.Columns.Add("Id_Proceso", typeof(int));
-                dt.Columns.Add("Actividad1", typeof(int));
-                dt.Columns.Add("Id_Proveedor", typeof(int));
-                dt.Columns.Add("Tipo_Pago", typeof(int));
-                dt.Columns.Add("Cantidad1", typeof(decimal));
-                ViewState["EmpleadosDataTable"] = dt;
+                dt.Columns.Add("Id_CentroGasto", typeof(int));
+                dt.Columns.Add("Id_Clasificacion", typeof(int));
+                dt.Columns.Add("Id_Tipo", typeof(int));
+                dt.Columns.Add("Fecha", typeof(DateTime));
+                dt.Columns.Add("NoVale", typeof(int));
+                dt.Columns.Add("Kilometraje", typeof(decimal));
+                dt.Columns.Add("Cantidad", typeof(decimal));
+                dt.Columns.Add("Comentario", typeof(string));
+                ViewState["RegistrosDataTable"] = dt;
             }
 
             // Obtener los valores de los controles
+            int idFinca = Convert.ToInt32(ddlFincas.SelectedValue);
             int idLote = Convert.ToInt32(ddlLotes.SelectedValue);
             int idProceso = Convert.ToInt32(ddlProcesos.SelectedValue);
-            int idActividad = Convert.ToInt32(ddlActividad1.SelectedValue);
-            int idProveedor = Convert.ToInt32(txtIdProveedor.Text);
-            decimal cantidad1 = Convert.ToDecimal(txtCantidad1.Text);
-            // Agrega aquí las líneas para obtener los valores de los otros controles
+            int idCentroGasto = Convert.ToInt32(ddlCentroGasto.SelectedValue);
+            int idClasificacion = Convert.ToInt32(ddlClasificacion.SelectedValue);
+            int idTipo = Convert.ToInt32(ddlTipo.Text);
+            //DateTime fecha =  Convert.ToDateTime(DateFecha.SelectedValue);
+            string fecha = string.Empty;
+            int noVale = Convert.ToInt32(NumVale.Text);
+            decimal kilometraje = Convert.ToInt32(NumKilometraje.Text);
+            decimal cantidad = Convert.ToInt32(NumCantidad.Text);
+            string comentario = (txtComentario.Text);
 
             // Agregar una nueva fila al DataTable
             DataRow newRow = dt.NewRow();
+            newRow["Id_Finca"] = idFinca;
             newRow["Id_Lote"] = idLote;
             newRow["Id_Proceso"] = idProceso;
-            newRow["Actividad1"] = idActividad;
-            newRow["Id_Proveedor"] = idProveedor;
-            newRow["Cantidad1"] = cantidad1;
-            // Agrega aquí las líneas para asignar valores a otras columnas
+            newRow["Id_CentroGasto"] = idCentroGasto;
+            newRow["Id_Clasificacion"] = idClasificacion;
+            newRow["Id_Tipo"] = idTipo;
+            newRow["Fecha"] = fecha;
+            newRow["NoVale"] = noVale;
+            newRow["Kilometraje"] = kilometraje;
+            newRow["Cantidad"] = cantidad;
+            newRow["Comentario"] = comentario;
 
             // Agregar la nueva fila al DataTable
             dt.Rows.Add(newRow);
-
             // Enlazar el DataTable al GridView
-            GridViewCalificaciones.DataSource = dt;
-            GridViewCalificaciones.DataBind();
+            GridViewRegistros.DataSource = dt;
+            GridViewRegistros.DataBind();
 
             // Guardar el DataTable actualizado en el ViewState
-            ViewState["EmpleadosDataTable"] = dt;
+            ViewState["RegistrosDataTable"] = dt;
             Insertar.Visible = true;
             Session["GridViewData"] = dt;
         }
 
-        protected void GridViewCalificaciones_RowCreated(object sender, GridViewRowEventArgs e)
+        protected void GridViewRegistros_RowCreated(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -233,31 +272,28 @@ namespace IT_Finca.Pages.Forms
                 }
             }
         }
-        protected void GridViewCalificaciones_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void GridViewRegistros_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int rowIndex = e.RowIndex;
             DataTable dt = (DataTable)Session["GridViewData"];
             dt.Rows.RemoveAt(rowIndex);
-            GridViewCalificaciones.EditIndex = -1;
+            GridViewRegistros.EditIndex = -1;
             BindGridView();
         }
         private void BindGridView()
         {
             DataTable dt = (DataTable)Session["GridViewData"];
-            GridViewCalificaciones.DataSource = dt;
-            GridViewCalificaciones.DataBind();
+            GridViewRegistros.DataSource = dt;
+            GridViewRegistros.DataBind();
         }
-
         protected void Insertar_Click(object sender, EventArgs e)
         {
-            
             try
             {
-                foreach (GridViewRow row in GridViewCalificaciones.Rows)
+                foreach (GridViewRow row in GridViewRegistros.Rows)
                 {
-                    SqlCommand cmd = new SqlCommand("SP_AG_FNC00600_3", con);
+                    SqlCommand cmd = new SqlCommand("SP_AG_FNC00610", con);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
                     int idFinca = Convert.ToInt32(Session["Id_Finca"]);
                     int idEmpleado = Convert.ToInt32((row.FindControl("lblId_Proveedor") as Label)?.Text);
                     int idLote = Convert.ToInt32((row.FindControl("lblId_Lote") as Label)?.Text);
@@ -271,6 +307,7 @@ namespace IT_Finca.Pages.Forms
                     TextBox txtCantidad3 = (TextBox)row.FindControl("txtCantidad1");
                     int idEmpresa = Convert.ToInt32(Session["Id_Empresa"]);
 
+
                     cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = idFinca;
                     cmd.Parameters.Add("@Id_Empleado", System.Data.SqlDbType.Int).Value = idEmpleado;
                     cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = idLote;
@@ -283,13 +320,12 @@ namespace IT_Finca.Pages.Forms
                     cmd.Parameters.Add("@Cantidad2", System.Data.SqlDbType.Decimal).Value = 0;
                     cmd.Parameters.Add("@Cantidad3", System.Data.SqlDbType.Decimal).Value = 0;
                     cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = idEmpresa;
-
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
                 Insertar.Visible = false;
-                Response.Redirect("~/Pages/Forms/FormsV3.aspx");
+                Response.Redirect("~/Pages/Forms/ControlDieselGasolina.aspx");
             }
             catch (Exception)
             {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Registros.aspx.cs" Inherits="IT_Finca.Pages.Admin.Registros" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="RegistroActividades.aspx.cs" Inherits="IT_Finca.Pages.Admin.Registros" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
     Registros actividades

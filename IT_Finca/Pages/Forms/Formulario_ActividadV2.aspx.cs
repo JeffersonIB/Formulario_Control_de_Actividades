@@ -219,11 +219,14 @@ namespace IT_Finca.Pages.Forms
             GridViewCalificaciones.DataSource = dt;
             GridViewCalificaciones.DataBind();
             // Evaluar si ddlActividad2 o ddlActividad3 fueron seleccionados
+            bool ddlActividad1Selected = ddlActividad1.SelectedIndex > 0;
             bool ddlActividad2Selected = ddlActividad2.SelectedIndex > 0;
             bool ddlActividad3Selected = ddlActividad3.SelectedIndex > 0;
             // Mostrar u ocultar las columnas según las selecciones
-            GridViewCalificaciones.Columns[5].Visible = ddlActividad2Selected; // Índice de la columna "Cantidad2"
-            GridViewCalificaciones.Columns[6].Visible = ddlActividad3Selected; // Índice de la columna "Cantidad3"
+            GridViewCalificaciones.Columns[4].Visible = ddlActividad1Selected; // Índice de la columna "Manzanas"
+            GridViewCalificaciones.Columns[5].Visible = ddlActividad1Selected; // Índice de la columna "Cantidad1"
+            GridViewCalificaciones.Columns[6].Visible = ddlActividad2Selected; // Índice de la columna "Cantidad2"
+            GridViewCalificaciones.Columns[7].Visible = ddlActividad3Selected; // Índice de la columna "Cantidad3"            
             ViewState["EmpleadosDataTable"] = dt; // Guardar DataTable en ViewState
             Insertar.Visible = true;
         }
@@ -260,6 +263,7 @@ namespace IT_Finca.Pages.Forms
                     int idEmpleado = Convert.ToInt32((row.FindControl("lblIdEmpleado") as Label)?.Text);
                     string nomApe = row.Cells[1].Text;
                     DropDownList ddlTipo_Actividad = (DropDownList)row.FindControl("ddlTipo_Actividad");
+                    TextBox txtManzanas = (TextBox)row.FindControl("txtManzanas");
                     TextBox txtCantidad1 = (TextBox)row.FindControl("txtCantidad1");
                     TextBox txtCantidad2 = (TextBox)row.FindControl("txtCantidad2");
                     TextBox txtCantidad3 = (TextBox)row.FindControl("txtCantidad3");
@@ -274,6 +278,7 @@ namespace IT_Finca.Pages.Forms
                 new SqlParameter("@Id_Actividad2", SqlDbType.Int) { Value = Convert.ToInt32(ddlActividad2.Text) },
                 new SqlParameter("@Id_Actividad3", SqlDbType.Int) { Value = Convert.ToInt32(ddlActividad3.Text) },
                 new SqlParameter("@Id_Tipo_Actividad1", SqlDbType.Int) { Value = Convert.ToInt32(ddlTipo_Actividad.SelectedValue) },
+                new SqlParameter("@Manzanas", SqlDbType.Decimal) { Value = Decimal.Parse(txtManzanas.Text) },
                 new SqlParameter("@Cantidad1", SqlDbType.Decimal) { Value = Decimal.Parse(txtCantidad1.Text) },
                 new SqlParameter("@Cantidad2", SqlDbType.Decimal) { Value = Decimal.Parse(txtCantidad2.Text) },
                 new SqlParameter("@Cantidad3", SqlDbType.Decimal) { Value = Decimal.Parse(txtCantidad3.Text) },
@@ -282,24 +287,19 @@ namespace IT_Finca.Pages.Forms
 
                     parametrosList.Add(parametros);
                 }
-
                 // Realizar la inserción fuera del bucle
                 SqlCommand cmd = new SqlCommand("SP_AG_FNC00600_2", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-
                 con.Open();
-
                 foreach (SqlParameter[] parametros in parametrosList)
                 {
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddRange(parametros);
                     cmd.ExecuteNonQuery();
                 }
-
                 con.Close();
-
                 Insertar.Visible = false;
-                Response.Redirect("~/Pages/Forms/FormsV2.aspx");
+                Response.Redirect("~/Pages/Forms/Formulario_ActividadV2.aspx");
             }
             catch (Exception ex)
             {

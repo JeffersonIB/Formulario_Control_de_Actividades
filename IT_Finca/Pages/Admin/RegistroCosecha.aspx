@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Cosecha.aspx.cs" Inherits="IT_Finca.Pages.Admin.Cosecha" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="RegistroCosecha.aspx.cs" Inherits="IT_Finca.Pages.Admin.Cosecha" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
     Registros cosecha
