@@ -72,6 +72,14 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Manzanas :
+                                            <br />
+                                        </td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="txtManzanas" type="number" Text="0" min="0" step="0.00" placeholder="0" CssClass="form-control" Style="width: auto;"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td colspan="2" align="center">
                                             <br />
                                             <asp:Button runat="server" ID="btnAgregar" class="btn btn-round btn-success" Text="Guardar" OnClick="Agregar_Click" />
@@ -142,6 +150,14 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Manzanas :
+                                    <br />
+                                        </td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="txManzanas" type="number" Text="0" min="0" step="0.00" placeholder="0" CssClass="form-control" Style="width: auto;"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td colspan="2" align="center">
                                             <br />
                                             <asp:Button runat="server" ID="btActualizar" class="btn btn-round btn-success" Text="Guardar" OnClick="Actualizar_Click" />
@@ -200,88 +216,93 @@
         <br />
         <!-- Tabla de Fincas -->
         <center>
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="ml-auto">
-                                        <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo lote" OnClientClick="ShowModalAg();return false;" />
-                                    </div>
-                                    <div class="ml-auto">
-                                        <asp:TextBox ID="txtBuscarLote" runat="server" placeholder="Buscar por lote" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                                    </div>
-                                    <div class="ml-auto">
-                                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:GridView ID="gvLotes" runat="server"
-                                    DataKeyNames="Id_Lote"
-                                    PageSize="17"
-                                    CssClass="mydatagrid"
-                                    PagerStyle-CssClass="pager"
-                                    HeaderStyle-CssClass="header"
-                                    RowStyle-CssClass="rows"
-                                    GridLines="both"
-                                    AllowPaging="true"
-                                    GroupingEnabled="true"
-                                    HorizontalAlign="Center"
-                                    ShowHeaderWhenEmpty="True"
-                                    AutoGenerateColumns="False"
-                                    EmptyDataText="Sin registros"
-                                    EmptyDataRowStyle-ForeColor="Red"
-                                    OnRowCommand="gvLotes_OnRowCommand"
-                                    OnPageIndexChanging="gvLotes_PageIndexChanging">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Id_Empresa" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="gvId_Empresa" runat="server" Text='<%#Eval("Id_Empresa") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Empresa" Visible="true">
-                                            <ItemTemplate>
-                                                <asp:Label ID="gvEmpresa" runat="server" Text='<%#Eval("Empresa") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Id_Finca" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="gvId_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Finca" Visible="true">
-                                            <ItemTemplate>
-                                                <asp:Label ID="gvFinca" runat="server" Text='<%#Eval("Finca") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Id_Lote" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="gvId_Lote" runat="server" Text='<%#Eval("Id_Lote") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Lote" Visible="true">
-                                            <ItemTemplate>
-                                                <asp:Label ID="gvLote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Modificar">
-                                            <ItemTemplate>
-                                               <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName="ShowModalAc" CommandArgument='<%#Eval("Id_Lote") %>' style="display: block; margin: 0 auto;" />
+            <table>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="ml-auto">
+                                <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo lote" OnClientClick="ShowModalAg();return false;" />
+                            </div>
+                            <div class="ml-auto">
+                                <asp:TextBox ID="txtBuscarLote" runat="server" placeholder="Buscar por lote" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                            </div>
+                            <div class="ml-auto">
+                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:GridView ID="gvLotes" runat="server"
+                            DataKeyNames="Id_Lote"
+                            PageSize="17"
+                            CssClass="mydatagrid"
+                            PagerStyle-CssClass="pager"
+                            HeaderStyle-CssClass="header"
+                            RowStyle-CssClass="rows"
+                            GridLines="both"
+                            AllowPaging="true"
+                            GroupingEnabled="true"
+                            HorizontalAlign="Center"
+                            ShowHeaderWhenEmpty="True"
+                            AutoGenerateColumns="False"
+                            EmptyDataText="Sin registros"
+                            EmptyDataRowStyle-ForeColor="Red"
+                            OnRowCommand="gvLotes_OnRowCommand"
+                            OnPageIndexChanging="gvLotes_PageIndexChanging">
+                            <Columns>
+                                <asp:TemplateField HeaderText="Id_Empresa" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gvId_Empresa" runat="server" Text='<%#Eval("Id_Empresa") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Empresa" Visible="true">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gvEmpresa" runat="server" Text='<%#Eval("Empresa") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Id_Finca" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gvId_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Finca" Visible="true">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gvFinca" runat="server" Text='<%#Eval("Finca") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Id_Lote" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gvId_Lote" runat="server" Text='<%#Eval("Id_Lote") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Lote" Visible="true">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gvLote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Manzanas" Visible="true">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gvManzanas" runat="server" Text='<%#Eval("Manzanas") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Modificar">
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName="ShowModalAc" CommandArgument='<%#Eval("Id_Lote") %>' Style="display: block; margin: 0 auto;" />
 
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Eliminar">
-                                            <ItemTemplate>
-                                                <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="~/Pages/Img/Eliminar.png" CommandName="ShowModalEl" CommandArgument='<%#Eval("Id_Lote") %>' style="display: block; margin: 0 auto;"  />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </td>
-                        </tr>
-                    </table>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Eliminar">
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="~/Pages/Img/Eliminar.png" CommandName="ShowModalEl" CommandArgument='<%#Eval("Id_Lote") %>' Style="display: block; margin: 0 auto;" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </td>
+                </tr>
+            </table>
         </center>
     </body>
     </html>

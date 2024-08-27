@@ -282,7 +282,8 @@ namespace IT_Finca.Pages.Forms
                 new SqlParameter("@Cantidad1", SqlDbType.Decimal) { Value = Decimal.Parse(txtCantidad1.Text) },
                 new SqlParameter("@Cantidad2", SqlDbType.Decimal) { Value = Decimal.Parse(txtCantidad2.Text) },
                 new SqlParameter("@Cantidad3", SqlDbType.Decimal) { Value = Decimal.Parse(txtCantidad3.Text) },
-                new SqlParameter("@Id_Empresa", SqlDbType.Int) { Value = Convert.ToInt32(Session["Id_Empresa"]) }
+                new SqlParameter("@Id_Empresa", SqlDbType.Int) { Value = Convert.ToInt32(Session["Id_Empresa"]) },
+                new SqlParameter("@Id_Usr_Crea", SqlDbType.Int) { Value = Convert.ToInt32(Session["Id_Usuario"]) }
                     };
 
                     parametrosList.Add(parametros);

@@ -60,6 +60,15 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.TextBox txtLote;
 
         /// <summary>
+        /// Control txtManzanas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtManzanas;
+
+        /// <summary>
         /// Control btnAgregar.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,15 @@ namespace IT_Finca.Pages.Admin
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txLote;
+
+        /// <summary>
+        /// Control txManzanas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txManzanas;
 
         /// <summary>
         /// Control btActualizar.

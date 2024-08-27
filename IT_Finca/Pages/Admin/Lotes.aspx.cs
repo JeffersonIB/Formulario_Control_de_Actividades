@@ -138,6 +138,7 @@ namespace IT_Finca.Pages.Admin
                 cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddlEmpresas.Text;
                 cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = ddlFincas.Text;
                 cmd.Parameters.Add("@Lote", System.Data.SqlDbType.VarChar).Value = txtLote.Text;
+                cmd.Parameters.Add("@Manzanas", System.Data.SqlDbType.Int).Value = txtManzanas.Text;
                 cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.VarChar).Value = 1;
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -202,6 +203,7 @@ namespace IT_Finca.Pages.Admin
                 cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.VarChar).Value = ddEmpresas.Text;
                 cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.VarChar).Value = ddFincas.Text;
                 cmd.Parameters.Add("@Lote", System.Data.SqlDbType.VarChar).Value = txLote.Text;
+                cmd.Parameters.Add("@Manzanas", System.Data.SqlDbType.VarChar).Value = txManzanas.Text;
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -247,6 +249,7 @@ namespace IT_Finca.Pages.Admin
                 long idEmpresa = Convert.ToInt64((gvrow.FindControl("gvId_Empresa") as Label).Text);
                 DDCargarFincas(idEmpresa);
                 txLote.Text = (gvrow.FindControl("gvLote") as Label).Text;
+                txManzanas.Text = (gvrow.FindControl("gvManzanas") as Label).Text;
                 ModalAc(true);
             }
             if (e.CommandName == "ShowModalEl")
