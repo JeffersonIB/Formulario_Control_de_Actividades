@@ -20,6 +20,7 @@ namespace IT_Finca.Pages.Forms
                 ViewState["CalificacionesDataTable"] = CreateDataTable();
                 if (CheckBoxListEmpleados.Items.Count == 0)
                 {
+                    lblFinca.Text = Session["Finca"].ToString();
                     CargarLotes();
                     CargarEmpleados();
                     CheckBoxListEmpleados.DataBind();

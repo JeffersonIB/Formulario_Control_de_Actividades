@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="RegistroCosecha.aspx.cs" Inherits="IT_Finca.Pages.Admin.Cosecha" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Registros cosecha
+    Administración registros cosecha
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>

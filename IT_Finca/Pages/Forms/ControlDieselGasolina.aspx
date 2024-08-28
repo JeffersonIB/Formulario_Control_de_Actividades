@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="ControlDieselGasolina.aspx.cs" Inherits="IT_Finca.Pages.Forms.ControlDieselGasolina" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Control de Diesel y Gasolina
+    Control de diesel y gasolina
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>

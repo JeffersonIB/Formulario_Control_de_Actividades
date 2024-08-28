@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Secado.aspx.cs" Inherits="IT_Finca.Pages.Forms.Formualario_Secado" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Formuario Secado
+    Formulario de secado
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -17,7 +17,7 @@
     <body>
         <div class="container box">
             <center>
-                <h1 class="title">Secado
+                <h1 class="title">Formulario de secado
                 </h1>
             </center>
         </div>

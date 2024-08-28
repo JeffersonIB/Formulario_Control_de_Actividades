@@ -127,25 +127,25 @@
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_ActividadV1.aspx") %>">Formulario V1</a>
                                             </li>
                                             <li id="DecimaQuinta_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_ActividadV2.aspx") %>">Formulario actividad</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_ActividadV2.aspx") %>">Formulario de actividades</a>
                                             </li>
                                             <li id="DecimaSexta_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_ActividadV3.aspx") %>">Formulario actividad V3</a>
                                             </li>
                                             <li id="DecimaSeptima_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Cosecha.aspx") %>">Formulario cosecha</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Cosecha.aspx") %>">Formulario de cosecha</a>
                                             </li>
                                             <li id="DecimaOctava_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Beneficio.aspx") %>">Formulario beneficio</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Beneficio.aspx") %>">Formulario de beneficio</a>
                                             </li>
                                             <li id="DecimaNovena_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Secado.aspx") %>">Formulario secado</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Secado.aspx") %>">Formulario de secado</a>
                                             </li>
                                             <li id="Vigesima_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Partida.aspx") %>">Formulario partida</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Partida.aspx") %>">Formulario de partidas</a>
                                             </li>
                                             <li id="VigesimaCuarta_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Combustible.aspx") %>">Formulario combustible</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Combustible.aspx") %>">Formulario de combustible</a>
                                             </li>
                                         </ul>
                                     </li>

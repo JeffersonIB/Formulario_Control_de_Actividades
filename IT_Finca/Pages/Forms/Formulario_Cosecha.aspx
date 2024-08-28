@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Cosecha.aspx.cs" Inherits="IT_Finca.Pages.Forms.Formulario_Cosecha" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Formuario Cosecha
+    Formulario de cosecha
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -77,6 +77,7 @@
                 border-radius: .25rem;
                 transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
             }
+
             .scroll_checkboxess {
                 height: 120px;
                 width: 200px;
@@ -84,6 +85,7 @@
                 overflow: auto;
                 border: 1px solid #ccc;
             }
+
             .FormText {
                 FONT-SIZE: 11px;
                 FONT-FAMILY: tahoma,sans-serif
@@ -91,156 +93,169 @@
         </style>
     </head>
     <body>
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+        <div class="container box">
+            <center>
+                <h1 class="title">Formulario de cosecha
+                </h1>
+            </center>
+        </div>
+        <br />
+        <%--<div class="modal-dialog" role="document">--%>
+        <%--<div class="modal-content">--%>
+        <%--<div class="modal-header">
                     <h5 class="modal-title">Agregar cosecha
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
-                <div class="modal-body">
-                    <asp:ScriptManager ID="ScriptManager1" runat="server">
-                    </asp:ScriptManager>
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <ContentTemplate>
-                            <table align="center">
-                                <tr>
-                                    <td>Lote
+                </div>--%>
+        <%--<div class="modal-body">--%>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <center>
+                    <h5 class="modal-title">Agregar cosecha <strong>"<asp:Label CssClass="navbar-link" runat="server" ID="lblFinca"> </asp:Label>"</strong>
+                    </h5>
+                </center>
+                <table align="center" style="width: 100%;">
+                    <tr>
+                        <td>Lote
                                 <div class="control">
                                     <div class="select">
                                         <asp:DropDownList ID="ddlLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLotes_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:RequiredFieldValidator
-                                            ID="RequiredFieldValidator1" runat="server"
-                                            ControlToValidate="ddlLotes"
-                                            ErrorMessage="Campo obligatorio"
-                                            ForeColor="Red"
-                                            ValidationGroup="Validate"
-                                            InitialValue="0">
-                                        </asp:RequiredFieldValidator>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Proceso
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator1" runat="server"
+                                ControlToValidate="ddlLotes"
+                                ErrorMessage="Campo obligatorio"
+                                ForeColor="Red"
+                                ValidationGroup="Validate"
+                                InitialValue="0">
+                            </asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Proceso
                                 <div class="control">
                                     <div class="select">
                                         <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <br />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Tipo pago
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tipo pago
                                 <div class="control">
                                     <div class="select">
                                         <asp:DropDownList ID="dllTipoActividad" runat="server" AutoPosBack="true" CssClass="form-control" Style="width: 100%;">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:RequiredFieldValidator
-                                            ID="RequiredFieldValidator3" runat="server"
-                                            ControlToValidate="dllTipoActividad"
-                                            ErrorMessage="Campo obligatorio"
-                                            ForeColor="Red"
-                                            ValidationGroup="Validate"
-                                            InitialValue="0">
-                                        </asp:RequiredFieldValidator>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Actividad
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator3" runat="server"
+                                ControlToValidate="dllTipoActividad"
+                                ErrorMessage="Campo obligatorio"
+                                ForeColor="Red"
+                                ValidationGroup="Validate"
+                                InitialValue="0">
+                            </asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Actividad
                                         <div class="control">
                                             <div class="select">
                                                 <asp:DropDownList ID="dllActividad" runat="server" AutoPosBack="true" CssClass="form-control" Style="width: 100%;">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
-                                    </td>
-                                    <tr>
-                                        <td>
-                                            <br />
-                                        </td>
-                                    </tr>
-                                <tr>
-                                    <td>Proveedores
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="scroll_checkboxes" cssclass="form-control">
-                                            <asp:CheckBox ID="selectAll" runat="server" Text="Seleccionar todos" onclick="SelectAll(this.id)" />
-                                            <asp:CheckBoxList ID="CheckBoxListEmpleados" runat="server" CssClass="FormText" DataTextField="Nom_Ape" DataValueField="Id_Empleado"></asp:CheckBoxList>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="LabelError" runat="server" CssClass="error-message" Visible="false"></asp:Label>
-                                    </td>
-                                </tr>
-                            </table>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                    <div class="row">
-                        <div class="ml-auto">
-                            <asp:Button ID="ButtonAgregarEmpleados" runat="server" ValidationGroup="Validate" class="btn btn-round btn-primary" Text="Agregar" OnClick="AgregarEmpleados_Click" />
-                        </div>
-                    </div>
-                    <table align="center">
-                        <tr>
-                            <td align="center">
-                                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                    <ContentTemplate>
-                                        <label> <h5>Los registros se cargan en <strong> libras </strong></h5></label>
-                                        <asp:GridView ID="GridViewCalificaciones" runat="server" AutoGenerateColumns="False">
-                                            <Columns>
-                                                <asp:BoundField DataField="Id_Empleado" HeaderText="ID Proveedor" Visible="false" />
-                                                <asp:BoundField DataField="Nom_Ape" HeaderText="Nombre proveedor" />
-                                                <asp:TemplateField HeaderText="Verde">
-                                                    <ItemTemplate>
-                                                        <asp:TextBox ID="txtVerde" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Maduro">
-                                                    <ItemTemplate>
-                                                        <asp:TextBox ID="txtMaduro" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                        </asp:GridView>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
+                        </td>
                         <tr>
                             <td>
-                                <div class="ml-auto">
-                                    <asp:Button ID="Insertar" runat="server" class="btn btn-round btn-success" Text="Insertar" ValidationGroup="Validate" OnClick="Insertar_Click" Visible="false" />
-                                </div>
+                                <br />
                             </td>
                         </tr>
-                    </table>
-                </div>
+                    <tr>
+                        <td>Proveedores
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="scroll_checkboxes" cssclass="form-control">
+                                <asp:CheckBox ID="selectAll" runat="server" Text="Seleccionar todos" onclick="SelectAll(this.id)" />
+                                <asp:CheckBoxList ID="CheckBoxListEmpleados" runat="server" CssClass="FormText" DataTextField="Nom_Ape" DataValueField="Id_Empleado"></asp:CheckBoxList>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="LabelError" runat="server" CssClass="error-message" Visible="false"></asp:Label>
+                        </td>
+                    </tr>
+                </table>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <div class="row">
+            <div class="ml-auto">
+                <asp:Button ID="ButtonAgregarEmpleados" runat="server" ValidationGroup="Validate" class="btn btn-round btn-primary" Text="Agregar" OnClick="AgregarEmpleados_Click" />
             </div>
         </div>
+        <table align="center">
+            <tr>
+                <td align="center">
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <label>
+                                <h5>Los registros se cargan en <strong>libras </strong></h5>
+                            </label>
+                            <asp:GridView ID="GridViewCalificaciones" runat="server" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:BoundField DataField="Id_Empleado" HeaderText="ID Proveedor" Visible="false" />
+                                    <asp:BoundField DataField="Nom_Ape" HeaderText="Nombre proveedor" />
+                                    <asp:TemplateField HeaderText="Verde">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtVerde" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Maduro">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtMaduro" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="ml-auto">
+                        <asp:Button ID="Insertar" runat="server" class="btn btn-round btn-success" Text="Insertar" ValidationGroup="Validate" OnClick="Insertar_Click" Visible="false" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
     </body>
     </html>
 </asp:Content>

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Beneficio.aspx.cs" Inherits="IT_Finca.Pages.Forms.Formulario_Beneficio" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Beneficio
+    Formulario de beneficio
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -9,7 +9,7 @@
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
-        <title>Beneficio
+        <title>Formulario de beneficio
         </title>
         <link href="<%= ResolveClientUrl("~/CSS/Admin.css") %>" rel="stylesheet" />
         <script src="<%= ResolveClientUrl("~/JS/Cale.js") %>"> </script>
@@ -27,7 +27,7 @@
     <body>
         <div class="container box">
             <center>
-                <h1 class="title">Beneficio
+                <h1 class="title">Formulario de beneficio
                 </h1>
             </center>
         </div>

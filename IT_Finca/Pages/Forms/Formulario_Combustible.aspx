@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Combustible.aspx.cs" Inherits="IT_Finca.Pages.Forms.Formulario_Combustible" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Control de Diesel y Gasolina
+    Control de diesel y gasolina
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -11,6 +11,8 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
         <title></title>
+        <link href="<%= ResolveClientUrl("~/CSS/Admin.css") %>" rel="stylesheet" />
+        <script src="<%= ResolveClientUrl("~/JS/Cale.js") %>"> </script>
         <script type="text/javascript">
             var color = 'White';
             // Este método devuelve la fila padre del objeto
@@ -55,6 +57,13 @@
         </style>
     </head>
     <body>
+        <div class="container box">
+            <center>
+                <h1 class="title">Control de diesel y gasolina
+                </h1>
+            </center>
+        </div>
+        <br />
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">

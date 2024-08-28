@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Partida.aspx.cs" Inherits="IT_Finca.Pages.Forms.Formulario_Partida" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Formuario partidas
+    Formulario de partidas
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -17,7 +17,7 @@
     <body>
         <div class="container box">
             <center>
-                <h1 class="title">Partidas
+                <h1 class="title">Formulario de partidas
                 </h1>
             </center>
         </div>

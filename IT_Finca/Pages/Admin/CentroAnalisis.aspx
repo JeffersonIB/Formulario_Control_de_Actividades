@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="CentroAnalisis.aspx.cs" Inherits="IT_Finca.Pages.Admin.CentroAnalisis" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Administración de centro de analisis
+    Administración de centro de análisis
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -19,7 +19,7 @@
         </asp:ScriptManager>
         <div class="container box">
             <center>
-                <h1 class="title">Administración de centro de analisis
+                <h1 class="title">Administración de centro de análisis
                 </h1>
             </center>
         </div>
@@ -28,7 +28,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Agregar nuevo centro de analisis
+                        <h5 class="modal-title">Agregar nuevo centro de análisis
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -115,7 +115,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modificar datos de centro de analisis
+                        <h5 class="modal-title">Modificar datos de centro de análisis
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
