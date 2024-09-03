@@ -137,6 +137,7 @@
     <Content Include="Pages\Admin\CentroAnalisis.aspx" />
     <Content Include="Pages\Admin\CentroGasto.aspx" />
     <Content Include="Pages\Admin\Clasificacion.aspx" />
+    <Content Include="Pages\Admin\Proveedores_Fincas.aspx" />
     <Content Include="Pages\Admin\RegistroCosecha.aspx" />
     <Content Include="Pages\Admin\Fincas.aspx" />
     <Content Include="Pages\Admin\Lotes.aspx" />
@@ -144,6 +145,7 @@
     <Content Include="Pages\Admin\Proveedores.aspx" />
     <Content Include="Pages\Admin\RegistroActividades.aspx" />
     <Content Include="Pages\Admin\Usuarios.aspx" />
+    <Content Include="Pages\Admin\Usuarios_Fincas.aspx" />
     <Content Include="Pages\css\maps\jquery-jvectormap-2.0.3.css" />
     <Content Include="Pages\Extras\Contrasena.aspx" />
     <Content Include="Pages\Forms\Bilbao.aspx" />
@@ -178,6 +180,8 @@
     <Content Include="Pages\Img\Eliminar.gif" />
     <Content Include="Pages\Img\Eliminar.png" />
     <Content Include="Pages\Img\favicon.ico" />
+    <Content Include="Pages\Img\Finca.png" />
+    <Content Include="Pages\Img\Fincas.png" />
     <Content Include="Pages\Img\img.jpg" />
     <Content Include="Pages\Img\inbox.png" />
     <Content Include="Pages\Img\mastercard.png" />
@@ -2378,6 +2382,13 @@
     <Compile Include="Pages\Admin\Clasificacion.aspx.designer.cs">
       <DependentUpon>Clasificacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Admin\Proveedores_Fincas.aspx.cs">
+      <DependentUpon>Proveedores_Fincas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Proveedores_Fincas.aspx.designer.cs">
+      <DependentUpon>Proveedores_Fincas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Admin\RegistroCosecha.aspx.cs">
       <DependentUpon>RegistroCosecha.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2426,6 +2437,13 @@
     </Compile>
     <Compile Include="Pages\Admin\Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Usuarios_Fincas.aspx.cs">
+      <DependentUpon>Usuarios_Fincas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Usuarios_Fincas.aspx.designer.cs">
+      <DependentUpon>Usuarios_Fincas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Extras\Contrasena.aspx.cs">
       <DependentUpon>Contrasena.aspx</DependentUpon>

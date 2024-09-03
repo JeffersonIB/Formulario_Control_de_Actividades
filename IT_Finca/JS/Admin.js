@@ -12,6 +12,12 @@ function ShowModalAc() {
 function CloseModalAc() {
     $("#Modal_Actualizar").modal("hide");
 }
+function ShowModalFn() {
+    $("#Modal_Finca").modal("show");
+}
+function CloseModalFn() {
+    $("#Modal_Finca").modal("hide");
+}
 
 function ShowModalCl() {
     $("#Modal_Calificar").modal("show");

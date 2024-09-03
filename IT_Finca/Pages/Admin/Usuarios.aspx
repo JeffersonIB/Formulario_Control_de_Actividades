@@ -93,6 +93,100 @@
         </div>
         <!-- Modal Agregar-->
 
+        <!-- Modal Finca -->
+        <div class="modal fade" id="Modal_Finca" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Asignar fincas
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <td>
+                                    <asp:Label runat="server" ID="fnId_Usuario" Visible="false"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:GridView ID="gvUsuariosFincas" runat="server"
+                                        DataKeyNames="Id_Usuario"
+                                        PageSize="17"
+                                        GridLines="both"
+                                        AllowPaging="true"
+                                        CssClass="mydatagrid"
+                                        PagerStyle-CssClass="pager"
+                                        HeaderStyle-CssClass="header"
+                                        RowStyle-CssClass="rows"
+                                        GroupingEnabled="true"
+                                        HorizontalAlign="Center"
+                                        ShowHeaderWhenEmpty="True"
+                                        AutoGenerateColumns="False"
+                                        EmptyDataText="Sin datos"
+                                        EmptyDataRowStyle-ForeColor="Red">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Id_Empresa" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="gvId_Empresa" runat="server" Text='<%#Eval("Id_Empresa") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Empresa" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="gvEmpresa" runat="server" Text='<%#Eval("Empresa") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Id_Usuario" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="gvId_Usuario" runat="server" Text='<%#Eval("Id_Usuario") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Nombre" Visible="true">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="gvNombre" runat="server" Text='<%#Eval("Nombre") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Usuario" Visible="true">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="gvUsuario" runat="server" Text='<%#Eval("Usuario") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Id_Finca" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="gvId_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Finca" Visible="true">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="gvFinca" runat="server" Text='<%#Eval("Finca") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Estado" Visible="true">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="gvEstado" runat="server" Checked='<%# Eval("Estado").ToString() == "True" %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <br />
+                                    <asp:Button runat="server" ID="btnGuardarCambios" class="btn btn-round btn-success" Text="Guardar" OnClick="btnGuardarCambios_Click" />
+                                    <asp:Button runat="server" ID="Cancelar" class="btn btn-round btn-danger" Text="Cancelar" OnClientClick="CloseModalFn();return false;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Finca -->
+
         <!-- Modal Actualizar -->
         <div class="modal fade" id="Modal_Actualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -280,6 +374,11 @@
                                 <asp:TemplateField HeaderText="Clave" Visible="True">
                                     <ItemTemplate>
                                         <asp:Label ID="gvClave" runat="server" Text='<%#Eval("Clave") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Fincas">
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="btnFinca" runat="server" ImageUrl="~/Pages/Img/Fincas.png" CommandName='ShowModalFn' CommandArgument='<%#Eval("Id_Usuario") %>' Style="display: block; margin: 0 auto;" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Modificar">

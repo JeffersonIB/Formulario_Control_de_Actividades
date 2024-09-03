@@ -179,9 +179,64 @@ namespace IT_Usuario.Pages.Admin
                 throw;
             }
         }
+        // boton
+        protected void btnGuardarCambios_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gvUsuariosFincas.Rows)
+            {
+                // Obtener el Id_Usuario y el Id_Finca de la fila
+                int idUsuario = Convert.ToInt32(gvUsuariosFincas.DataKeys[row.RowIndex].Values["Id_Usuario"]);
+                int idFinca = Convert.ToInt32((row.FindControl("gvId_Finca") as Label).Text);
+
+                // Obtener el estado actual del checkbox
+                bool nuevoEstado = (row.FindControl("gvEstado") as CheckBox).Checked;
+                int estado = nuevoEstado ? 1 : 0;
+
+                // Actualizar la base de datos con el nuevo estado
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SP_AC_FNC00207", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Estado", estado);
+                        cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
+                        cmd.Parameters.AddWithValue("@Id_Finca", idFinca);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                }
+            }
+        }
         //Retraer Modal_Actualizar y Modal_Eliminar detro del GridView por Id_
         protected void gvUsuarios_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName == "ShowModalFn")
+            {
+                ImageButton btndetails = (ImageButton)e.CommandSource;
+                GridViewRow gvrow = (GridViewRow)btndetails.NamingContainer;
+                fnId_Usuario.Text = gvUsuarios.DataKeys[gvrow.RowIndex].Value.ToString();
+                lUsuario.Text = (gvrow.FindControl("gvUsuario") as Label).Text;
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SP_TB_FNC00207", con);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.Int).Value = gvUsuarios.DataKeys[gvrow.RowIndex].Value.ToString();
+                    con.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    gvUsuariosFincas.DataSource = dt;
+                    gvUsuariosFincas.DataBind();
+                    con.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                ModalFn(true);
+            }
             if (e.CommandName == "ShowModalAc")
             {
                 ImageButton btndetails = (ImageButton)e.CommandSource;
@@ -201,6 +256,21 @@ namespace IT_Usuario.Pages.Admin
                 lId_Usuario.Text = gvUsuarios.DataKeys[gvrow.RowIndex].Value.ToString();
                 lUsuario.Text = (gvrow.FindControl("gvUsuario") as Label).Text;
                 ModalEl(true);
+            }
+        }
+        //Traer Modal_Finca
+        void ModalFn(bool isDisplay)
+        {
+            StringBuilder builder = new StringBuilder();
+            if (isDisplay)
+            {
+                builder.Append("<script language=JavaScript> ShowModalFn(); </script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowModalFn", builder.ToString());
+            }
+            else
+            {
+                builder.Append("<script language=JavaScript> CloseModalFn(); </script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CloseModalFn", builder.ToString());
             }
         }
         //Traer Modal_Actualizar
