@@ -37,8 +37,8 @@ namespace IT_Finca.Pages.Admin
         {
             try
             {
-                string lote = txtBuscarCentroGasto.Text.Trim();
-                DataTable dt = GetFilteredData(lote);
+                string CentroGasto = txtBuscarCentroGasto.Text.Trim();
+                DataTable dt = GetFilteredData(CentroGasto);
                 gvCentroGasto.DataSource = dt;
                 gvCentroGasto.DataBind();
             }
@@ -48,7 +48,7 @@ namespace IT_Finca.Pages.Admin
             }
         }
 
-        private DataTable GetFilteredData(string lote)
+        private DataTable GetFilteredData(string CentroGasto)
         {
             SqlCommand cmd = new SqlCommand("SP_TB_FNC00407", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -57,9 +57,9 @@ namespace IT_Finca.Pages.Admin
             DataTable dt = new DataTable();
             da.Fill(dt);
 
-            if (!string.IsNullOrEmpty(lote))
+            if (!string.IsNullOrEmpty(CentroGasto))
             {
-                dt.DefaultView.RowFilter = string.Format("CentoGasto LIKE '%{0}%'", lote);
+                dt.DefaultView.RowFilter = string.Format("CentroGasto LIKE '%{0}%'", CentroGasto);
                 dt = dt.DefaultView.ToTable();
             }
 

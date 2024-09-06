@@ -168,7 +168,7 @@ namespace IT_Finca.Pages.Forms
         {
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("SP_FNC00202", con);
+                SqlCommand cmd = new SqlCommand("SP_CN_FNC00201", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Finca"]);
                 con.Open();

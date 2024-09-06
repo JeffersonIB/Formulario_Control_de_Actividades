@@ -222,9 +222,8 @@
                 <tr>
                     <td>
                         <div class="row">
-
                             <div class="ml-auto">
-                                <asp:TextBox ID="txtBuscarRegistro" runat="server" placeholder="Buscar por Id" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                <asp:TextBox ID="txtBuscarRegistro" runat="server" placeholder="Buscar por Id" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                             </div>
                             <div class="ml-auto">
                                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
@@ -322,7 +321,7 @@
                                         <asp:Label ID="gvId_Actividad1" runat="server" Text='<%#Eval("Id_Actividad1") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Actividad1" Visible="true">
+                                <asp:TemplateField HeaderText="Actividad" Visible="true">
                                     <ItemTemplate>
                                         <asp:Label ID="gvActividad1" runat="server" Text='<%#Eval("Actividad1") %>'></asp:Label>
                                     </ItemTemplate>
@@ -332,12 +331,12 @@
                                         <asp:Label ID="gvId_Tipo_Actividad1" runat="server" Text='<%#Eval("Id_Tipo_Actividad1") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Tipo_Pago1" Visible="true">
+                                <asp:TemplateField HeaderText="Tipo de pago" Visible="true">
                                     <ItemTemplate>
                                         <asp:Label ID="gvTipo_Actividad1" runat="server" Text='<%#Eval("Tipo_de_Pago1") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Cantidad1" Visible="true">
+                                <asp:TemplateField HeaderText="Rendimiento" Visible="true">
                                     <ItemTemplate>
                                         <asp:Label ID="gvCantidad1" runat="server" Text='<%#Eval("Cantidad1") %>'></asp:Label>
                                     </ItemTemplate>
@@ -362,7 +361,7 @@
                                         <asp:Label ID="gvTipo_Actividad2" runat="server" Text='<%#Eval("Tipo_de_Pago2") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Cantidad2" Visible="false">
+                                <asp:TemplateField HeaderText="Rendimiento 2" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="gvCantidad2" runat="server" Text='<%#Eval("Cantidad2") %>'></asp:Label>
                                     </ItemTemplate>
@@ -387,7 +386,7 @@
                                         <asp:Label ID="gvTipo_Actividad3" runat="server" Text='<%#Eval("Tipo_de_Pago3") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Cantidad3" Visible="false">
+                                <asp:TemplateField HeaderText="Rendimiento 3" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="gvCantidad3" runat="server" Text='<%#Eval("Cantidad3") %>'></asp:Label>
                                     </ItemTemplate>

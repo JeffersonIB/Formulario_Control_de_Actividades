@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="CentroAnalisis.aspx.cs" Inherits="IT_Finca.Pages.Admin.CentroAnalisis" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
     Administración de centro de análisis
 </asp:Content>
@@ -44,7 +45,7 @@
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="ddlEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="ddlEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: auto;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -136,7 +137,7 @@
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="ddEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="ddEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: auto;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -183,7 +184,7 @@
                                     <br />
                                         </td>
                                         <td>
-                                            <asp:TextBox runat="server" ID="txCentroAnalisis" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txCentroAnalisis" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -247,22 +248,18 @@
         <center>
             <table>
                 <tr>
-                    <td>
-                        <div class="row">
-                            <div class="ml-auto">
-                                <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo centro de analisis" OnClientClick="ShowModalAg();return false;" />
-                            </div>
-                            <div class="ml-auto">
-                                <asp:TextBox ID="txtBuscarCentroAnalisis" runat="server" placeholder="Buscar por centro de analisis" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                            </div>
-                            <div class="ml-auto">
-                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
-                            </div>
-                        </div>
+                    <td align="center">
+                        <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo centro de analisis" OnClientClick="ShowModalAg();return false;" Style="width: auto;"/>
+                    </td>
+                    <td align="center">
+                        <asp:TextBox ID="txtBuscarCentroAnalisis" runat="server" placeholder="Buscar por centro de analisis" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                    </td>
+                    <td align="center">
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="3">
                         <asp:GridView ID="gvCentroAnalisis" runat="server"
                             DataKeyNames="Id_CentroAnalisis"
                             PageSize="17"

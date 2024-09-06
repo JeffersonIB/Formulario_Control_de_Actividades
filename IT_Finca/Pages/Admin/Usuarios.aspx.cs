@@ -208,6 +208,13 @@ namespace IT_Usuario.Pages.Admin
                 }
             }
         }
+        //Reducir listado de GridView despues de 17 lineas
+        protected void gvAcceso_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView gv = (GridView)sender;
+            gv.PageIndex = e.NewPageIndex;
+            DataBind();
+        }
         //Retraer Modal_Actualizar y Modal_Eliminar detro del GridView por Id_
         protected void gvUsuarios_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -234,7 +241,6 @@ namespace IT_Usuario.Pages.Admin
                 {
                     throw;
                 }
-
                 ModalFn(true);
             }
             if (e.CommandName == "ShowModalAc")

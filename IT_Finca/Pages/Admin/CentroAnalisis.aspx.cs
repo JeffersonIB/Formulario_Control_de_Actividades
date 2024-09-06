@@ -37,8 +37,8 @@ namespace IT_Finca.Pages.Admin
         {
             try
             {
-                string lote = txtBuscarCentroAnalisis.Text.Trim();
-                DataTable dt = GetFilteredData(lote);
+                string CentroAnalisis = txtBuscarCentroAnalisis.Text.Trim();
+                DataTable dt = GetFilteredData(CentroAnalisis);
                 gvCentroAnalisis.DataSource = dt;
                 gvCentroAnalisis.DataBind();
             }
@@ -47,7 +47,7 @@ namespace IT_Finca.Pages.Admin
                 throw;
             }
         }
-        private DataTable GetFilteredData(string lote)
+        private DataTable GetFilteredData(string CentroAnalisis)
         {
             SqlCommand cmd = new SqlCommand("SP_TB_FNC00409", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -56,9 +56,9 @@ namespace IT_Finca.Pages.Admin
             DataTable dt = new DataTable();
             da.Fill(dt);
 
-            if (!string.IsNullOrEmpty(lote))
+            if (!string.IsNullOrEmpty(CentroAnalisis))
             {
-                dt.DefaultView.RowFilter = string.Format("CentoAnalisis LIKE '%{0}%'", lote);
+                dt.DefaultView.RowFilter = string.Format("CentroAnalisis LIKE '%{0}%'", CentroAnalisis);
                 dt = dt.DefaultView.ToTable();
             }
             con.Close();

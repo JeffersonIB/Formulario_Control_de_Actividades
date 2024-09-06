@@ -145,6 +145,7 @@
     <Content Include="Pages\Admin\Proveedores.aspx" />
     <Content Include="Pages\Admin\RegistroActividades.aspx" />
     <Content Include="Pages\Admin\Usuarios.aspx" />
+    <Content Include="Pages\Admin\UsuariosAccesos.aspx" />
     <Content Include="Pages\Admin\Usuarios_Fincas.aspx" />
     <Content Include="Pages\css\maps\jquery-jvectormap-2.0.3.css" />
     <Content Include="Pages\Extras\Contrasena.aspx" />
@@ -163,6 +164,7 @@
     <Content Include="Pages\Forms\LasMinas.aspx" />
     <Content Include="Pages\Forms\LasVegas.aspx" />
     <Content Include="Pages\Forms\Linea18.aspx" />
+    <Content Include="Pages\Img\Acceso.png" />
     <Content Include="Pages\Img\american-express.png" />
     <Content Include="Pages\Img\Autorizar.png" />
     <Content Include="Pages\Img\Calendario.gif" />
@@ -2437,6 +2439,13 @@
     </Compile>
     <Compile Include="Pages\Admin\Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\UsuariosAccesos.aspx.cs">
+      <DependentUpon>UsuariosAccesos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\UsuariosAccesos.aspx.designer.cs">
+      <DependentUpon>UsuariosAccesos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\Usuarios_Fincas.aspx.cs">
       <DependentUpon>Usuarios_Fincas.aspx</DependentUpon>

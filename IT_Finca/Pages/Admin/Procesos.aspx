@@ -45,7 +45,7 @@
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="ddlEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="ddlEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: auto;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -80,7 +80,7 @@
                                     <br />
                                         </td>
                                         <td>
-                                            <asp:TextBox runat="server" ID="txtProceso" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txtProceso" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -113,68 +113,65 @@
                     <div class="modal-body">
                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                             <ContentTemplate>
-                        <table align="center">
-                            <tr>
-                                <td>
-                                    <asp:Label runat="server" ID="lbId_Proceso" Visible="false"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Empresa :
-                                </td>
-                                <td>
-                                    <div class="control">
-                                        <div class="select">
-                                            <asp:DropDownList ID="ddEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <%--<asp:Label runat="server" ID="lbEmpresas" CssClass="form-control" Style="width: 100%;"></asp:Label>--%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Finca :
-                                </td>
-                                <td>
-                                    <div class="control">
-                                        <div class="select">
-                                            <asp:DropDownList ID="ddFincas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddFincas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <%--<asp:Label runat="server" ID="lbFincas" CssClass="form-control" Style="width: 100%;"></asp:Label>--%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lote :
-                                </td>
-                                <td>
-                                    <div class="control">
-                                        <div class="select">
-                                            <asp:DropDownList ID="ddLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddLotes_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <%--<asp:Label runat="server" ID="lbLotes" CssClass="form-control" Style="width: 100%;"></asp:Label>--%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Proceso :
+                                <table align="center">
+                                    <tr>
+                                        <td>
+                                            <asp:Label runat="server" ID="lbId_Proceso" Visible="false"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Empresa :
+                                        </td>
+                                        <td>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <asp:DropDownList ID="ddEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: auto;">
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Finca :
+                                        </td>
+                                        <td>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <asp:DropDownList ID="ddFincas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddFincas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lote :
+                                        </td>
+                                        <td>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <asp:DropDownList ID="ddLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddLotes_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proceso :
                                     <br />
-                                </td>
-                                <td>
-                                    <asp:TextBox runat="server" ID="txProceso" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" align="center">
-                                    <br />
-                                    <asp:Button runat="server" ID="btActualizar" class="btn btn-round btn-success" Text="Guardar" OnClick="Actualizar_Click" />
-                                    <asp:Button runat="server" ID="btCancelar" class="btn btn-round btn-danger" Text="Cancelar" OnClientClick="CloseModalAc();return false;" />
-                                </td>
-                            </tr>
-                        </table>
-                                </ContentTemplate>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="txProceso" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="center">
+                                            <br />
+                                            <asp:Button runat="server" ID="btActualizar" class="btn btn-round btn-success" Text="Guardar" OnClick="Actualizar_Click" />
+                                            <asp:Button runat="server" ID="btCancelar" class="btn btn-round btn-danger" Text="Cancelar" OnClientClick="CloseModalAc();return false;" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
                 </div>
@@ -227,22 +224,18 @@
         <center>
             <table>
                 <tr>
-                    <td>
-                        <div class="row">
-                            <div class="ml-auto">
-                                <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo proceso" OnClientClick="ShowModalAg();return false;" />
-                            </div>
-                            <div class="ml-auto">
-                                <asp:TextBox ID="txtBuscarProceso" runat="server" placeholder="Buscar por proceso" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                            </div>
-                            <div class="ml-auto">
-                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
-                            </div>
-                        </div>
+                    <td align="center">
+                        <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo proceso" OnClientClick="ShowModalAg();return false;" Style="width: auto;"/>
+                    </td>
+                    <td align="center">
+                        <asp:TextBox ID="txtBuscarProceso" runat="server" placeholder="Buscar por proceso" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                    </td>
+                    <td align="center">
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="3">
                         <asp:GridView ID="gvProcesos" runat="server"
                             DataKeyNames="Id_Proceso"
                             PageSize="17"
@@ -303,12 +296,12 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Modificar">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName="ShowModalAc" CommandArgument='<%#Eval("Id_Proceso") %>' style="display: block; margin: 0 auto;"/>
+                                        <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName="ShowModalAc" CommandArgument='<%#Eval("Id_Proceso") %>' Style="display: block; margin: 0 auto;" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Eliminar">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="~/Pages/Img/Eliminar.png" CommandName="ShowModalEl" CommandArgument='<%#Eval("Id_Proceso") %>' style="display: block; margin: 0 auto;"/>
+                                        <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="~/Pages/Img/Eliminar.png" CommandName="ShowModalEl" CommandArgument='<%#Eval("Id_Proceso") %>' Style="display: block; margin: 0 auto;" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

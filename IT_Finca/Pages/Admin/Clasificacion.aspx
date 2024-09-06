@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Clasificacion.aspx.cs" Inherits="IT_Finca.Pages.Admin.Clasificacion" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
     Administración de clasificación
 </asp:Content>
@@ -44,7 +45,7 @@
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="ddlEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="ddlEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: auto;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -74,18 +75,6 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <%--<tr>
-                                        <td>Proceso :
-                                        </td>
-                                        <td>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>--%>
                                     <tr>
                                         <td>Clasificación :
                                     <br />
@@ -136,7 +125,7 @@
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="ddEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="ddEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: auto;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -166,24 +155,12 @@
                                             </div>
                                         </td>
                                     </tr>
-                                   <%-- <tr>
-                                        <td>Proceso :
-                                        </td>
-                                        <td>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <asp:DropDownList ID="ddProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddProcesos_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>--%>
                                     <tr>
                                         <td>Clasificación :
                                     <br />
                                         </td>
                                         <td>
-                                            <asp:TextBox runat="server" ID="txClasificacion" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txClasificacion" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -247,22 +224,18 @@
         <center>
             <table>
                 <tr>
-                    <td>
-                        <div class="row">
-                            <div class="ml-auto">
-                                <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Agregar nueva clasificación" OnClientClick="ShowModalAg();return false;" />
-                            </div>
-                            <div class="ml-auto">
-                                <asp:TextBox ID="txtBuscarClasificacion" runat="server" placeholder="Buscar por clasificación" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                            </div>
-                            <div class="ml-auto">
-                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
-                            </div>
-                        </div>
+                    <td align="center">
+                        <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Agregar nueva clasificación" OnClientClick="ShowModalAg();return false;" />
+                    </td>
+                    <td align="center">
+                        <asp:TextBox ID="txtBuscarClasificacion" runat="server" placeholder="Buscar por clasificación" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                    </td>
+                    <td align="center">
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="3">
                         <asp:GridView ID="gvClasificacion" runat="server"
                             DataKeyNames="Id_Clasificacion"
                             PageSize="17"
@@ -311,7 +284,7 @@
                                         <asp:Label ID="gvLote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                               <%-- <asp:TemplateField HeaderText="Id_Proceso" Visible="false">
+                                <%-- <asp:TemplateField HeaderText="Id_Proceso" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="gvId_Proceso" runat="server" Text='<%#Eval("Id_Proceso") %>'></asp:Label>
                                     </ItemTemplate>

@@ -18,7 +18,12 @@ function ShowModalFn() {
 function CloseModalFn() {
     $("#Modal_Finca").modal("hide");
 }
-
+function ShowModalAcc() {
+    $("#Modal_Acceso").modal("show");
+}
+function CloseModalAcc() {
+    $("#Modal_Acceso").modal("hide");
+}
 function ShowModalCl() {
     $("#Modal_Calificar").modal("show");
 }

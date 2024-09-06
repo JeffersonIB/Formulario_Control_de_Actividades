@@ -45,7 +45,7 @@
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="ddlEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="ddlEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: auto;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -137,7 +137,7 @@
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="ddEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="ddEmpresas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddEmpresas_SelectedIndexChanged" CssClass="form-control" Style="width: auto;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -184,7 +184,7 @@
                                     <br />
                                         </td>
                                         <td>
-                                            <asp:TextBox runat="server" ID="txCentroGasto" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txCentroGasto" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -248,22 +248,18 @@
         <center>
             <table>
                 <tr>
-                    <td>
-                        <div class="row">
-                            <div class="ml-auto">
-                                <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo centro de gasto" OnClientClick="ShowModalAg();return false;" />
-                            </div>
-                            <div class="ml-auto">
-                                <asp:TextBox ID="txtBuscarCentroGasto" runat="server" placeholder="Buscar por centro de gasto" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                            </div>
-                            <div class="ml-auto">
-                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
-                            </div>
-                        </div>
+                    <td align="center">
+                        <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo centro de gasto" OnClientClick="ShowModalAg();return false;" Style="width: auto;" />
+                    </td>
+                    <td align="center">
+                        <asp:TextBox ID="txtBuscarCentroGasto" runat="server" placeholder="Buscar por centro de gasto" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                    </td>
+                    <td align="center">
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;" />
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="3">
                         <asp:GridView ID="gvCentroGasto" runat="server"
                             DataKeyNames="Id_CentroGasto"
                             PageSize="17"

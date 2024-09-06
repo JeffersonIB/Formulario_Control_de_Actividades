@@ -16,12 +16,14 @@
         <script src="<%= ResolveClientUrl("~/JS/Admin.js") %>"> </script>
     </head>
     <body>
+
         <div class="container box">
             <center>
                 <h1 class="title">Administración de usuarios
                 </h1>
             </center>
         </div>
+
         <!-- Modal Agregar-->
         <div class="modal fade" id="Modal_Agregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -52,7 +54,7 @@
                                     <br />
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -60,7 +62,7 @@
                                      <br />
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -68,7 +70,7 @@
                                     <br />
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -76,9 +78,12 @@
                                     <br />
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtClave" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtClave" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
+                        </table>
+
+                        <table align="center">
                             <tr>
                                 <td colspan="2" align="center">
                                     <br />
@@ -105,74 +110,82 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <table>
-                            <tr>
-                                <td>
-                                    <asp:Label runat="server" ID="fnId_Usuario" Visible="false"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <asp:GridView ID="gvUsuariosFincas" runat="server"
-                                        DataKeyNames="Id_Usuario"
-                                        PageSize="17"
-                                        GridLines="both"
-                                        AllowPaging="true"
-                                        CssClass="mydatagrid"
-                                        PagerStyle-CssClass="pager"
-                                        HeaderStyle-CssClass="header"
-                                        RowStyle-CssClass="rows"
-                                        GroupingEnabled="true"
-                                        HorizontalAlign="Center"
-                                        ShowHeaderWhenEmpty="True"
-                                        AutoGenerateColumns="False"
-                                        EmptyDataText="Sin datos"
-                                        EmptyDataRowStyle-ForeColor="Red">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Id_Empresa" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="gvId_Empresa" runat="server" Text='<%#Eval("Id_Empresa") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Empresa" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="gvEmpresa" runat="server" Text='<%#Eval("Empresa") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Id_Usuario" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="gvId_Usuario" runat="server" Text='<%#Eval("Id_Usuario") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Nombre" Visible="true">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="gvNombre" runat="server" Text='<%#Eval("Nombre") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Usuario" Visible="true">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="gvUsuario" runat="server" Text='<%#Eval("Usuario") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Id_Finca" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="gvId_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Finca" Visible="true">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="gvFinca" runat="server" Text='<%#Eval("Finca") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Estado" Visible="true">
-                                                <ItemTemplate>
-                                                    <asp:CheckBox ID="gvEstado" runat="server" Checked='<%# Eval("Estado").ToString() == "True" %>' />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                    </asp:GridView>
-                                </td>
-                            </tr>
+                        <asp:ScriptManager ID="ScriptManager1" runat="server">
+                        </asp:ScriptManager>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <table align="center">
+                                    <tr>
+                                        <td>
+                                            <asp:Label runat="server" ID="fnId_Usuario" Visible="false"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:GridView ID="gvUsuariosFincas" runat="server"
+                                                DataKeyNames="Id_Usuario"
+                                                PageSize="17"
+                                                GridLines="both"
+                                                AllowPaging="true"
+                                                CssClass="mydatagrid"
+                                                PagerStyle-CssClass="pager"
+                                                HeaderStyle-CssClass="header"
+                                                RowStyle-CssClass="rows"
+                                                GroupingEnabled="true"
+                                                HorizontalAlign="Center"
+                                                ShowHeaderWhenEmpty="True"
+                                                AutoGenerateColumns="False"
+                                                EmptyDataText="Sin datos"
+                                                EmptyDataRowStyle-ForeColor="Red">
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Id_Empresa" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="gvId_Empresa" runat="server" Text='<%#Eval("Id_Empresa") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Empresa" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="gvEmpresa" runat="server" Text='<%#Eval("Empresa") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Id_Usuario" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="gvId_Usuario" runat="server" Text='<%#Eval("Id_Usuario") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Nombre" Visible="true">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="gvNombre" runat="server" Text='<%#Eval("Nombre") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Usuario" Visible="true">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="gvUsuario" runat="server" Text='<%#Eval("Usuario") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Id_Finca" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="gvId_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Finca" Visible="true">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="gvFinca" runat="server" Text='<%#Eval("Finca") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Estado" Visible="true">
+                                                        <ItemTemplate>
+                                                            <asp:CheckBox ID="gvEstado" runat="server" Checked='<%# Eval("Estado").ToString() == "True" %>' />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        <table align="center">
                             <tr>
                                 <td align="center">
                                     <br />
@@ -199,56 +212,62 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                            <ContentTemplate>
+                                <table align="center">
+                                    <tr>
+                                        <td>
+                                            <asp:Label runat="server" ID="lbId_Usuario" Visible="false"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Empresa :
+                                        </td>
+                                        <td>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <asp:DropDownList ID="ddEmpresas" runat="server" AutoPosBack="true" CssClass="form-control" Style="width: auto;">
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nombre :
+                                    <br />
+                                        </td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="txNombre" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apellido :
+                                    <br />
+                                        </td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="txApellido" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Usuario :
+                                    <br />
+                                        </td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="txUsuario" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contraseña :
+                                    <br />
+                                        </td>
+                                        <td>
+                                            <asp:TextBox runat="server" ID="txClave" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                         <table align="center">
-                            <tr>
-                                <td>
-                                    <asp:Label runat="server" ID="lbId_Usuario" Visible="false"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Empresa :
-                                </td>
-                                <td>
-                                    <div class="control">
-                                        <div class="select">
-                                            <asp:DropDownList ID="ddEmpresas" runat="server" AutoPosBack="true" CssClass="form-control" Style="width: auto;">
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nombre :
-                                    <br />
-                                </td>
-                                <td>
-                                    <asp:TextBox runat="server" ID="txNombre" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Apellido :
-                                    <br />
-                                </td>
-                                <td>
-                                    <asp:TextBox runat="server" ID="txApellido" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Usuario :
-                                    <br />
-                                </td>
-                                <td>
-                                    <asp:TextBox runat="server" ID="txUsuario" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Contraseña :
-                                    <br />
-                                </td>
-                                <td>
-                                    <asp:TextBox runat="server" ID="txClave" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                                </td>
-                            </tr>
                             <tr>
                                 <td colspan="2" align="center">
                                     <br />
@@ -305,24 +324,20 @@
         <br />
         <!-- Tabla de Usuarios -->
         <center>
-            <table>
+            <table align="center">
                 <tr>
-                    <td>
-                        <div class="row">
-                            <div class="ml-auto">
-                                <asp:Button ID="Agregar" runat="server" class="btn btn-round btn-primary" Text="Nuevo usuario" OnClientClick="ShowModalAg();return false;" />
-                            </div>
-                            <div class="ml-auto">
-                                <asp:TextBox ID="txtBuscarUsuario" runat="server" placeholder="Buscar por usuario" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                            </div>
-                            <div class="ml-auto">
-                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
-                            </div>
-                        </div>
+                    <td align="center">
+                        <asp:Button ID="Agregar" runat="server" class="btn btn-round btn-primary" Text="Nuevo usuario" OnClientClick="ShowModalAg();return false;" Style="width: auto;" />
+                    </td>
+                    <td align="center">
+                        <asp:TextBox ID="txtBuscarUsuario" runat="server" placeholder="Buscar por usuario" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                    </td>
+                    <td align="center">
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;" />
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="3">
                         <asp:GridView ID="gvUsuarios" runat="server"
                             DataKeyNames="Id_Usuario"
                             PageSize="17"

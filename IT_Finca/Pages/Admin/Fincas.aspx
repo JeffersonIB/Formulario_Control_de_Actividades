@@ -52,7 +52,7 @@
                                     <br />
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtFinca" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtFinca" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -60,7 +60,7 @@
                                     <br />
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtPais" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtPais" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -68,7 +68,7 @@
                                     <br />
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtCiudad" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtCiudad" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -76,7 +76,7 @@
                                     <br />
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtDireccion" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtDireccion" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -84,7 +84,7 @@
                                     <br />
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txtTelefono" CssClass="form-control" MaxLength="20" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtTelefono" CssClass="form-control" MaxLength="20" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -135,35 +135,35 @@
                                 <td>Finca :
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txFinca" CssClass="form-control" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txFinca" CssClass="form-control" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td>País :
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txPais" CssClass="form-control" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txPais" CssClass="form-control" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Ciudad :
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txCiudad" CssClass="form-control" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txCiudad" CssClass="form-control" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Dirección :
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txDireccion" CssClass="form-control" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txDireccion" CssClass="form-control" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Teléfono :
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txTelefono" CssClass="form-control" Style="width: auto;"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txTelefono" CssClass="form-control" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -224,22 +224,18 @@
         <center>
             <table>
                 <tr>
-                    <td>
-                        <div class="row">
-                            <div class="ml-auto">
-                                <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nueva finca" OnClientClick="ShowModalAg();return false;" />
-                            </div>
-                            <div class="ml-auto">
-                                <asp:TextBox ID="txtBuscarFinca" runat="server" placeholder="Buscar por finca" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                            </div>
-                            <div class="ml-auto">
-                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
-                            </div>
-                        </div>
+                    <td align="center">
+                        <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nueva finca" OnClientClick="ShowModalAg();return false;" Style="width: auto;"/>
+                    </td>
+                    <td align="center">
+                        <asp:TextBox ID="txtBuscarFinca" runat="server" placeholder="Buscar por finca" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                    </td>
+                    <td align="center">
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="3">
                         <asp:GridView ID="gvFincas" runat="server"
                             DataKeyNames="Id_Finca"
                             PageSize="17"
@@ -325,12 +321,12 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Modificar">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName='ShowModalAc' CommandArgument='<%#Eval("Id_Finca") %>' style="display: block; margin: 0 auto;" />
+                                        <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName='ShowModalAc' CommandArgument='<%#Eval("Id_Finca") %>' Style="display: block; margin: 0 auto;" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Eliminar">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="~/Pages/Img/Eliminar.png" CommandName='ShowModalEl' CommandArgument='<%#Eval("Id_Finca") %>' style="display: block; margin: 0 auto;" />
+                                        <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="~/Pages/Img/Eliminar.png" CommandName='ShowModalEl' CommandArgument='<%#Eval("Id_Finca") %>' Style="display: block; margin: 0 auto;" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

@@ -71,6 +71,9 @@
 
                                     <li id="Primer_Men" runat="server" visible="false"><a><i class="fa fa-sitemap"></i>Administración <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
+                                            <li id="VigesimaQuinta_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/Usuarios.aspx") %>">Usuarios </a>
+                                            </li>
                                             <li id="Primera_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Admin/Fincas.aspx") %>">Fincas </a>
                                             </li>
@@ -84,7 +87,7 @@
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Admin/Actividades.aspx") %>">Actividades </a>
                                             </li>
                                             <li id="VigesimaSegunda_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/CentroAnalisis.aspx") %>">Centro de analisis </a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/CentroAnalisis.aspx") %>">Centro de análisis </a>
                                             </li>
                                             <li id="VigesimaPrimera_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Admin/CentroGasto.aspx") %>">Centro de gasto </a>
@@ -151,7 +154,6 @@
                                     </li>
                                     <li id="Tercer_Men" runat="server" visible="false"><a><i class="fa fa-desktop"></i>Elementos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li id="VigesimaQuinta_Pag" runat="server"><a href="inbox.html">Inbox</a></li>
                                             <li id="VigesimaSexta_Pag" runat="server"><a href="calendar.html">Calendar</a></li>
                                         </ul>
                                     </li>

@@ -386,12 +386,12 @@ namespace IT_Finca
                             VigesimaquintaPag = Convert.ToBoolean(reader[1].ToString());
                             if (VigesimaquintaPag)
                             {
-                                Tercer_Men.Visible = true;
+                                Primer_Men.Visible = true;
                                 VigesimaQuinta_Pag.Visible = true;
                             }
                             else
                             {
-                                //Tercer_Men.Visible = false;
+                                Primer_Men.Visible = false;
                                 VigesimaQuinta_Pag.Visible = false;
                             }
                             break;

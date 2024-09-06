@@ -146,7 +146,7 @@
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="ddlEmpresas" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="ddlEmpresas" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: auto;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -215,7 +215,7 @@
                                         </td>
                                         <td>
                                             <div class="scroll_checkboxes" cssclass="form-control">
-                                                <input type="text" id="txtSearch" oninput="filterEmployees()" placeholder="Buscar por nombre" />
+                                                <input type="text" id="txtSearch" oninput="filterEmployees()" placeholder="Buscar por nombre" Style="width: 100%;"/>
                                                 <asp:CheckBoxList ID="CheckBoxListEmpleados" runat="server" CssClass="FormText" DataTextField="Nom_Ape" DataValueField="Id_Empleado"></asp:CheckBoxList>
                                             </div>
                                         </td>
@@ -289,7 +289,7 @@
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="dEmpresas" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="dEmpresas" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: auto;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -380,25 +380,20 @@
         <center>
             <table>
                 <tr>
-                    <td>
-                        <div class="row">
-                            <div class="ml-auto">
-                                <asp:Button ID="Agregar" runat="server" class="btn btn-round btn-primary" Text="Nuevo proveedor" OnClientClick="ShowModalAg();return false;" />
-                            </div>
-                            <div class="ml-auto">
-                                <asp:Button ID="Asignar" runat="server" class="btn btn-round btn-primary" Text="Asignar proveedor" OnClientClick="ShowModalCl();return false;" />
-                            </div>
-                            <div class="ml-auto">
-                                <asp:TextBox ID="txtBuscarProveedor" runat="server" placeholder="Buscar por proveedor" CssClass="form-control" MaxLength="200" Style="width: auto;"></asp:TextBox>
-                            </div>
-                            <div class="ml-auto">
-                                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
-                            </div>
-                        </div>
+                    <td align="center">
+                        <asp:Button ID="Agregar" runat="server" class="btn btn-round btn-primary" Text="Nuevo proveedor" OnClientClick="ShowModalAg();return false;" Style="width: auto;"/>
+                    </td>
+                    <td align="center">
+                        <asp:Button ID="Asignar" runat="server" class="btn btn-round btn-primary" Text="Asignar proveedor" OnClientClick="ShowModalCl();return false;" Style="width: auto;"/>
+                    </td>
+                    <td align="center">
+                        <asp:TextBox ID="txtBuscarProveedor" runat="server" placeholder="Buscar por proveedor" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                    <td align="center">
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="4">
                         <asp:GridView ID="gvProveedores" runat="server"
                             DataKeyNames="Id_Proveedor"
                             PageSize="17"
@@ -464,12 +459,12 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Modificar">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName='ShowModalAc' CommandArgument='<%#Eval("Id_Proveedor") %>' style="display: block; margin: 0 auto;" />
+                                        <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName='ShowModalAc' CommandArgument='<%#Eval("Id_Proveedor") %>' Style="display: block; margin: 0 auto;" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Eliminar">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="~/Pages/Img/Eliminar.png" CommandName='ShowModalEl' CommandArgument='<%#Eval("Id_Proveedor") %>' style="display: block; margin: 0 auto;" />
+                                        <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="~/Pages/Img/Eliminar.png" CommandName='ShowModalEl' CommandArgument='<%#Eval("Id_Proveedor") %>' Style="display: block; margin: 0 auto;" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
