@@ -33,7 +33,7 @@
                         </asp:DropDownList>
                     </td>
                     <td align="center">
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" />
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;" />
                     </td>
                 </tr>
                 <tr>
@@ -115,10 +115,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="center">
+                    <td align="center" colspan="2">
                         <br />
-                        <asp:Button runat="server" ID="Button1" class="btn btn-round btn-success" Text="Guardar" OnClick="btnGuardarCambios_Click" />
-                        <asp:Button runat="server" ID="Button2" class="btn btn-round btn-danger" Text="Cancelar" OnClientClick="CloseModalAcc();return false;" />
+                        <asp:Button runat="server" ID="Guardar" class="btn btn-round btn-success" Text="Guardar" OnClick="btnGuardarCambios_Click" Visible="false" />
+                        <asp:Button runat="server" ID="Cancelar" class="btn btn-round btn-danger" Text="Cancelar" OnClientClick="CloseModalAcc();return false;" Visible="false" />
                     </td>
                 </tr>
             </table>

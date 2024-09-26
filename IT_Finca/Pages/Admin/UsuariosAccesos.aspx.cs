@@ -23,7 +23,6 @@ namespace IT_Finca.Pages.Admin
                 if (!IsPostBack && Session["Usuario"] != null)
                 {
                     CargarUsuarios();
-                    //TB_Usuarios();
                 }
             }
             catch
@@ -62,13 +61,14 @@ namespace IT_Finca.Pages.Admin
                 DataTable dt = GetFilteredData(usuario);
                 gvAccesosUsuarios.DataSource = dt;
                 gvAccesosUsuarios.DataBind();
+                Guardar.Visible = true;
+                Cancelar.Visible = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
         }
-
         // Método para obtener datos filtrados por usuario
         private DataTable GetFilteredData(string usuario)
         {

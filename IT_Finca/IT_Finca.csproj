@@ -202,7 +202,6 @@
     <Content Include="Pages\js\moment\moment.min.js" />
     <Content Include="Pages\Test\CentroGastos.aspx" />
     <Content Include="Pages\Test\DDL_GW.aspx" />
-    <Content Include="Pages\Test\FormsV3_1.aspx" />
     <Content Include="Pages\Test\Formulario_Secado.aspx" />
     <Content Include="Pages\Test\Formulario_Secado2.aspx" />
     <Content Include="Pages\Test\GRIDVIEW_CON_SELECCIONABLE.aspx" />
@@ -2579,13 +2578,6 @@
     </Compile>
     <Compile Include="Pages\Test\DDL_GW.aspx.designer.cs">
       <DependentUpon>DDL_GW.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Test\FormsV3_1.aspx.cs">
-      <DependentUpon>FormsV3_1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Test\FormsV3_1.aspx.designer.cs">
-      <DependentUpon>FormsV3_1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Test\Formulario_Secado.aspx.cs">
       <DependentUpon>Formulario_Secado.aspx</DependentUpon>

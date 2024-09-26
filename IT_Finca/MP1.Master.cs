@@ -334,12 +334,12 @@ namespace IT_Finca
                             VigesimaprimeraPag = Convert.ToBoolean(reader[1].ToString());
                             if (VigesimaprimeraPag)
                             {
-                                Tercer_Men.Visible = true;
+                                Primer_Men.Visible = true;
                                 VigesimaPrimera_Pag.Visible = true;
                             }
                             else
                             {
-                                //Tercer_Men.Visible = false;
+                                //Primer_Men.Visible = false;
                                 VigesimaPrimera_Pag.Visible = false;
                             }
                             break;
@@ -347,12 +347,12 @@ namespace IT_Finca
                             VigesimasegundaPag = Convert.ToBoolean(reader[1].ToString());
                             if (VigesimasegundaPag)
                             {
-                                Tercer_Men.Visible = true;
+                                Primer_Men.Visible = true;
                                 VigesimaSegunda_Pag.Visible = true;
                             }
                             else
                             {
-                                //Tercer_Men.Visible = false;
+                                //Primer_Men.Visible = false;
                                 VigesimaSegunda_Pag.Visible = false;
                             }
                             break;
@@ -360,12 +360,12 @@ namespace IT_Finca
                             VigesimaterceraPag = Convert.ToBoolean(reader[1].ToString());
                             if (VigesimaterceraPag)
                             {
-                                Tercer_Men.Visible = true;
+                                Primer_Men.Visible = true;
                                 VigesimaTercera_Pag.Visible = true;
                             }
                             else
                             {
-                                //Tercer_Men.Visible = false;
+                                //Primer_Men.Visible = false;
                                 VigesimaTercera_Pag.Visible = false;
                             }
                             break;
@@ -373,12 +373,12 @@ namespace IT_Finca
                             VigesimacuartaPag = Convert.ToBoolean(reader[1].ToString());
                             if (VigesimacuartaPag)
                             {
-                                Tercer_Men.Visible = true;
+                                Segundo_Men.Visible = true;
                                 VigesimaCuarta_Pag.Visible = true;
                             }
                             else
                             {
-                                //Tercer_Men.Visible = false;
+                                //Segundo_Men.Visible = false;
                                 VigesimaCuarta_Pag.Visible = false;
                             }
                             break;
@@ -399,12 +399,12 @@ namespace IT_Finca
                             VigesimasextaPag = Convert.ToBoolean(reader[1].ToString());
                             if (VigesimasextaPag)
                             {
-                                Tercer_Men.Visible = true;
+                                Primer_Men.Visible = true;
                                 VigesimaSexta_Pag.Visible = true;
                             }
                             else
                             {
-                                //Tercer_Men.Visible = false;
+                                Primer_Men.Visible = false;
                                 VigesimaSexta_Pag.Visible = false;
                             }
                             break;

@@ -32,9 +32,7 @@
     <asp:ContentPlaceHolder ID="head1" runat="server">
     </asp:ContentPlaceHolder>
     <link rel="icon" type="image/x-icon" href="<%= ResolveUrl("~/Images/Logo.ico") %>" />
-
 </head>
-
 <body class="nav-md">
     <form id="form1" runat="server">
         <div class="container body">
@@ -45,9 +43,7 @@
                             <a href="<%= Page.ResolveUrl("~/index2.aspx") %>" class="site_title"><i class="fa fa-leaf"></i><span>
                                 <asp:Label CssClass="navbar-link" runat="server" ID="lblFinca">  </asp:Label></span></a>
                         </div>
-
                         <div class="clearfix"></div>
-
                         <!-- menu profile quick info -->
                         <div class="profile clearfix">
                             <div class="profile_pic">
@@ -73,6 +69,9 @@
                                         <ul class="nav child_menu">
                                             <li id="VigesimaQuinta_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Admin/Usuarios.aspx") %>">Usuarios </a>
+                                            </li>
+                                            <li id="VigesimaSexta_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/UsuariosAccesos.aspx") %>">Accesos a usuarios </a>
                                             </li>
                                             <li id="Primera_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Admin/Fincas.aspx") %>">Fincas </a>
@@ -152,9 +151,10 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li id="Tercer_Men" runat="server" visible="false"><a><i class="fa fa-desktop"></i>Elementos <span class="fa fa-chevron-down"></span></a>
+                                    <li id="Tercer_Men" runat="server" visible="false"><a><i class="fa fa-table"></i>Tablas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li id="VigesimaSexta_Pag" runat="server"><a href="calendar.html">Calendar</a></li>
+                                            <li id="Li2" runat="server"><a href="tables.html">Tables</a></li>
+                                            <li id="Li3" runat="server"><a href="tables_dynamic.html">Table Dynamic</a></li>
                                         </ul>
                                     </li>
                                     <li id="Cuarto_Men" runat="server" visible="false"><a><i class="fa fa-table"></i>Tablas <span class="fa fa-chevron-down"></span></a>

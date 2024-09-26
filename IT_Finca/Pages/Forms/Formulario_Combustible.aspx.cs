@@ -16,10 +16,10 @@ namespace IT_Finca.Pages.Forms
         {
             if (!IsPostBack && Session["Usuario"] != null)
             {
+                DDLCargarTipoCombustible();
                 DataTable dt = new DataTable();
                 Session["GridViewData"] = dt;
                 BindGridView();
-                //DDLCargarFincas();
                 DDLCargarLotes();
             }
             else
@@ -28,33 +28,27 @@ namespace IT_Finca.Pages.Forms
             }
         }
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ToString());
-        //Cargar Listado de Fincas en DropDownList
-        //void DDLCargarFincas()
-        //{
-        //    try
-        //    {
-        //        SqlCommand cmd = new SqlCommand("SP_FNC00100", con);
-        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //        cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Empresa"]);
-        //        ddlFincas.Items.Clear();
-        //        con.Open();
-        //        ddlFincas.DataSource = cmd.ExecuteReader();
-        //        ddlFincas.DataTextField = "Finca";
-        //        ddlFincas.DataValueField = "Id_Finca";
-        //        ddlFincas.DataBind();
-        //        ddlFincas.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-        //        con.Close();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
-        //protected void ddlFincas_OnSelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    ddlLotes.ClearSelection();
-        //    DDLCargarLotes(int.Parse(ddlFincas.SelectedValue));
-        //}
+        //Cargar listado de tipos de combustible en DropDownList
+        void DDLCargarTipoCombustible()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_FNC00410", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                ddlTipoCombustible.Items.Clear();
+                con.Open();
+                ddlTipoCombustible.DataSource = cmd.ExecuteReader();
+                ddlTipoCombustible.DataTextField = "TipoCombustible";
+                ddlTipoCombustible.DataValueField = "Id_TipoCombustible";
+                ddlTipoCombustible.DataBind();
+                ddlTipoCombustible.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                con.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         //Cargar Listado de Lotes en DropDownList
         void DDLCargarLotes()
         {
@@ -225,10 +219,9 @@ namespace IT_Finca.Pages.Forms
             else
             {
                 dt = new DataTable();
-                dt.Columns.Add("Id_Finca", typeof(int));
+                dt.Columns.Add("TipoCombustible", typeof(int));
                 dt.Columns.Add("Id_Lote", typeof(int));
                 dt.Columns.Add("Id_Proceso", typeof(int));
-                dt.Columns.Add("Id_CentroAnalisis", typeof(int));
                 dt.Columns.Add("Id_CentroGasto", typeof(int));
                 dt.Columns.Add("Id_Clasificacion", typeof(int));
                 dt.Columns.Add("Fecha", typeof(DateTime));
@@ -238,10 +231,9 @@ namespace IT_Finca.Pages.Forms
                 dt.Columns.Add("Comentario", typeof(string));
                 ViewState["RegistrosDataTable"] = dt;
             }
-
+            int tipoCombustible = Convert.ToInt32(ddlTipoCombustible.SelectedValue);
             int idLote = Convert.ToInt32(ddlLotes.SelectedValue);
             int idProceso = Convert.ToInt32(ddlProcesos.SelectedValue);
-            int idCentroAnalisis = Convert.ToInt32(ddlCentroAnalisis.SelectedValue);
             int idCentroGasto = Convert.ToInt32(ddlCentroGasto.SelectedValue);
             int idClasificacion = Convert.ToInt32(ddlClasificacion.SelectedValue);
             DateTime fecha = DateTime.Parse(DateFecha.Value);
@@ -252,9 +244,9 @@ namespace IT_Finca.Pages.Forms
 
             // Agregar una nueva fila al DataTable
             DataRow newRow = dt.NewRow();
+            newRow["TipoCombustible"] = tipoCombustible;
             newRow["Id_Lote"] = idLote;
             newRow["Id_Proceso"] = idProceso;
-            newRow["Id_CentroAnalisis"] = idCentroAnalisis;
             newRow["Id_CentroGasto"] = idCentroGasto;
             newRow["Id_Clasificacion"] = idClasificacion;
             newRow["Fecha"] = fecha;
@@ -271,10 +263,6 @@ namespace IT_Finca.Pages.Forms
             // Guardar el DataTable actualizado en el ViewState y Session
             ViewState["RegistrosDataTable"] = dt;
             Session["GridViewData"] = dt;
-        }
-        protected void GridViewRegistros_RowCreated(object sender, GridViewRowEventArgs e)
-        {
-            
         }
         protected void GridViewRegistros_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -303,29 +291,32 @@ namespace IT_Finca.Pages.Forms
                 {
                     SqlCommand cmd = new SqlCommand("SP_AG_FNC00610", con);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    //int idEmpresa = Convert.ToInt32(Session["Id_Empresa"]);
-                    //int idFinca = Convert.ToInt32(Session["Id_Finca"]);
-                    int idLote = Convert.ToInt32((row.FindControl("lblId_Lote") as Label)?.Text);
-                    //int idProceso = Convert.ToInt32((row.FindControl("lblId_Proceso") as Label)?.Text);                    
-                    //int idCentroGasto= Convert.ToInt32((row.FindControl("lblId_CentroGasto") as Label)?.Text);
-                    //int idClasificacion = Convert.ToInt32((row.FindControl("lblId_Clasificacion") as Label)?.Text);
-                    //TextBox dateFecha = (TextBox)row.FindControl("DateFecha");
-                    //TextBox numVale = (TextBox)row.FindControl("NumNoVale");
-                    //TextBox kilometraje = (TextBox)row.FindControl("Kilometraje");
-                    //TextBox numCantidad = (TextBox)row.FindControl("NumCantidad");
-                    TextBox txtComentario = (TextBox)row.FindControl("TxtComentario");
-                    //cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = idEmpresa;
-                    //cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = idFinca;
-                    cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = idLote;
-                    //cmd.Parameters.Add("@Id_Proceso", System.Data.SqlDbType.Int).Value = idProceso;
-                    //cmd.Parameters.Add("@Id_CentroGasto", System.Data.SqlDbType.Int).Value = idCentroGasto;
-                    //cmd.Parameters.Add("@Id_Clasificacion", System.Data.SqlDbType.Int).Value = idClasificacion;
-                    //cmd.Parameters.Add("@Fecha", System.Data.SqlDbType.Date).Value = dateFecha;
-                    //cmd.Parameters.Add("@NoVale", System.Data.SqlDbType.Int).Value = numVale;
-                    //cmd.Parameters.Add("@Kilometraje", System.Data.SqlDbType.Decimal).Value = kilometraje;
-                    //cmd.Parameters.Add("@Cantidad", System.Data.SqlDbType.Decimal).Value = numCantidad;
-                    cmd.Parameters.Add("@Comentario", System.Data.SqlDbType.Decimal).Value = txtComentario;
-                    cmd.Parameters.Add("@Id_Usr_Crea", System.Data.SqlDbType.Decimal).Value = Session["Id_Usuario"];
+
+                    Label idTipoCombustible = (Label)row.FindControl("lblTipoCombustible");
+                    Label idLote = (Label)row.FindControl("lblId_Lote");
+                    Label idProceso = (Label)row.FindControl("lblId_Proceso");
+                    Label idCentroGasto = (Label)row.FindControl("lblId_CentroGasto");
+                    Label idClasificacion = (Label)row.FindControl("lblId_Clasificacion");
+                    Label dateFecha = (Label)row.FindControl("DateFecha");
+                    Label numNoVale = (Label)row.FindControl("lblNumNoVale");
+                    Label numKilometraje = (Label)row.FindControl("lblKilometraje");
+                    Label numCantidad = (Label)row.FindControl("lblCantidad");
+                    Label comentario = (Label)row.FindControl("lblComentario");
+
+                    cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Decimal).Value = Session["Id_Empresa"];
+                    cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Decimal).Value = Session["Id_Finca"];
+                    cmd.Parameters.Add("@Id_TipoCombustible", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idTipoCombustible.Text);
+                    cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idLote.Text);
+                    cmd.Parameters.Add("@Id_Proceso", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idProceso.Text);
+                    cmd.Parameters.Add("@Id_CentroGasto", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idCentroGasto.Text);
+                    cmd.Parameters.Add("@Id_Clasificacion", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idClasificacion.Text);
+                    cmd.Parameters.Add("@Fecha", System.Data.SqlDbType.Date).Value = Convert.ToDateTime(dateFecha.Text);
+                    cmd.Parameters.Add("@NoVale", System.Data.SqlDbType.Int).Value = Convert.ToInt32(numNoVale.Text);
+                    cmd.Parameters.Add("@Kilometraje", System.Data.SqlDbType.Decimal).Value = Convert.ToDecimal(numKilometraje.Text);
+                    cmd.Parameters.Add("@Cantidad", System.Data.SqlDbType.Decimal).Value = Convert.ToDecimal(numCantidad.Text);
+                    cmd.Parameters.Add("@Comentario", System.Data.SqlDbType.NVarChar).Value = comentario.Text;
+                    cmd.Parameters.Add("@Id_Usr_Crea", System.Data.SqlDbType.Decimal).Value = Session["Id_Usuario"];            
+                    
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
