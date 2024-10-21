@@ -116,7 +116,7 @@ namespace IT_Finca.Pages.Admin
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-                Response.Redirect("~/Pages/Admin/Fincas.aspx");
+                Response.Redirect("~/Pages/AdminActividades/Fincas.aspx");
             }
             catch (Exception)
             {
@@ -157,7 +157,7 @@ namespace IT_Finca.Pages.Admin
                 cmd.ExecuteNonQuery();
                 con.Close();
                 ModalAc(false);
-                Response.Redirect("~/Pages/Admin/Fincas.aspx");
+                Response.Redirect("~/Pages/AdminActividades/Fincas.aspx");
             }
             catch (Exception)
             {
@@ -176,7 +176,7 @@ namespace IT_Finca.Pages.Admin
                 cmd.ExecuteNonQuery();
                 con.Close();
                 ModalEl(false);
-                Response.Redirect("~/Pages/Admin/Fincas.aspx");
+                Response.Redirect("~/Pages/AdminActividades/Fincas.aspx");
             }
             catch (Exception)
             {

@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Text;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections.Generic;
+
 
 namespace IT_Finca.Pages.Admin
 {
-    public partial class Lotes : System.Web.UI.Page
+    public partial class Proveedores : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,9 +22,11 @@ namespace IT_Finca.Pages.Admin
             {
                 if (!IsPostBack && Session["Usuario"] != null)
                 {
-                    TB_Lotes();
+                    TB_Proveedores();
                     DDLCargarEmpresas();
                     DDCargarEmpresas();
+                    CargarEmpleados();
+                    
                 }
             }
             catch
@@ -29,25 +35,23 @@ namespace IT_Finca.Pages.Admin
             }
         }
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ToString());
-        //Cargar tabla con listado de Fincas
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             try
             {
-                string lote = txtBuscarLote.Text.Trim();
-                DataTable dt = GetFilteredData(lote);
-                gvLotes.DataSource = dt;
-                gvLotes.DataBind();
+                string finca = txtBuscarProveedor.Text.Trim();
+                DataTable dt = GetFilteredData(finca);
+                gvProveedores.DataSource = dt;
+                gvProveedores.DataBind();
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
-        private DataTable GetFilteredData(string lote)
+        private DataTable GetFilteredData(string proveedor)
         {
-            SqlCommand cmd = new SqlCommand("SP_TB_FNC00500", con);
+            SqlCommand cmd = new SqlCommand("SP_CN_FNC00205", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             //cmd.Parameters.AddWithValue("@Id_Empresa", 1);
             con.Open();
@@ -55,24 +59,23 @@ namespace IT_Finca.Pages.Admin
             DataTable dt = new DataTable();
             da.Fill(dt);
 
-            if (!string.IsNullOrEmpty(lote))
+            if (!string.IsNullOrEmpty(proveedor))
             {
                 // Filtrar los datos en la columna "Lote"
-                dt.DefaultView.RowFilter = string.Format("Lote LIKE '%{0}%'", lote);
+                dt.DefaultView.RowFilter = string.Format("Proveedor LIKE '%{0}%'", proveedor);
                 dt = dt.DefaultView.ToTable();
             }
-
             con.Close();
             return dt;
         }
-
-        protected void TB_Lotes()
+        //Cargar tabla con listado de Fincas
+        protected void TB_Proveedores()
         {
             try
             {
                 DataTable dt = GetFilteredData("");
-                gvLotes.DataSource = dt;
-                gvLotes.DataBind();
+                gvProveedores.DataSource = dt;
+                gvProveedores.DataBind();
             }
             catch (Exception)
             {
@@ -80,11 +83,12 @@ namespace IT_Finca.Pages.Admin
             }
         }
         //Reducir listado de GridView despues de 17 lineas
-        protected void gvLotes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void gvProveedores_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView gv = (GridView)sender;
             gv.PageIndex = e.NewPageIndex;
-            TB_Lotes();
+            TB_Proveedores();
+
         }
         //Cargar Listado de Empresas en DropDownList para modal Agregar
         void DDLCargarEmpresas()
@@ -106,44 +110,22 @@ namespace IT_Finca.Pages.Admin
                 throw;
             }
         }
-        //Cargar Listado de Fincas en DropDownList para Modal_Agregar
-        void DDLCargarFincas(long IdEmpresa)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00100", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Empresa", SqlDbType.Int).Value = IdEmpresa;
-                ddlFincas.Items.Clear();
-                con.Open();
-                ddlFincas.DataSource = cmd.ExecuteReader();
-                ddlFincas.DataTextField = "Finca";
-                ddlFincas.DataValueField = "Id_Finca";
-                ddlFincas.DataBind();
-                //ddlFincas.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        //Agrega nuevo registro dentro del Modal_Agregar
         protected void Agregar_Click(object sender, EventArgs e)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SP_AG_FNC00500", con);
+                SqlCommand cmd = new SqlCommand("SP_AG_00200", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Codigo_Empleado", System.Data.SqlDbType.VarChar).Value = txtCodigo_Empleado.Text;
+                cmd.Parameters.Add("@Nom_Ape", System.Data.SqlDbType.VarChar).Value = txtNom_Ape.Text;
+                cmd.Parameters.Add("@DPI", System.Data.SqlDbType.NChar).Value = txtDPI.Text;
+                cmd.Parameters.Add("@Id_Usr_Crea", System.Data.SqlDbType.Int).Value = Session["Id_Usuario"].ToString();
                 cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddlEmpresas.Text;
-                cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = ddlFincas.Text;
-                cmd.Parameters.Add("@Lote", System.Data.SqlDbType.VarChar).Value = txtLote.Text;
-                cmd.Parameters.Add("@Manzanas", System.Data.SqlDbType.Int).Value = txtManzanas.Text;
-                cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.VarChar).Value = 1;
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-                Response.Redirect("~/Pages/Admin/Lotes.aspx");
+                ModalAc(false);
+                Response.Redirect("~/Pages/AdminActividades/Proveedores.aspx");
             }
             catch (Exception)
             {
@@ -163,14 +145,14 @@ namespace IT_Finca.Pages.Admin
                 ddEmpresas.DataValueField = "Id_Empresa";
                 ddEmpresas.DataBind();
                 con.Close();
-                //ddEmpresas.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                ddEmpresas.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        //Cargar Listado de Empresas en DropDownList para Modal_Actualizar
+        //Cargar Listado de Fincas en DropDownList para Modal_Actualizar
         void DDCargarFincas(long IdEmpresa)
         {
             try
@@ -178,13 +160,13 @@ namespace IT_Finca.Pages.Admin
                 SqlCommand cmd = new SqlCommand("SP_FNC00100", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.Add("@Id_Empresa", SqlDbType.Int).Value = IdEmpresa;
-                ddlFincas.Items.Clear();
+                ddFincas.Items.Clear();
                 con.Open();
                 ddFincas.DataSource = cmd.ExecuteReader();
                 ddFincas.DataTextField = "Finca";
                 ddFincas.DataValueField = "Id_Finca";
                 ddFincas.DataBind();
-                //ddlFincas.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                ddFincas.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
                 con.Close();
             }
             catch (Exception)
@@ -192,23 +174,111 @@ namespace IT_Finca.Pages.Admin
                 throw;
             }
         }
-        //Actualizar registro dentro del Modal_Actualizar
-        protected void Actualizar_Click(object sender, EventArgs e)
+        protected void ddEmpresas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DDCargarFincas(int.Parse(ddEmpresas.SelectedValue));
+            //CargarEmpleados(int.Parse(ddEmpresas.SelectedValue));
+            //ClientScript.RegisterStartupScript(this.GetType(), "Modal_Agregar", "$('#Modal_Agregar').modal('show')", true);
+        }
+
+        private void CargarEmpleados()
+        {
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SP_CN_FNC202", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = IdEmpresa;
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Employee> empleados = new List<Employee>();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int idEmpleado = reader.GetInt32(0);
+                        string nombreEmpleado = reader.GetString(1);
+                        empleados.Add(new Employee { Id_Empleado = idEmpleado, Nom_Ape = nombreEmpleado });
+                    }
+                }
+                reader.Close();
+                CheckBoxListEmpleados.DataSource = empleados;
+                CheckBoxListEmpleados.DataTextField = "Nom_Ape";
+                CheckBoxListEmpleados.DataValueField = "Id_Empleado";
+                CheckBoxListEmpleados.DataBind();
+
+                // Generar el código JavaScript para cargar los nombres de empleados en el cliente
+                List<string> empleadosNombres = new List<string>();
+                foreach (Employee empleado in empleados)
+                {
+                    empleadosNombres.Add(empleado.Nom_Ape);
+                }
+                string empleadosNombresJson = string.Join(",", empleadosNombres.Select(name => "\"" + name + "\""));
+                Page.ClientScript.RegisterStartupScript(GetType(), "LoadEmployees", $"var empleados = [{empleadosNombresJson}];", true);
+            }
+        }
+
+        public class Employee
+        {
+            public int Id_Empleado { get; set; }
+            public string Nom_Ape { get; set; }
+        }
+        protected void Asignar_Click(object sender, EventArgs e)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SP_AC_FNC00500", con);
+                SqlCommand cmd = new SqlCommand("SP_AS_FNC00201", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id_Lote", lbId_Lote.Text);
-                cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.VarChar).Value = ddEmpresas.Text;
-                cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.VarChar).Value = ddFincas.Text;
-                cmd.Parameters.Add("@Lote", System.Data.SqlDbType.VarChar).Value = txLote.Text;
-                cmd.Parameters.Add("@Manzanas", System.Data.SqlDbType.VarChar).Value = txManzanas.Text;
+                cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddEmpresas.Text;
+                cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = ddFincas.Text;
+                cmd.Parameters.Add("@Id_Empleado", System.Data.SqlDbType.Int).Value = CheckBoxListEmpleados.Text;
+                cmd.Parameters.Add("@Id_Usr_Crea", System.Data.SqlDbType.Int).Value = Session["Id_Usuario"].ToString();
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
                 ModalAc(false);
-                Response.Redirect("~/Pages/Admin/Lotes.aspx");
+                Response.Redirect("~/Pages/AdminActividades/Proveedores.aspx");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        void DCargarEmpresas()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_CN_FNC00101", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                con.Open();
+                dEmpresas.DataSource = cmd.ExecuteReader();
+                dEmpresas.DataTextField = "Empresa";
+                dEmpresas.DataValueField = "Id_Empresa";
+                dEmpresas.DataBind();
+                con.Close();
+                //dEmpresas.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        protected void Actualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_AC_00200", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id_Proveedor", lId_Proveedor.Text);
+                cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = dEmpresas.Text;
+                cmd.Parameters.Add("@Codigo_Empleado", System.Data.SqlDbType.VarChar).Value = tCodigo_Empleado.Text;
+                cmd.Parameters.Add("@Nom_Ape", System.Data.SqlDbType.VarChar).Value = tNom_Ape.Text;
+                cmd.Parameters.Add("@DPI", System.Data.SqlDbType.Decimal).Value = tDPI.Text;
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                ModalAc(false);
+                Response.Redirect("~/Pages/AdminActividades/Proveedores.aspx");
             }
             catch (Exception)
             {
@@ -220,14 +290,14 @@ namespace IT_Finca.Pages.Admin
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SP_EL_FNC00500", con);
+                SqlCommand cmd = new SqlCommand("SP_EL_FNC00200", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id_Lote", lId_Lote.Text);
+                cmd.Parameters.AddWithValue("@Id_Proveedor", Id_Proveedor.Text);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
                 ModalEl(false);
-                Response.Redirect("~/Pages/Admin/Lotes.aspx");
+                Response.Redirect("~/Pages/AdminActividades/Proveedores.aspx");
             }
             catch (Exception)
             {
@@ -235,49 +305,28 @@ namespace IT_Finca.Pages.Admin
             }
         }
         //Retraer Modal_Actualizar y Modal_Eliminar detro del GridView por Id_
-        protected void gvLotes_OnRowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvProveedores_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "ShowModalAc")
             {
+                DCargarEmpresas();
                 ImageButton btndetails = (ImageButton)e.CommandSource;
                 GridViewRow gvrow = (GridViewRow)btndetails.NamingContainer;
-                lbId_Lote.Text = gvLotes.DataKeys[gvrow.RowIndex].Value.ToString(); ;
-                //lbEmpresas.Text = (gvrow.FindControl("gvEmpresa") as Label).Text;
-                //lbFincas.Text = (gvrow.FindControl("gvFinca") as Label).Text;
-                ddEmpresas.Text = (gvrow.FindControl("gvId_Empresa") as Label).Text;
-                ddFincas.Text = (gvrow.FindControl("gvId_Finca") as Label).Text;
-                long idEmpresa = Convert.ToInt64((gvrow.FindControl("gvId_Empresa") as Label).Text);
-                DDCargarFincas(idEmpresa);
-                txLote.Text = (gvrow.FindControl("gvLote") as Label).Text;
-                txManzanas.Text = (gvrow.FindControl("gvManzanas") as Label).Text;
+                lId_Proveedor.Text = gvProveedores.DataKeys[gvrow.RowIndex].Value.ToString(); ;
+                dEmpresas.Text = (gvrow.FindControl("gvId_Empresa") as Label).Text;
+                tCodigo_Empleado.Text = (gvrow.FindControl("gvCodigo_Empleado") as Label).Text;
+                tNom_Ape.Text = (gvrow.FindControl("gvNom_Ape") as Label).Text;
+                tDPI.Text = (gvrow.FindControl("gvDPI") as Label).Text;
                 ModalAc(true);
             }
             if (e.CommandName == "ShowModalEl")
             {
                 ImageButton btndetails = (ImageButton)e.CommandSource;
                 GridViewRow gvrow = (GridViewRow)btndetails.NamingContainer;
-                lId_Lote.Text = gvLotes.DataKeys[gvrow.RowIndex].Value.ToString();
-                lLote.Text = (gvrow.FindControl("gvLote") as Label).Text;
+                Id_Proveedor.Text = gvProveedores.DataKeys[gvrow.RowIndex].Value.ToString();
+                Proveedor.Text = (gvrow.FindControl("gvProveedor") as Label).Text;
                 ModalEl(true);
             }
-        }
-        protected void ddlEmpresas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DDLCargarFincas(int.Parse(ddlEmpresas.SelectedValue));
-            //ClientScript.RegisterStartupScript(this.GetType(), "Modal_Agregar", "$('#Modal_Agregar').modal('show')", true);
-        }
-        protected void ddlFincas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //ClientScript.RegisterStartupScript(this.GetType(), "Modal_Agregar", "$('#Modal_Agregar').modal('show')", true);
-        }
-        protected void ddEmpresas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DDCargarFincas(int.Parse(ddEmpresas.SelectedValue));
-            //ClientScript.RegisterStartupScript(this.GetType(), "Modal_Actualizar", "$('#Modal_Actualizar').modal('show')", true);
-        }
-        protected void ddFincas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //ClientScript.RegisterStartupScript(this.GetType(), "Modal_Actualizar", "$('#Modal_Actualizar').modal('show')", true);
         }
         //Traer Modal_Actualizar
         void ModalAc(bool isDisplay)

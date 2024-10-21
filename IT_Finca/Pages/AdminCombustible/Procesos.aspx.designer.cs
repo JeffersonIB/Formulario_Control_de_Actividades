@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace IT_Finca.Pages.Admin
+namespace IT_Ubicacion.Pages.AdminCombustible
 {
 
 
-    public partial class CentroAnalisis
+    public partial class Procesos
     {
 
         /// <summary>
@@ -42,13 +42,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpresas;
 
         /// <summary>
-        /// Control ddlFincas.
+        /// Control ddlUbicaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFincas;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUbicaciones;
 
         /// <summary>
         /// Control ddlLotes.
@@ -60,22 +60,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlLotes;
 
         /// <summary>
-        /// Control ddlProcesos.
+        /// Control txtProceso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProcesos;
-
-        /// <summary>
-        /// Control txtCentroAnalisis.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCentroAnalisis;
+        protected global::System.Web.UI.WebControls.TextBox txtProceso;
 
         /// <summary>
         /// Control btnAgregar.
@@ -105,13 +96,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
 
         /// <summary>
-        /// Control lbId_CentroAnalisis.
+        /// Control lbId_Proceso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbId_CentroAnalisis;
+        protected global::System.Web.UI.WebControls.Label lbId_Proceso;
 
         /// <summary>
         /// Control ddEmpresas.
@@ -123,13 +114,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddEmpresas;
 
         /// <summary>
-        /// Control ddFincas.
+        /// Control ddUbicaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddFincas;
+        protected global::System.Web.UI.WebControls.DropDownList ddUbicaciones;
 
         /// <summary>
         /// Control ddLotes.
@@ -141,22 +132,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddLotes;
 
         /// <summary>
-        /// Control ddProcesos.
+        /// Control txProceso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddProcesos;
-
-        /// <summary>
-        /// Control txCentroAnalisis.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txCentroAnalisis;
+        protected global::System.Web.UI.WebControls.TextBox txProceso;
 
         /// <summary>
         /// Control btActualizar.
@@ -177,22 +159,22 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.Button btCancelar;
 
         /// <summary>
-        /// Control lId_CentroAnalisis.
+        /// Control lId_Proceso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lId_CentroAnalisis;
+        protected global::System.Web.UI.WebControls.Label lId_Proceso;
 
         /// <summary>
-        /// Control lCentroAnalisis.
+        /// Control lProceso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lCentroAnalisis;
+        protected global::System.Web.UI.WebControls.Label lProceso;
 
         /// <summary>
         /// Control bEliminar.
@@ -222,13 +204,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// Control txtBuscarCentroAnalisis.
+        /// Control txtBuscarProceso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscarCentroAnalisis;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarProceso;
 
         /// <summary>
         /// Control btnBuscar.
@@ -240,12 +222,12 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
-        /// Control gvCentroAnalisis.
+        /// Control gvProcesos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCentroAnalisis;
+        protected global::System.Web.UI.WebControls.GridView gvProcesos;
     }
 }

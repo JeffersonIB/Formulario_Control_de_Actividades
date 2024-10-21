@@ -62,120 +62,118 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>General</h3>
+                                <h3>Modulos</h3>
                                 <ul class="nav side-menu">
-
-                                    <li id="Primer_Men" runat="server" visible="false"><a><i class="fa fa-sitemap"></i>Administración <span class="fa fa-chevron-down"></span></a>
+                                    <!-- Administración general -->
+                                    <li id="Primer_Men" runat="server" visible="false"><a><i class="fa fa-sitemap"></i>Administración general <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li id="VigesimaQuinta_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/Usuarios.aspx") %>">Usuarios </a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminGeneral/Usuarios.aspx") %>">Usuarios </a>
                                             </li>
                                             <li id="VigesimaSexta_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/UsuariosAccesos.aspx") %>">Accesos a usuarios </a>
-                                            </li>
-                                            <li id="Primera_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/Fincas.aspx") %>">Fincas </a>
-                                            </li>
-                                            <li id="Segunda_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/Lotes.aspx") %>">Lotes </a>
-                                            </li>
-                                            <li id="Cuarta_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/Procesos.aspx") %>">Procesos </a>
-                                            </li>
-                                            <li id="Quinta_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/Actividades.aspx") %>">Actividades </a>
-                                            </li>
-                                            <li id="VigesimaSegunda_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/CentroAnalisis.aspx") %>">Centro de análisis </a>
-                                            </li>
-                                            <li id="VigesimaPrimera_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/CentroGasto.aspx") %>">Centro de gasto </a>
-                                            </li>
-                                            <li id="VigesimaTercera_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/Clasificacion.aspx") %>">Clasificación </a>
-                                            </li>
-                                            <li id="Tercera_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/Proveedores.aspx") %>">Proveedores </a>
-                                            </li>
-                                            <li id="Sexta_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/RegistroActividades.aspx") %>">Registros de actividades</a>
-                                            </li>
-                                            <li id="Septima_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Admin/RegistroCosecha.aspx") %>">Registros de cosecha</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminGeneral/UsuariosAccesos.aspx") %>">Accesos a usuarios </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li id="Segundo_Men" runat="server" visible="false"><a><i class="fa fa-edit"></i>Formularios <span class="fa fa-chevron-down"></span></a>
+                                    <!-- Administración general -->
+                                    <!-- Administración actividades -->
+                                    <li id="Segundo_Men" runat="server" visible="false"><a><i class="fa fa-sitemap"></i>Administración actividades <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li id="Primera_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminActividades/Fincas.aspx") %>">Fincas </a>
+                                            </li>
+                                            <li id="Segunda_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminActividades/Lotes.aspx") %>">Lotes </a>
+                                            </li>
+                                            <li id="Cuarta_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminActividades/Procesos.aspx") %>">Procesos </a>
+                                            </li>
+                                            <li id="Quinta_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminActividades/Actividades.aspx") %>">Actividades </a>
+                                            </li>
+                                            <li id="Tercera_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminActividades/Proveedores.aspx") %>">Proveedores </a>
+                                            </li>
+                                            <li id="Sexta_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminActividades/RegistroActividades.aspx") %>">Registros de actividades</a>
+                                            </li>
+                                            <li id="Septima_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminActividades/RegistroCosecha.aspx") %>">Registros de cosecha</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Administración actividades -->
+                                    <!-- Administración combustible -->
+                                    <li id="Tercer_Men" runat="server" visible="false"><a><i class="fa fa-sitemap"></i>Administración combustible <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li id="VigesimaSeptima_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/Ubicaciones.aspx") %>">Ubicaciones </a>
+                                            </li>
+                                            <li id="VigesimaOctava_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/Lotes.aspx") %>">Lotes </a>
+                                            </li>
+                                            <li id="VigesimaNovena_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/Procesos.aspx") %>">Procesos </a>
+                                            </li>
+                                            <li id="VigesimaSegunda_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/CentroAnalisis.aspx") %>">Centro de análisis </a>
+                                            </li>
+                                            <li id="VigesimaPrimera_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/CentroGasto.aspx") %>">Centro de gasto </a>
+                                            </li>
+                                            <li id="VigesimaTercera_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/Clasificacion.aspx") %>">Clasificación </a>
+                                            </li>
+                                            <li id="Trigesima_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/Tipo.aspx") %>">Tipo </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Administración cobmustible -->
+                                    <li id="Cuarto_Men" runat="server" visible="false"><a><i class="fa fa-edit"></i>Formularios <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li id="Octava_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Bilbao.aspx") %>">Bilbao</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Bilbao.aspx") %>">Formulario Bilbao</a>
                                             </li>
                                             <li id="Novena_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/DonPatricio.aspx") %>">Don Patricio</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/DonPatricio.aspx") %>">Formulario Don Patricio</a>
                                             </li>
                                             <li id="Decima_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/LasMinas.aspx") %>">Las Minas</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/LasMinas.aspx") %>">Formulario Las Minas</a>
                                             </li>
                                             <li id="DecimaPrimera_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/ElDesoriente.aspx") %>">El Desoriente</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/ElDesoriente.aspx") %>">Formulario El Desoriente</a>
                                             </li>
                                             <li id="DecimaSegunda_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/LasVegas.aspx") %>">Las Vegas</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/LasVegas.aspx") %>">Formulario Las Vegas</a>
                                             </li>
                                             <li id="DecimaTercera_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Linea18.aspx") %>">Linea 18</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Linea18.aspx") %>">Formulario Linea 18</a>
                                             </li>
                                             <li id="DecimaCuarta_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_ActividadV1.aspx") %>">Formulario V1</a>
                                             </li>
                                             <li id="DecimaQuinta_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_ActividadV2.aspx") %>">Formulario de actividades</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_ActividadV2.aspx") %>">Actividades</a>
                                             </li>
                                             <li id="DecimaSexta_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_ActividadV3.aspx") %>">Formulario actividad V3</a>
                                             </li>
                                             <li id="DecimaSeptima_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Cosecha.aspx") %>">Formulario de cosecha</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Cosecha.aspx") %>">Cosecha</a>
                                             </li>
                                             <li id="DecimaOctava_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Beneficio.aspx") %>">Formulario de beneficio</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Beneficio.aspx") %>">Beneficio</a>
                                             </li>
                                             <li id="DecimaNovena_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Secado.aspx") %>">Formulario de secado</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Secado.aspx") %>">Secado</a>
                                             </li>
                                             <li id="Vigesima_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Partida.aspx") %>">Formulario de partidas</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Partida.aspx") %>">Partidas</a>
                                             </li>
                                             <li id="VigesimaCuarta_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Combustible.aspx") %>">Formulario de combustible</a>
+                                                <a href="<%= Page.ResolveUrl("~/Pages/Forms/Formulario_Combustible.aspx") %>">Combustible</a>
                                             </li>
-                                        </ul>
-                                    </li>
-                                    <li id="Tercer_Men" runat="server" visible="false"><a><i class="fa fa-table"></i>Tablas <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li id="Li2" runat="server"><a href="tables.html">Tables</a></li>
-                                            <li id="Li3" runat="server"><a href="tables_dynamic.html">Table Dynamic</a></li>
-                                        </ul>
-                                    </li>
-                                    <li id="Cuarto_Men" runat="server" visible="false"><a><i class="fa fa-table"></i>Tablas <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li id="VigesimaSeptima_Pag" runat="server"><a href="tables.html">Tables</a></li>
-                                            <li id="VigesimaOctava_Pag" runat="server"><a href="tables_dynamic.html">Table Dynamic</a></li>
-                                        </ul>
-                                    </li>
-                                    <li id="Quinto_Men" runat="server" visible="false"><a><i class="fa fa-bar-chart-o"></i>Presentación <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li id="VigesimaNovena_Pag" runat="server"><a href="chartjs.html">Chart JS</a></li>
-                                            <li id="Trigesima_Pag" runat="server"><a href="chartjs2.html">Chart JS2</a></li>
-                                            <li id="TrigesimaPrimera_Pag" runat="server"><a href="morisjs.html">Moris JS</a></li>
-                                            <li id="TrigesimaSegunda_Pag" runat="server"><a href="echarts.html">ECharts</a></li>
-                                            <li id="TrigesimaTercera_Pag" runat="server"><a href="other_charts.html">Other Charts</a></li>
-                                        </ul>
-                                    </li>
-                                    <li id="Sexto_Men" runat="server" visible="false"><a><i class="fa fa-clone"></i>Diseños <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li id="TrigesimaCuarta_Pag" runat="server"><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
-                                            <li id="TrigesimaQuinta_Pag" runat="server"><a href="fixed_footer.html">Fixed Footer</a></li>
                                         </ul>
                                     </li>
 

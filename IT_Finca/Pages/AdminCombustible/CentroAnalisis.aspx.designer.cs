@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace IT_Finca.Pages.Admin
+namespace IT_Ubicacion.Pages.Admin
 {
 
 
-    public partial class CentroGasto
+    public partial class CentroAnalisis
     {
 
         /// <summary>
@@ -42,13 +42,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpresas;
 
         /// <summary>
-        /// Control ddlFincas.
+        /// Control ddlUbicaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFincas;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUbicaciones;
 
         /// <summary>
         /// Control ddlLotes.
@@ -69,13 +69,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlProcesos;
 
         /// <summary>
-        /// Control txtCentroGasto.
+        /// Control txtCentroAnalisis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCentroGasto;
+        protected global::System.Web.UI.WebControls.TextBox txtCentroAnalisis;
 
         /// <summary>
         /// Control btnAgregar.
@@ -105,13 +105,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
 
         /// <summary>
-        /// Control lbId_CentroGasto.
+        /// Control lbId_CentroAnalisis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbId_CentroGasto;
+        protected global::System.Web.UI.WebControls.Label lbId_CentroAnalisis;
 
         /// <summary>
         /// Control ddEmpresas.
@@ -123,13 +123,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddEmpresas;
 
         /// <summary>
-        /// Control ddFincas.
+        /// Control ddUbicaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddFincas;
+        protected global::System.Web.UI.WebControls.DropDownList ddUbicaciones;
 
         /// <summary>
         /// Control ddLotes.
@@ -150,13 +150,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddProcesos;
 
         /// <summary>
-        /// Control txCentroGasto.
+        /// Control txCentroAnalisis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txCentroGasto;
+        protected global::System.Web.UI.WebControls.TextBox txCentroAnalisis;
 
         /// <summary>
         /// Control btActualizar.
@@ -177,22 +177,22 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.Button btCancelar;
 
         /// <summary>
-        /// Control lId_CentroGasto.
+        /// Control lId_CentroAnalisis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lId_CentroGasto;
+        protected global::System.Web.UI.WebControls.Label lId_CentroAnalisis;
 
         /// <summary>
-        /// Control lCentroGasto.
+        /// Control lCentroAnalisis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lCentroGasto;
+        protected global::System.Web.UI.WebControls.Label lCentroAnalisis;
 
         /// <summary>
         /// Control bEliminar.
@@ -222,13 +222,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// Control txtBuscarCentroGasto.
+        /// Control txtBuscarCentroAnalisis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscarCentroGasto;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarCentroAnalisis;
 
         /// <summary>
         /// Control btnBuscar.
@@ -240,12 +240,12 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
-        /// Control gvCentroGasto.
+        /// Control gvCentroAnalisis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCentroGasto;
+        protected global::System.Web.UI.WebControls.GridView gvCentroAnalisis;
     }
 }

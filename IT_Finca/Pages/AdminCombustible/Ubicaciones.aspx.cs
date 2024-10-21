@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Linq;
 using System.Text;
-using System.Web.UI.WebControls;
+using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
-namespace IT_Usuario.Pages.Admin
+namespace IT_Ubicacion.Pages.AdminCombustible
 {
-    public partial class Usuarios : System.Web.UI.Page
+    public partial class Ubicaciones : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +21,7 @@ namespace IT_Usuario.Pages.Admin
             {
                 if (!IsPostBack && Session["Usuario"] != null)
                 {
-                    TB_Usuarios();
+                    TB_Ubicaciones();
                     DDLCargarEmpresas();
                     DDCargarEmpresas();
                 }
@@ -29,46 +32,46 @@ namespace IT_Usuario.Pages.Admin
             }
         }
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ToString());
-        //Botón buscar por usuario
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             try
             {
-                string Usuario = txtBuscarUsuario.Text.Trim();
-                DataTable dt = GetFilteredData(Usuario);
-                gvUsuarios.DataSource = dt;
-                gvUsuarios.DataBind();
+                string Ubicacion = txtBuscarUbicacion.Text.Trim();
+                DataTable dt = GetFilteredData(Ubicacion);
+                gvUbicaciones.DataSource = dt;
+                gvUbicaciones.DataBind();
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        //Cartar GridView a partir de un procedimiento
-        private DataTable GetFilteredData(string Usuario)
+        private DataTable GetFilteredData(string Ubicacion)
         {
-            SqlCommand cmd = new SqlCommand("SP_TB_FNC00202", con);
+            SqlCommand cmd = new SqlCommand("SP_TB_FNC00100_1", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             con.Open();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            if (!string.IsNullOrEmpty(Usuario))
+
+            if (!string.IsNullOrEmpty(Ubicacion))
             {
-                dt.DefaultView.RowFilter = string.Format("Usuario LIKE '%{0}%'", Usuario);
+                // Filtrar los datos en la columna "Lote"
+                dt.DefaultView.RowFilter = string.Format("Ubicacion LIKE '%{0}%'", Ubicacion);
                 dt = dt.DefaultView.ToTable();
             }
             con.Close();
             return dt;
         }
-        //Cargar tabla con listado de Usuarios
-        protected void TB_Usuarios()
+        //Cargar tabla con listado de Ubicaciones
+        protected void TB_Ubicaciones()
         {
             try
             {
                 DataTable dt = GetFilteredData("");
-                gvUsuarios.DataSource = dt;
-                gvUsuarios.DataBind();
+                gvUbicaciones.DataSource = dt;
+                gvUbicaciones.DataBind();
             }
             catch (Exception)
             {
@@ -76,11 +79,11 @@ namespace IT_Usuario.Pages.Admin
             }
         }
         //Reducir listado de GridView despues de 17 lineas
-        protected void gvUsuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void gvUbicaciones_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView gv = (GridView)sender;
             gv.PageIndex = e.NewPageIndex;
-            TB_Usuarios();
+            TB_Ubicaciones();
         }
         //Cargar Listado de Empresas en DropDownList para modal Agregar
         public void DDLCargarEmpresas()
@@ -103,17 +106,19 @@ namespace IT_Usuario.Pages.Admin
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SP_AG_FNC00202", con);
+                SqlCommand cmd = new SqlCommand("SP_AG_FNC00100_1", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddlEmpresas.Text;
-                cmd.Parameters.Add("@Nombre", System.Data.SqlDbType.VarChar).Value = txtNombre.Text;
-                cmd.Parameters.Add("@Apellido", System.Data.SqlDbType.VarChar).Value = txtApellido.Text;
-                cmd.Parameters.Add("@Usuario", System.Data.SqlDbType.VarChar).Value = txtUsuario.Text;
-                cmd.Parameters.Add("@Clave", System.Data.SqlDbType.VarChar).Value = txtClave.Text;
+                cmd.Parameters.Add("@Ubicacion", System.Data.SqlDbType.VarChar).Value = txtUbicacion.Text;
+                cmd.Parameters.Add("@Pais", System.Data.SqlDbType.VarChar).Value = txtPais.Text;
+                cmd.Parameters.Add("@Ciudad", System.Data.SqlDbType.VarChar).Value = txtCiudad.Text;
+                cmd.Parameters.Add("@Direccion", System.Data.SqlDbType.VarChar).Value = txtDireccion.Text;
+                cmd.Parameters.Add("@Telefono", System.Data.SqlDbType.VarChar).Value = txtTelefono.Text;
+                cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.VarChar).Value = 1;
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-                Response.Redirect("~/Pages/Admin/Usuarios.aspx");
+                Response.Redirect("~/Pages/AdminCombustible/Ubicaciones.aspx");
             }
             catch (Exception)
             {
@@ -141,19 +146,20 @@ namespace IT_Usuario.Pages.Admin
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SP_AC_FNC00202", con);
+                SqlCommand cmd = new SqlCommand("SP_AC_FNC00100_1", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddEmpresas.Text;
-                cmd.Parameters.AddWithValue("@Id_Usuario", System.Data.SqlDbType.Int).Value = lbId_Usuario.Text;
-                cmd.Parameters.AddWithValue("@Nombre", System.Data.SqlDbType.VarChar).Value = txNombre.Text;
-                cmd.Parameters.AddWithValue("@Apellido", System.Data.SqlDbType.VarChar).Value = txApellido.Text;
-                cmd.Parameters.AddWithValue("@Usuario", System.Data.SqlDbType.VarChar).Value = txUsuario.Text;
-                cmd.Parameters.AddWithValue("@Clave", System.Data.SqlDbType.VarChar).Value = txClave.Text;
+                cmd.Parameters.AddWithValue("@Id_Ubicacion", lbId_Ubicacion.Text);
+                cmd.Parameters.AddWithValue("@Id_Empresa", System.Data.SqlDbType.VarChar).Value = ddEmpresas.Text;
+                cmd.Parameters.AddWithValue("@Ubicacion", System.Data.SqlDbType.VarChar).Value = txUbicacion.Text;
+                cmd.Parameters.AddWithValue("@Pais", System.Data.SqlDbType.VarChar).Value = txPais.Text;
+                cmd.Parameters.AddWithValue("@Ciudad", System.Data.SqlDbType.VarChar).Value = txCiudad.Text;
+                cmd.Parameters.AddWithValue("@Direccion", System.Data.SqlDbType.VarChar).Value = txDireccion.Text;
+                cmd.Parameters.AddWithValue("@Telefono", System.Data.SqlDbType.VarChar).Value = txTelefono.Text;
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
                 ModalAc(false);
-                Response.Redirect("~/Pages/Admin/Usuarios.aspx");
+                Response.Redirect("~/Pages/AdminCombustible/Ubicaciones.aspx");
             }
             catch (Exception)
             {
@@ -165,118 +171,43 @@ namespace IT_Usuario.Pages.Admin
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SP_EL_FNC00202", con);
+                SqlCommand cmd = new SqlCommand("SP_EL_FNC00100_1", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id_Usuario", lId_Usuario.Text);
+                cmd.Parameters.AddWithValue("@Id_Ubicacion", lId_Ubicacion.Text);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
                 ModalEl(false);
-                Response.Redirect("~/Pages/Admin/Usuarios.aspx");
+                Response.Redirect("~/Pages/AdminCombustible/Ubicaciones.aspx");
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        // boton
-        protected void btnGuardarCambios_Click(object sender, EventArgs e)
-        {
-            foreach (GridViewRow row in gvUsuariosFincas.Rows)
-            {
-                // Obtener el Id_Usuario y el Id_Finca de la fila
-                int idUsuario = Convert.ToInt32(gvUsuariosFincas.DataKeys[row.RowIndex].Values["Id_Usuario"]);
-                int idFinca = Convert.ToInt32((row.FindControl("gvId_Finca") as Label).Text);
-
-                // Obtener el estado actual del checkbox
-                bool nuevoEstado = (row.FindControl("gvEstado") as CheckBox).Checked;
-                int estado = nuevoEstado ? 1 : 0;
-
-                // Actualizar la base de datos con el nuevo estado
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand("SP_AC_FNC00207", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Estado", estado);
-                        cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
-                        cmd.Parameters.AddWithValue("@Id_Finca", idFinca);
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                    }
-                }
-            }
-        }
-        //Reducir listado de GridView despues de 17 lineas
-        protected void gvAcceso_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            GridView gv = (GridView)sender;
-            gv.PageIndex = e.NewPageIndex;
-            DataBind();
-        }
         //Retraer Modal_Actualizar y Modal_Eliminar detro del GridView por Id_
-        protected void gvUsuarios_OnRowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvUbicaciones_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "ShowModalFn")
-            {
-                ImageButton btndetails = (ImageButton)e.CommandSource;
-                GridViewRow gvrow = (GridViewRow)btndetails.NamingContainer;
-                fnId_Usuario.Text = gvUsuarios.DataKeys[gvrow.RowIndex].Value.ToString();
-                lUsuario.Text = (gvrow.FindControl("gvUsuario") as Label).Text;
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("SP_TB_FNC00207", con);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.Int).Value = gvUsuarios.DataKeys[gvrow.RowIndex].Value.ToString();
-                    con.Open();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    gvUsuariosFincas.DataSource = dt;
-                    gvUsuariosFincas.DataBind();
-                    con.Close();
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-                ModalFn(true);
-            }
             if (e.CommandName == "ShowModalAc")
             {
                 ImageButton btndetails = (ImageButton)e.CommandSource;
                 GridViewRow gvrow = (GridViewRow)btndetails.NamingContainer;
-                lbId_Usuario.Text = gvUsuarios.DataKeys[gvrow.RowIndex].Value.ToString(); ;
+                lbId_Ubicacion.Text = gvUbicaciones.DataKeys[gvrow.RowIndex].Value.ToString(); ;
                 ddEmpresas.Text = (gvrow.FindControl("gvId_Empresa") as Label).Text;
-                txNombre.Text = (gvrow.FindControl("gvNombre") as Label).Text;
-                txApellido.Text = (gvrow.FindControl("gvApellido") as Label).Text;
-                txUsuario.Text = (gvrow.FindControl("gvUsuario") as Label).Text;
-                txClave.Text = (gvrow.FindControl("gvClave") as Label).Text;
+                txUbicacion.Text = (gvrow.FindControl("gvUbicacion") as Label).Text;
+                txPais.Text = (gvrow.FindControl("gvPais") as Label).Text;
+                txCiudad.Text = (gvrow.FindControl("gvCiudad") as Label).Text;
+                txDireccion.Text = (gvrow.FindControl("gvDireccion") as Label).Text;
+                txTelefono.Text = (gvrow.FindControl("gvTelefono") as Label).Text;
                 ModalAc(true);
             }
             if (e.CommandName == "ShowModalEl")
             {
                 ImageButton btndetails = (ImageButton)e.CommandSource;
                 GridViewRow gvrow = (GridViewRow)btndetails.NamingContainer;
-                lId_Usuario.Text = gvUsuarios.DataKeys[gvrow.RowIndex].Value.ToString();
-                lUsuario.Text = (gvrow.FindControl("gvUsuario") as Label).Text;
+                lId_Ubicacion.Text = gvUbicaciones.DataKeys[gvrow.RowIndex].Value.ToString();
+                lUbicacion.Text = (gvrow.FindControl("gvUbicacion") as Label).Text;
                 ModalEl(true);
-            }
-        }
-        //Traer Modal_Finca
-        void ModalFn(bool isDisplay)
-        {
-            StringBuilder builder = new StringBuilder();
-            if (isDisplay)
-            {
-                builder.Append("<script language=JavaScript> ShowModalFn(); </script>");
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowModalFn", builder.ToString());
-            }
-            else
-            {
-                builder.Append("<script language=JavaScript> CloseModalFn(); </script>");
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CloseModalFn", builder.ToString());
             }
         }
         //Traer Modal_Actualizar

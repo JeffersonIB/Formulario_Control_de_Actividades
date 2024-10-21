@@ -7,30 +7,12 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace IT_Finca.Pages.Admin
+namespace IT_Ubicacion.Pages.AdminCombustible
 {
 
 
-    public partial class Clasificacion
+    public partial class Ubicaciones
     {
-
-        /// <summary>
-        /// Control ScriptManager1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-
-        /// <summary>
-        /// Control UpdatePanel1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// Control ddlEmpresas.
@@ -42,31 +24,49 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpresas;
 
         /// <summary>
-        /// Control ddlFincas.
+        /// Control txtUbicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFincas;
+        protected global::System.Web.UI.WebControls.TextBox txtUbicacion;
 
         /// <summary>
-        /// Control ddlLotes.
+        /// Control txtPais.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLotes;
+        protected global::System.Web.UI.WebControls.TextBox txtPais;
 
         /// <summary>
-        /// Control txtClasificacion.
+        /// Control txtCiudad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtClasificacion;
+        protected global::System.Web.UI.WebControls.TextBox txtCiudad;
+
+        /// <summary>
+        /// Control txtDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDireccion;
+
+        /// <summary>
+        /// Control txtTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTelefono;
 
         /// <summary>
         /// Control btnAgregar.
@@ -87,22 +87,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.Button btnCancelar;
 
         /// <summary>
-        /// Control UpdatePanel2.
+        /// Control lbId_Ubicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-
-        /// <summary>
-        /// Control lbId_Clasificacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbId_Clasificacion;
+        protected global::System.Web.UI.WebControls.Label lbId_Ubicacion;
 
         /// <summary>
         /// Control ddEmpresas.
@@ -114,31 +105,49 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddEmpresas;
 
         /// <summary>
-        /// Control ddFincas.
+        /// Control txUbicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddFincas;
+        protected global::System.Web.UI.WebControls.TextBox txUbicacion;
 
         /// <summary>
-        /// Control ddLotes.
+        /// Control txPais.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddLotes;
+        protected global::System.Web.UI.WebControls.TextBox txPais;
 
         /// <summary>
-        /// Control txClasificacion.
+        /// Control txCiudad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txClasificacion;
+        protected global::System.Web.UI.WebControls.TextBox txCiudad;
+
+        /// <summary>
+        /// Control txDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txDireccion;
+
+        /// <summary>
+        /// Control txTelefono.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txTelefono;
 
         /// <summary>
         /// Control btActualizar.
@@ -159,22 +168,22 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.Button btCancelar;
 
         /// <summary>
-        /// Control lId_Clasificacion.
+        /// Control lId_Ubicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lId_Clasificacion;
+        protected global::System.Web.UI.WebControls.Label lId_Ubicacion;
 
         /// <summary>
-        /// Control lClasificacion.
+        /// Control lUbicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lClasificacion;
+        protected global::System.Web.UI.WebControls.Label lUbicacion;
 
         /// <summary>
         /// Control bEliminar.
@@ -204,13 +213,13 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// Control txtBuscarClasificacion.
+        /// Control txtBuscarUbicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscarClasificacion;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarUbicacion;
 
         /// <summary>
         /// Control btnBuscar.
@@ -222,12 +231,12 @@ namespace IT_Finca.Pages.Admin
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
-        /// Control gvClasificacion.
+        /// Control gvUbicaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvClasificacion;
+        protected global::System.Web.UI.WebControls.GridView gvUbicaciones;
     }
 }

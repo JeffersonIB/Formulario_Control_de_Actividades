@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="CentroAnalisis.aspx.cs" Inherits="IT_Finca.Pages.Admin.CentroAnalisis" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Lotes.aspx.cs" Inherits="IT_Finca.Pages.AdminCombustible.Lotes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Administración de centro de análisis
+    Administración de lotes
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -10,17 +9,15 @@
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
-        <title>Administración de centro de analisis
+        <title>Administración de lotes
         </title>
         <link href="<%= ResolveClientUrl("~/CSS/Admin.css") %>" rel="stylesheet" />
         <script src="<%= ResolveClientUrl("~/JS/Admin.js") %>"> </script>
     </head>
     <body>
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
         <div class="container box">
             <center>
-                <h1 class="title">Administración de centro de análisis
+                <h1 class="title">Administración de lotes
                 </h1>
             </center>
         </div>
@@ -29,13 +26,15 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Agregar nuevo centro de análisis
+                        <h5 class="modal-title">Agregar nuevo lote
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server">
+                        </asp:ScriptManager>
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
                                 <table align="center">
@@ -52,12 +51,12 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Finca :
+                                        <td>Ubicación :
                                         </td>
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="ddlFincas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlFincas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="ddlUbicaciones" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlUbicaciones_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -65,34 +64,10 @@
                                     </tr>
                                     <tr>
                                         <td>Lote :
-                                        </td>
-                                        <td>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <asp:DropDownList ID="ddlLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLotes_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proceso :
-                                        </td>
-                                        <td>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Centro de analisis :
                                     <br />
                                         </td>
                                         <td>
-                                            <asp:TextBox runat="server" ID="txtCentroAnalisis" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txtLote" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -116,7 +91,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modificar datos de centro de análisis
+                        <h5 class="modal-title">Modificar datos de lote
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -128,7 +103,7 @@
                                 <table align="center">
                                     <tr>
                                         <td>
-                                            <asp:Label runat="server" ID="lbId_CentroAnalisis" Visible="false"></asp:Label>
+                                            <asp:Label runat="server" ID="lbId_Lote" Visible="false"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
@@ -144,12 +119,12 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Finca :
+                                        <td>Ubicacion :
                                         </td>
                                         <td>
                                             <div class="control">
                                                 <div class="select">
-                                                    <asp:DropDownList ID="ddFincas" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddFincas_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                                    <asp:DropDownList ID="ddUbicaciones" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddUbicaciones_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -157,34 +132,10 @@
                                     </tr>
                                     <tr>
                                         <td>Lote :
-                                        </td>
-                                        <td>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <asp:DropDownList ID="ddLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddLotes_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proceso :
-                                        </td>
-                                        <td>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <asp:DropDownList ID="ddProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddProcesos_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Centro de analisis :
                                     <br />
                                         </td>
                                         <td>
-                                            <asp:TextBox runat="server" ID="txCentroAnalisis" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txLote" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -220,13 +171,13 @@
                         <table align="center">
                             <tr>
                                 <td>
-                                    <asp:Label runat="server" ID="lId_CentroAnalisis" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="lId_Lote" Visible="false"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Está seguro de eliminar : 
                                        <strong>
-                                           <asp:Label runat="server" ID="lCentroAnalisis" Visible="true"></asp:Label>
+                                           <asp:Label runat="server" ID="lLote" Visible="true"></asp:Label>
                                        </strong>
                                 </td>
                             </tr>
@@ -244,15 +195,15 @@
         </div>
         <!-- Modal Eliminar -->
         <br />
-        <!-- Tabla de Fincas -->
+        <!-- Tabla de ubicaciones -->
         <center>
             <table>
                 <tr>
                     <td align="center">
-                        <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo centro de analisis" OnClientClick="ShowModalAg();return false;" Style="width: auto;"/>
+                        <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo lote" OnClientClick="ShowModalAg();return false;" Style="width: auto;"/>
                     </td>
                     <td align="center">
-                        <asp:TextBox ID="txtBuscarCentroAnalisis" runat="server" placeholder="Buscar por centro de analisis" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                        <asp:TextBox ID="txtBuscarLote" runat="server" placeholder="Buscar por lote" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                     </td>
                     <td align="center">
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;"/>
@@ -260,8 +211,8 @@
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <asp:GridView ID="gvCentroAnalisis" runat="server"
-                            DataKeyNames="Id_CentroAnalisis"
+                        <asp:GridView ID="gvLotes" runat="server"
+                            DataKeyNames="Id_Lote"
                             PageSize="17"
                             CssClass="mydatagrid"
                             PagerStyle-CssClass="pager"
@@ -273,10 +224,10 @@
                             HorizontalAlign="Center"
                             ShowHeaderWhenEmpty="True"
                             AutoGenerateColumns="False"
-                            EmptyDataText="No Records Found"
+                            EmptyDataText="Sin registros"
                             EmptyDataRowStyle-ForeColor="Red"
-                            OnRowCommand="gvCentroAnalisis_OnRowCommand"
-                            OnPageIndexChanging="gvCentroAnalisis_PageIndexChanging">
+                            OnRowCommand="gvLotes_OnRowCommand"
+                            OnPageIndexChanging="gvLotes_PageIndexChanging">
                             <Columns>
                                 <asp:TemplateField HeaderText="Id_Empresa" Visible="false">
                                     <ItemTemplate>
@@ -288,14 +239,14 @@
                                         <asp:Label ID="gvEmpresa" runat="server" Text='<%#Eval("Empresa") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_Finca" Visible="false">
+                                <asp:TemplateField HeaderText="Id_Ubicacion" Visible="false">
                                     <ItemTemplate>
-                                        <asp:Label ID="gvId_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
+                                        <asp:Label ID="gvId_Ubicacion" runat="server" Text='<%#Eval("Id_Ubicacion") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Finca" Visible="true">
+                                <asp:TemplateField HeaderText="Ubicación" Visible="true">
                                     <ItemTemplate>
-                                        <asp:Label ID="gvFinca" runat="server" Text='<%#Eval("Finca") %>'></asp:Label>
+                                        <asp:Label ID="gvUbicacion" runat="server" Text='<%#Eval("Ubicacion") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Id_Lote" Visible="false">
@@ -308,34 +259,15 @@
                                         <asp:Label ID="gvLote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_Proceso" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="gvId_Proceso" runat="server" Text='<%#Eval("Id_Proceso") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Proceso" Visible="true">
-                                    <ItemTemplate>
-                                        <asp:Label ID="gvProceso" runat="server" Text='<%#Eval("Proceso") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_CentroAnalisis" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="gvId_CentroAnalisis" runat="server" Text='<%#Eval("Id_CentroAnalisis") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Cesntro de analisis" Visible="true">
-                                    <ItemTemplate>
-                                        <asp:Label ID="gvCentroAnalisis" runat="server" Text='<%#Eval("CentroAnalisis") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Modificar">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName="ShowModalAc" CommandArgument='<%#Eval("Id_CentroAnalisis") %>' Style="display: block; margin: 0 auto;" />
+                                        <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName="ShowModalAc" CommandArgument='<%#Eval("Id_Lote") %>' Style="display: block; margin: 0 auto;" />
+
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Eliminar">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="~/Pages/Img/Eliminar.png" CommandName="ShowModalEl" CommandArgument='<%#Eval("Id_CentroAnalisis") %>' Style="display: block; margin: 0 auto;" />
+                                        <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="~/Pages/Img/Eliminar.png" CommandName="ShowModalEl" CommandArgument='<%#Eval("Id_Lote") %>' Style="display: block; margin: 0 auto;" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

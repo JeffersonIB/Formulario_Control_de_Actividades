@@ -133,19 +133,22 @@
     <Content Include="JS\Modal_DDL_Sin_Recargar.js" />
     <Content Include="JS\popper.min.js" />
     <Content Include="LICENSE.txt" />
-    <Content Include="Pages\Admin\Actividades.aspx" />
-    <Content Include="Pages\Admin\CentroAnalisis.aspx" />
-    <Content Include="Pages\Admin\CentroGasto.aspx" />
-    <Content Include="Pages\Admin\Clasificacion.aspx" />
+    <Content Include="Pages\AdminActividades\Actividades.aspx" />
+    <Content Include="Pages\AdminCombustible\CentroAnalisis.aspx" />
+    <Content Include="Pages\AdminCombustible\CentroGasto.aspx" />
+    <Content Include="Pages\AdminCombustible\Clasificacion.aspx" />
+    <Content Include="Pages\AdminCombustible\Lotes.aspx" />
+    <Content Include="Pages\AdminCombustible\Procesos.aspx" />
+    <Content Include="Pages\AdminCombustible\Ubicaciones.aspx" />
     <Content Include="Pages\Admin\Proveedores_Fincas.aspx" />
-    <Content Include="Pages\Admin\RegistroCosecha.aspx" />
-    <Content Include="Pages\Admin\Fincas.aspx" />
-    <Content Include="Pages\Admin\Lotes.aspx" />
-    <Content Include="Pages\Admin\Procesos.aspx" />
-    <Content Include="Pages\Admin\Proveedores.aspx" />
-    <Content Include="Pages\Admin\RegistroActividades.aspx" />
-    <Content Include="Pages\Admin\Usuarios.aspx" />
-    <Content Include="Pages\Admin\UsuariosAccesos.aspx" />
+    <Content Include="Pages\AdminActividades\RegistroCosecha.aspx" />
+    <Content Include="Pages\AdminActividades\Fincas.aspx" />
+    <Content Include="Pages\AdminActividades\Lotes.aspx" />
+    <Content Include="Pages\AdminActividades\Procesos.aspx" />
+    <Content Include="Pages\AdminActividades\Proveedores.aspx" />
+    <Content Include="Pages\AdminActividades\RegistroActividades.aspx" />
+    <Content Include="Pages\AdminGeneral\Usuarios.aspx" />
+    <Content Include="Pages\AdminGeneral\UsuariosAccesos.aspx" />
     <Content Include="Pages\Admin\Usuarios_Fincas.aspx" />
     <Content Include="Pages\css\maps\jquery-jvectormap-2.0.3.css" />
     <Content Include="Pages\Extras\Contrasena.aspx" />
@@ -2355,33 +2358,54 @@
     <Compile Include="MP1.Master.designer.cs">
       <DependentUpon>MP1.Master</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\Actividades.aspx.cs">
+    <Compile Include="Pages\AdminActividades\Actividades.aspx.cs">
       <DependentUpon>Actividades.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\Actividades.aspx.designer.cs">
+    <Compile Include="Pages\AdminActividades\Actividades.aspx.designer.cs">
       <DependentUpon>Actividades.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\CentroAnalisis.aspx.cs">
+    <Compile Include="Pages\AdminCombustible\CentroAnalisis.aspx.cs">
       <DependentUpon>CentroAnalisis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\CentroAnalisis.aspx.designer.cs">
+    <Compile Include="Pages\AdminCombustible\CentroAnalisis.aspx.designer.cs">
       <DependentUpon>CentroAnalisis.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\CentroGasto.aspx.cs">
+    <Compile Include="Pages\AdminCombustible\CentroGasto.aspx.cs">
       <DependentUpon>CentroGasto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\CentroGasto.aspx.designer.cs">
+    <Compile Include="Pages\AdminCombustible\CentroGasto.aspx.designer.cs">
       <DependentUpon>CentroGasto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\Clasificacion.aspx.cs">
+    <Compile Include="Pages\AdminCombustible\Clasificacion.aspx.cs">
       <DependentUpon>Clasificacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\Clasificacion.aspx.designer.cs">
+    <Compile Include="Pages\AdminCombustible\Clasificacion.aspx.designer.cs">
       <DependentUpon>Clasificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminCombustible\Lotes.aspx.cs">
+      <DependentUpon>Lotes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AdminCombustible\Lotes.aspx.designer.cs">
+      <DependentUpon>Lotes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminCombustible\Procesos.aspx.cs">
+      <DependentUpon>Procesos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AdminCombustible\Procesos.aspx.designer.cs">
+      <DependentUpon>Procesos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminCombustible\Ubicaciones.aspx.cs">
+      <DependentUpon>Ubicaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AdminCombustible\Ubicaciones.aspx.designer.cs">
+      <DependentUpon>Ubicaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\Proveedores_Fincas.aspx.cs">
       <DependentUpon>Proveedores_Fincas.aspx</DependentUpon>
@@ -2390,60 +2414,60 @@
     <Compile Include="Pages\Admin\Proveedores_Fincas.aspx.designer.cs">
       <DependentUpon>Proveedores_Fincas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\RegistroCosecha.aspx.cs">
+    <Compile Include="Pages\AdminActividades\RegistroCosecha.aspx.cs">
       <DependentUpon>RegistroCosecha.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\RegistroCosecha.aspx.designer.cs">
+    <Compile Include="Pages\AdminActividades\RegistroCosecha.aspx.designer.cs">
       <DependentUpon>RegistroCosecha.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\Fincas.aspx.cs">
+    <Compile Include="Pages\AdminActividades\Fincas.aspx.cs">
       <DependentUpon>Fincas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\Fincas.aspx.designer.cs">
+    <Compile Include="Pages\AdminActividades\Fincas.aspx.designer.cs">
       <DependentUpon>Fincas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\Lotes.aspx.cs">
+    <Compile Include="Pages\AdminActividades\Lotes.aspx.cs">
       <DependentUpon>Lotes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\Lotes.aspx.designer.cs">
+    <Compile Include="Pages\AdminActividades\Lotes.aspx.designer.cs">
       <DependentUpon>Lotes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\Procesos.aspx.cs">
+    <Compile Include="Pages\AdminActividades\Procesos.aspx.cs">
       <DependentUpon>Procesos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\Procesos.aspx.designer.cs">
+    <Compile Include="Pages\AdminActividades\Procesos.aspx.designer.cs">
       <DependentUpon>Procesos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\Proveedores.aspx.cs">
+    <Compile Include="Pages\AdminActividades\Proveedores.aspx.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\Proveedores.aspx.designer.cs">
+    <Compile Include="Pages\AdminActividades\Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\RegistroActividades.aspx.cs">
+    <Compile Include="Pages\AdminActividades\RegistroActividades.aspx.cs">
       <DependentUpon>RegistroActividades.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\RegistroActividades.aspx.designer.cs">
+    <Compile Include="Pages\AdminActividades\RegistroActividades.aspx.designer.cs">
       <DependentUpon>RegistroActividades.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\Usuarios.aspx.cs">
+    <Compile Include="Pages\AdminGeneral\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\Usuarios.aspx.designer.cs">
+    <Compile Include="Pages\AdminGeneral\Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\UsuariosAccesos.aspx.cs">
+    <Compile Include="Pages\AdminGeneral\UsuariosAccesos.aspx.cs">
       <DependentUpon>UsuariosAccesos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\UsuariosAccesos.aspx.designer.cs">
+    <Compile Include="Pages\AdminGeneral\UsuariosAccesos.aspx.designer.cs">
       <DependentUpon>UsuariosAccesos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\Usuarios_Fincas.aspx.cs">
