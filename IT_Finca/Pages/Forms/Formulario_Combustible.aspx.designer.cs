@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace IT_Finca.Pages.Forms
+namespace IT_Ubicacion.Pages.Forms
 {
 
 
@@ -33,13 +33,13 @@ namespace IT_Finca.Pages.Forms
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// Control ddlTipoCombustible.
+        /// Control ddlId_TipoCombustible.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoCombustible;
+        protected global::System.Web.UI.WebControls.DropDownList ddlId_TipoCombustible;
 
         /// <summary>
         /// Control RequiredFieldValidator1.
@@ -51,13 +51,22 @@ namespace IT_Finca.Pages.Forms
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
-        /// Control ddlLotes.
+        /// Control ddlCentroAnalisis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLotes;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCentroAnalisis;
+
+        /// <summary>
+        /// Control ddlUbicacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlUbicacion;
 
         /// <summary>
         /// Control ddlProcesos.
@@ -67,15 +76,6 @@ namespace IT_Finca.Pages.Forms
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProcesos;
-
-        /// <summary>
-        /// Control ddlCentroAnalisis.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCentroAnalisis;
 
         /// <summary>
         /// Control ddlCentroGasto.

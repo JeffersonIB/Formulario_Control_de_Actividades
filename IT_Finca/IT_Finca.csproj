@@ -204,6 +204,7 @@
     <Content Include="Pages\js\datepicker\daterangepicker.js" />
     <Content Include="Pages\js\moment\moment.min.js" />
     <Content Include="Pages\Test\CentroGastos.aspx" />
+    <Content Include="Pages\Test\DDL.aspx" />
     <Content Include="Pages\Test\DDL_GW.aspx" />
     <Content Include="Pages\Test\Formulario_Secado.aspx" />
     <Content Include="Pages\Test\Formulario_Secado2.aspx" />
@@ -2595,6 +2596,13 @@
     </Compile>
     <Compile Include="Pages\Test\CentroGastos.aspx.designer.cs">
       <DependentUpon>CentroGastos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Test\DDL.aspx.cs">
+      <DependentUpon>DDL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Test\DDL.aspx.designer.cs">
+      <DependentUpon>DDL.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Test\DDL_GW.aspx.cs">
       <DependentUpon>DDL_GW.aspx</DependentUpon>

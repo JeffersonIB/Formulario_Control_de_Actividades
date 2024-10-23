@@ -51,15 +51,6 @@ namespace IT_Ubicacion.Pages.AdminCombustible
         protected global::System.Web.UI.WebControls.DropDownList ddlUbicaciones;
 
         /// <summary>
-        /// Control ddlLotes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLotes;
-
-        /// <summary>
         /// Control txtProceso.
         /// </summary>
         /// <remarks>
@@ -121,15 +112,6 @@ namespace IT_Ubicacion.Pages.AdminCombustible
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddUbicaciones;
-
-        /// <summary>
-        /// Control ddLotes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddLotes;
 
         /// <summary>
         /// Control txProceso.

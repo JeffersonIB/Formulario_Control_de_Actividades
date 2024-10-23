@@ -51,7 +51,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <%--<tr>
                                         <td>Ubicacion :
                                         </td>
                                         <td>
@@ -62,8 +62,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr>--%>
+                                    <%--<tr>
                                         <td>Lote :
                                         </td>
                                         <td>
@@ -74,8 +74,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr>--%>
+                                    <%--<tr>
                                         <td>Proceso :
                                         </td>
                                         <td>
@@ -86,7 +86,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr>--%>
                                     <tr>
                                         <td>Centro de análisis :
                                     <br />
@@ -143,7 +143,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
+                                   <%-- <tr>
                                         <td>Ubicacion :
                                         </td>
                                         <td>
@@ -154,8 +154,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr>--%>
+                                    <%--<tr>
                                         <td>Lote :
                                         </td>
                                         <td>
@@ -166,8 +166,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr>--%>
+                                    <%--<tr>
                                         <td>Proceso :
                                         </td>
                                         <td>
@@ -178,7 +178,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr>--%>
                                     <tr>
                                         <td>Centro de análisis :
                                     <br />
@@ -288,36 +288,36 @@
                                         <asp:Label ID="gvEmpresa" runat="server" Text='<%#Eval("Empresa") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_Ubicacion" Visible="false">
+                               <%-- <asp:TemplateField HeaderText="Id_Ubicacion" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="gvId_Ubicacion" runat="server" Text='<%#Eval("Id_Ubicacion") %>'></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Ubicación" Visible="true">
+                                </asp:TemplateField>--%>
+                                <%--<asp:TemplateField HeaderText="Ubicación" Visible="true">
                                     <ItemTemplate>
                                         <asp:Label ID="gvUbicacion" runat="server" Text='<%#Eval("Ubicacion") %>'></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_Lote" Visible="false">
+                                </asp:TemplateField>--%>
+                                <%--<asp:TemplateField HeaderText="Id_Lote" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="gvId_Lote" runat="server" Text='<%#Eval("Id_Lote") %>'></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Lote" Visible="true">
+                                </asp:TemplateField>--%>
+                                <%--<asp:TemplateField HeaderText="Lote" Visible="true">
                                     <ItemTemplate>
                                         <asp:Label ID="gvLote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_Proceso" Visible="false">
+                                </asp:TemplateField>--%>
+                               <%-- <asp:TemplateField HeaderText="Id_Proceso" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="gvId_Proceso" runat="server" Text='<%#Eval("Id_Proceso") %>'></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Proceso" Visible="true">
+                                </asp:TemplateField>--%>
+                              <%--  <asp:TemplateField HeaderText="Proceso" Visible="true">
                                     <ItemTemplate>
                                         <asp:Label ID="gvProceso" runat="server" Text='<%#Eval("Proceso") %>'></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
                                 <asp:TemplateField HeaderText="Id_CentroAnalisis" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="gvId_CentroAnalisis" runat="server" Text='<%#Eval("Id_CentroAnalisis") %>'></asp:Label>

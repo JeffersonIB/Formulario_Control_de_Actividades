@@ -64,30 +64,6 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Lote :
-                                        </td>
-                                        <td>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <asp:DropDownList ID="ddlLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLotes_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proceso :
-                                        </td>
-                                        <td>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td>Centro de gasto :
                                     <br />
                                         </td>
@@ -150,30 +126,6 @@
                                             <div class="control">
                                                 <div class="select">
                                                     <asp:DropDownList ID="ddUbicaciones" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddUbicaciones_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lote :
-                                        </td>
-                                        <td>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <asp:DropDownList ID="ddLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddLotes_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proceso :
-                                        </td>
-                                        <td>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <asp:DropDownList ID="ddProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddProcesos_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -298,32 +250,12 @@
                                         <asp:Label ID="gvUbicacion" runat="server" Text='<%#Eval("Ubicacion") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_Lote" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="gvId_Lote" runat="server" Text='<%#Eval("Id_Lote") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Lote" Visible="true">
-                                    <ItemTemplate>
-                                        <asp:Label ID="gvLote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_Proceso" Visible="false">
-                                    <ItemTemplate>
-                                        <asp:Label ID="gvId_Proceso" runat="server" Text='<%#Eval("Id_Proceso") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Proceso" Visible="true">
-                                    <ItemTemplate>
-                                        <asp:Label ID="gvProceso" runat="server" Text='<%#Eval("Proceso") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Id_CentroGasto" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="gvId_CentroGasto" runat="server" Text='<%#Eval("Id_CentroGasto") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Cesntro de gasto" Visible="true">
+                                <asp:TemplateField HeaderText="Centro de gasto" Visible="true">
                                     <ItemTemplate>
                                         <asp:Label ID="gvCentroGasto" runat="server" Text='<%#Eval("CentroGasto") %>'></asp:Label>
                                     </ItemTemplate>

@@ -130,29 +130,6 @@ namespace IT_Ubicacion.Pages.AdminCombustible
                 throw;
             }
         }
-        //Cargar Listado de Lotes en DropDownList para modal Agregar
-        void DDLCargarLotes(long IdUbicacion)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00500_11", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Ubicacion", SqlDbType.Int).Value = IdUbicacion;
-                ddlLotes.Items.Clear();
-                con.Open();
-                ddlLotes.DataSource = cmd.ExecuteReader();
-                ddlLotes.DataTextField = "Lote";
-                ddlLotes.DataValueField = "Id_Lote";
-                ddlLotes.DataBind();
-                ddlLotes.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         //Agrega nuevo registro dentro del Modal_Agregar
         protected void Agregar_Click(object sender, EventArgs e)
         {
@@ -162,7 +139,6 @@ namespace IT_Ubicacion.Pages.AdminCombustible
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddlEmpresas.Text;
                 cmd.Parameters.Add("@Id_Ubicacion", System.Data.SqlDbType.Int).Value = ddlUbicaciones.Text;
-                cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = ddlLotes.Text;
                 cmd.Parameters.Add("@Proceso", System.Data.SqlDbType.VarChar).Value = txtProceso.Text;
                 cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.VarChar).Value = Session["Id_Usuario"].ToString();
                 con.Open();
@@ -217,28 +193,6 @@ namespace IT_Ubicacion.Pages.AdminCombustible
                 throw;
             }
         }
-        //Cargar Listado de Lotes en DropDownList para Modal_Actualizar
-        void DDCargarLotes(long IdUbicacion)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00500_11", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Ubicacion", SqlDbType.Int).Value = IdUbicacion;
-                ddLotes.Items.Clear();
-                con.Open();
-                ddLotes.DataSource = cmd.ExecuteReader();
-                ddLotes.DataTextField = "Lote";
-                ddLotes.DataValueField = "Id_Lote";
-                ddLotes.DataBind();
-                //ddlUbicaciones.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
         //Actualizar registro dentro del Modal_Actualizar
         protected void Actualizar_Click(object sender, EventArgs e)
         {
@@ -249,7 +203,6 @@ namespace IT_Ubicacion.Pages.AdminCombustible
                 cmd.Parameters.AddWithValue("@Id_Proceso", lbId_Proceso.Text);
                 cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddEmpresas.Text;
                 cmd.Parameters.Add("@Id_Ubicacion", System.Data.SqlDbType.Int).Value = ddUbicaciones.Text;
-                cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = ddLotes.Text;
                 cmd.Parameters.Add("@Proceso", System.Data.SqlDbType.VarChar).Value = txProceso.Text;
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -291,11 +244,9 @@ namespace IT_Ubicacion.Pages.AdminCombustible
                 lbId_Proceso.Text = gvProcesos.DataKeys[gvrow.RowIndex].Value.ToString();
                 ddEmpresas.Text = (gvrow.FindControl("gvId_Empresa") as Label).Text;
                 ddUbicaciones.Text = (gvrow.FindControl("gvId_Ubicacion") as Label).Text;
-                ddLotes.Text = (gvrow.FindControl("gvId_Lote") as Label).Text;
                 long idEmpresa = Convert.ToInt64((gvrow.FindControl("gvId_Empresa") as Label).Text);
                 DDCargarUbicaciones(idEmpresa);
                 long idUbicacion = Convert.ToInt64((gvrow.FindControl("gvId_Ubicacion") as Label).Text);
-                DDCargarLotes(idUbicacion);
                 txProceso.Text = (gvrow.FindControl("gvProceso") as Label).Text;
                 ModalAc(true);
             }
@@ -314,7 +265,7 @@ namespace IT_Ubicacion.Pages.AdminCombustible
         }
         protected void ddlUbicaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DDLCargarLotes(int.Parse(ddlUbicaciones.SelectedValue));
+            
         }
         protected void ddlLotes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -326,7 +277,7 @@ namespace IT_Ubicacion.Pages.AdminCombustible
         }
         protected void ddUbicaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DDCargarLotes(int.Parse(ddUbicaciones.SelectedValue));
+            
         }
         protected void ddLotes_SelectedIndexChanged(object sender, EventArgs e)
         {

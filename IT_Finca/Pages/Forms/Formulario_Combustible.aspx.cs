@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace IT_Finca.Pages.Forms
+namespace IT_Ubicacion.Pages.Forms
 {
     public partial class Formulario_Combustible : System.Web.UI.Page
     {
@@ -17,10 +17,10 @@ namespace IT_Finca.Pages.Forms
             if (!IsPostBack && Session["Usuario"] != null)
             {
                 DDLCargarTipoCombustible();
+                DDLCargarCentroAnalisis();
                 DataTable dt = new DataTable();
                 Session["GridViewData"] = dt;
                 BindGridView();
-                DDLCargarLotes();
             }
             else
             {
@@ -35,13 +35,13 @@ namespace IT_Finca.Pages.Forms
             {
                 SqlCommand cmd = new SqlCommand("SP_FNC00410", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                ddlTipoCombustible.Items.Clear();
+                ddlId_TipoCombustible.Items.Clear();
                 con.Open();
-                ddlTipoCombustible.DataSource = cmd.ExecuteReader();
-                ddlTipoCombustible.DataTextField = "TipoCombustible";
-                ddlTipoCombustible.DataValueField = "Id_TipoCombustible";
-                ddlTipoCombustible.DataBind();
-                ddlTipoCombustible.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                ddlId_TipoCombustible.DataSource = cmd.ExecuteReader();
+                ddlId_TipoCombustible.DataTextField = "TipoCombustible";
+                ddlId_TipoCombustible.DataValueField = "Id_TipoCombustible";
+                ddlId_TipoCombustible.DataBind();
+                ddlId_TipoCombustible.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
                 con.Close();
             }
             catch (Exception)
@@ -49,77 +49,20 @@ namespace IT_Finca.Pages.Forms
                 throw;
             }
         }
-        //Cargar Listado de Lotes en DropDownList
-        void DDLCargarLotes()
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00500", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Finca"]);
-                ddlLotes.Items.Clear();
-                con.Open();
-                ddlLotes.DataSource = cmd.ExecuteReader();
-                ddlLotes.DataTextField = "Lote";
-                ddlLotes.DataValueField = "Id_Lote";
-                ddlLotes.DataBind();
-                ddlLotes.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        protected void ddlLotes_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            ddlProcesos.ClearSelection();
-            DDLCargarProcesos(int.Parse(ddlLotes.SelectedValue));
-            ddlClasificacion.ClearSelection();
-            DDLCargarClasificacion(int.Parse(ddlLotes.SelectedValue));
-        }
-        void DDLCargarProcesos(long IdLote)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00300", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Lote", SqlDbType.Int).Value = IdLote;
-                ddlProcesos.Items.Clear();
-                con.Open();
-                ddlProcesos.DataSource = cmd.ExecuteReader();
-                ddlProcesos.DataTextField = "Proceso";
-                ddlProcesos.DataValueField = "Id_Proceso";
-                ddlProcesos.DataBind();
-                ddlProcesos.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        protected void ddlProcesos_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            ddlCentroAnalisis.ClearSelection();
-            DDLCargarCentroAnalisis(int.Parse(ddlProcesos.SelectedValue));
-            ddlCentroGasto.ClearSelection();
-            DDLCargarCentroGasto(int.Parse(ddlProcesos.SelectedValue));
-        }
-        void DDLCargarCentroAnalisis(long IdProceso)
+        //Cargar listado de Centro de análisis en DropDownList
+        void DDLCargarCentroAnalisis()
         {
             try
             {
                 SqlCommand cmd = new SqlCommand("SP_FNC00409", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
                 ddlCentroAnalisis.Items.Clear();
                 con.Open();
                 ddlCentroAnalisis.DataSource = cmd.ExecuteReader();
                 ddlCentroAnalisis.DataTextField = "CentroAnalisis";
                 ddlCentroAnalisis.DataValueField = "Id_CentroAnalisis";
                 ddlCentroAnalisis.DataBind();
-                //ddlCentroAnalisis.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                ddlCentroAnalisis.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
                 con.Close();
             }
             catch (Exception)
@@ -129,15 +72,93 @@ namespace IT_Finca.Pages.Forms
         }
         protected void ddlCentroAnalisis_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (ddlCentroAnalisis.SelectedValue != "0")
+            {
+                int idCentroAnalisis = int.Parse(ddlCentroAnalisis.SelectedValue);
+                DDLCargarUbicaciones(idCentroAnalisis);
+                if (ddlUbicacion.Items.Count >= 1 && ddlUbicacion.SelectedValue != "0")
+                {
+                    int idUbicacion = int.Parse(ddlUbicacion.SelectedValue);
+                    DDLCargarProcesos(idUbicacion);
+                    //DDLCargarProcesos(int.Parse(ddlUbicacion.SelectedValue));
+                    if (ddlProcesos.Items.Count >= 1 && ddlProcesos.SelectedValue != "0")
+                    {
+                        int idUbicacion2 = int.Parse(ddlUbicacion.SelectedValue);
+                        DDLCargarCentroGasto(idUbicacion2);
+                        //DDLCargarCentroGasto(int.Parse(ddlUbicacion.SelectedValue));
+                        if (ddlCentroGasto.Items.Count >= 1 && ddlCentroGasto.SelectedValue != "0")
+                        {
+                            int idCentroGasto = int.Parse(ddlCentroGasto.SelectedValue);
+                            DDLCargarClasificacion(idCentroGasto);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                ddlUbicacion.Items.Clear();
+                ddlProcesos.Items.Clear();
+                ddlCentroGasto.Items.Clear();
+                ddlClasificacion.Items.Clear();
+            }
         }
-        void DDLCargarCentroGasto(long IdProceso)
+        //Cargar Listado de Ubicaciones en DropDownList
+        void DDLCargarUbicaciones(long IdCentroAnalisis)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_FNC00411", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Id_CentroAnalisis", SqlDbType.Int).Value = IdCentroAnalisis;
+                ddlUbicacion.Items.Clear();
+                con.Open();
+                ddlUbicacion.DataSource = cmd.ExecuteReader();
+                ddlUbicacion.DataTextField = "Ubicacion";
+                ddlUbicacion.DataValueField = "Id_Ubicacion";
+                ddlUbicacion.DataBind();
+                con.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        protected void ddlUbicacion_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            DDLCargarProcesos(int.Parse(ddlUbicacion.SelectedValue));
+            DDLCargarCentroGasto(int.Parse(ddlUbicacion.SelectedValue));
+        }
+        void DDLCargarProcesos(long IdUbicacion)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_FNC00300_1", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Id_Ubicacion", SqlDbType.Int).Value = IdUbicacion;
+                ddlProcesos.Items.Clear();
+                con.Open();
+                ddlProcesos.DataSource = cmd.ExecuteReader();
+                ddlProcesos.DataTextField = "Proceso";
+                ddlProcesos.DataValueField = "Id_Proceso";
+                ddlProcesos.DataBind();
+                con.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        protected void ddlProcesos_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+        void DDLCargarCentroGasto(long IdUbicacion)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand("SP_FNC00407", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
+                cmd.Parameters.Add("@Id_Ubicacion", SqlDbType.Int).Value = IdUbicacion;
                 ddlCentroGasto.Items.Clear();
                 con.Open();
                 ddlCentroGasto.DataSource = cmd.ExecuteReader();
@@ -156,13 +177,13 @@ namespace IT_Finca.Pages.Forms
         {
 
         }
-        void DDLCargarClasificacion(long IdLote)
+        void DDLCargarClasificacion(long IdCentroGasto)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand("SP_FNC00408", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Lote", SqlDbType.Int).Value = IdLote;
+                cmd.Parameters.Add("@Id_CentroGasto", SqlDbType.Int).Value = IdCentroGasto;
                 ddlClasificacion.Items.Clear();
                 con.Open();
                 ddlClasificacion.DataSource = cmd.ExecuteReader();
@@ -181,31 +202,6 @@ namespace IT_Finca.Pages.Forms
         {
 
         }
-        //void DDLCargarTipo(long IdProceso)
-        //{
-        //    try
-        //    {
-        //        SqlCommand cmd = new SqlCommand("SP_FNC00407", con);
-        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //        cmd.Parameters.Add("@Id_Proceso", SqlDbType.Int).Value = IdProceso;
-        //        ddlCentroGasto.Items.Clear();
-        //        con.Open();
-        //        ddlCentroGasto.DataSource = cmd.ExecuteReader();
-        //        ddlCentroGasto.DataTextField = "CentroGasto";
-        //        ddlCentroGasto.DataValueField = "Id_CentroGasto";
-        //        ddlCentroGasto.DataBind();
-        //        //ddlCentroGasto.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-        //        con.Close();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
-        //protected void ddlTipo_OnSelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //}
         protected void AgregarRegistro_Click(object sender, EventArgs e)
         {
             GridViewRegistros.Visible = true;
@@ -219,8 +215,9 @@ namespace IT_Finca.Pages.Forms
             else
             {
                 dt = new DataTable();
-                dt.Columns.Add("TipoCombustible", typeof(int));
-                dt.Columns.Add("Id_Lote", typeof(int));
+                dt.Columns.Add("Id_TipoCombustible", typeof(int));
+                dt.Columns.Add("Id_CentroAnalisis", typeof(int));
+                dt.Columns.Add("Id_Ubicacion", typeof(int));
                 dt.Columns.Add("Id_Proceso", typeof(int));
                 dt.Columns.Add("Id_CentroGasto", typeof(int));
                 dt.Columns.Add("Id_Clasificacion", typeof(int));
@@ -231,8 +228,9 @@ namespace IT_Finca.Pages.Forms
                 dt.Columns.Add("Comentario", typeof(string));
                 ViewState["RegistrosDataTable"] = dt;
             }
-            int tipoCombustible = Convert.ToInt32(ddlTipoCombustible.SelectedValue);
-            int idLote = Convert.ToInt32(ddlLotes.SelectedValue);
+            int idtipoCombustible = Convert.ToInt32(ddlId_TipoCombustible.SelectedValue);
+            int idCentroAnalisis = Convert.ToInt32(ddlCentroAnalisis.SelectedValue);
+            int idUbicacion = Convert.ToInt32(ddlUbicacion.SelectedValue);
             int idProceso = Convert.ToInt32(ddlProcesos.SelectedValue);
             int idCentroGasto = Convert.ToInt32(ddlCentroGasto.SelectedValue);
             int idClasificacion = Convert.ToInt32(ddlClasificacion.SelectedValue);
@@ -244,8 +242,9 @@ namespace IT_Finca.Pages.Forms
 
             // Agregar una nueva fila al DataTable
             DataRow newRow = dt.NewRow();
-            newRow["TipoCombustible"] = tipoCombustible;
-            newRow["Id_Lote"] = idLote;
+            newRow["Id_TipoCombustible"] = idtipoCombustible;
+            newRow["Id_CentroAnalisis"] = idCentroAnalisis;
+            newRow["Id_Ubicacion"] = idUbicacion;
             newRow["Id_Proceso"] = idProceso;
             newRow["Id_CentroGasto"] = idCentroGasto;
             newRow["Id_Clasificacion"] = idClasificacion;
@@ -292,8 +291,9 @@ namespace IT_Finca.Pages.Forms
                     SqlCommand cmd = new SqlCommand("SP_AG_FNC00610", con);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    Label idTipoCombustible = (Label)row.FindControl("lblTipoCombustible");
-                    Label idLote = (Label)row.FindControl("lblId_Lote");
+                    Label idTipoCombustible = (Label)row.FindControl("lblId_TipoCombustible");
+                    Label idCentroAnalisis = (Label)row.FindControl("lblId_CentroAnalisis");
+                    Label idUbicacion = (Label)row.FindControl("lblId_Ubicacion");
                     Label idProceso = (Label)row.FindControl("lblId_Proceso");
                     Label idCentroGasto = (Label)row.FindControl("lblId_CentroGasto");
                     Label idClasificacion = (Label)row.FindControl("lblId_Clasificacion");
@@ -304,9 +304,9 @@ namespace IT_Finca.Pages.Forms
                     Label comentario = (Label)row.FindControl("lblComentario");
 
                     cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Decimal).Value = Session["Id_Empresa"];
-                    cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Decimal).Value = Session["Id_Finca"];
                     cmd.Parameters.Add("@Id_TipoCombustible", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idTipoCombustible.Text);
-                    cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idLote.Text);
+                    cmd.Parameters.Add("@Id_CentroAnalisis", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idCentroAnalisis.Text);
+                    cmd.Parameters.Add("@Id_Ubicacion", System.Data.SqlDbType.Decimal).Value = Convert.ToInt32(idUbicacion.Text);
                     cmd.Parameters.Add("@Id_Proceso", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idProceso.Text);
                     cmd.Parameters.Add("@Id_CentroGasto", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idCentroGasto.Text);
                     cmd.Parameters.Add("@Id_Clasificacion", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idClasificacion.Text);
@@ -315,8 +315,8 @@ namespace IT_Finca.Pages.Forms
                     cmd.Parameters.Add("@Kilometraje", System.Data.SqlDbType.Decimal).Value = Convert.ToDecimal(numKilometraje.Text);
                     cmd.Parameters.Add("@Cantidad", System.Data.SqlDbType.Decimal).Value = Convert.ToDecimal(numCantidad.Text);
                     cmd.Parameters.Add("@Comentario", System.Data.SqlDbType.NVarChar).Value = comentario.Text;
-                    cmd.Parameters.Add("@Id_Usr_Crea", System.Data.SqlDbType.Decimal).Value = Session["Id_Usuario"];            
-                    
+                    cmd.Parameters.Add("@Id_Usr_Crea", System.Data.SqlDbType.Decimal).Value = Session["Id_Usuario"];
+
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();

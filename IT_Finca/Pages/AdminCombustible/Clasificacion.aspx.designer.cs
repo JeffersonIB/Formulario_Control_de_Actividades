@@ -51,13 +51,13 @@ namespace IT_Ubicacion.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlUbicaciones;
 
         /// <summary>
-        /// Control ddlLotes.
+        /// Control ddlCentroGasto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLotes;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCentroGasto;
 
         /// <summary>
         /// Control txtClasificacion.
@@ -123,13 +123,13 @@ namespace IT_Ubicacion.Pages.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddUbicaciones;
 
         /// <summary>
-        /// Control ddLotes.
+        /// Control ddCentroGasto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddLotes;
+        protected global::System.Web.UI.WebControls.DropDownList ddCentroGasto;
 
         /// <summary>
         /// Control txClasificacion.

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Combustible.aspx.cs" Inherits="IT_Finca.Pages.Forms.Formulario_Combustible" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Formulario_Combustible.aspx.cs" Inherits="IT_Ubicacion.Pages.Forms.Formulario_Combustible" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
     Control de diesel y gasolina
@@ -73,7 +73,7 @@
                         <td colspan="2">Tipo de combustible
                             <div class="control">
                                 <div class="select">
-                                    <asp:DropDownList ID="ddlTipoCombustible" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;">
+                                    <asp:DropDownList ID="ddlId_TipoCombustible" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;">
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                         <td colspan="2">
                             <asp:RequiredFieldValidator
                                 ID="RequiredFieldValidator1" runat="server"
-                                ControlToValidate="ddlTipoCombustible"
+                                ControlToValidate="ddlId_TipoCombustible"
                                 ErrorMessage="Campo obligatorio"
                                 ForeColor="Red"
                                 ValidationGroup="Validate"
@@ -92,10 +92,20 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">Lote
+                        <td colspan="3">Centro de analisis
                             <div class="control">
                                 <div class="select">
-                                    <asp:DropDownList ID="ddlLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLotes_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    <asp:DropDownList ID="ddlCentroAnalisis" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCentroAnalisis_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Ubicación
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="ddlUbicacion" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlUbicacion_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -112,20 +122,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">Centro de analisis
-                            <div class="control">
-                                <div class="select">
-                                    <asp:DropDownList ID="ddlCentroAnalisis" runat="server" AutoPosBack="true" OnSelectedIndexChanged="ddlCentroAnalisis_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
                         <td colspan="3">Centro de gasto
                         <div class="control">
                             <div class="select">
-                                <asp:DropDownList ID="ddlCentroGasto" runat="server" AutoPosBack="true" OnSelectedIndexChanged="ddlCentroGasto_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                <asp:DropDownList ID="ddlCentroGasto" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCentroGasto_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                         <td colspan="3">Clasificación
                         <div class="control">
                             <div class="select">
-                                <asp:DropDownList ID="ddlClasificacion" runat="server" AutoPosBack="true" OnSelectedIndexChanged="ddlClasificacion_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                <asp:DropDownList ID="ddlClasificacion" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlClasificacion_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -234,14 +234,19 @@
                                 OnRowDeleting="GridViewRegistros_RowDeleting"
                                 Visible="false">
                                 <Columns>
-                                    <asp:TemplateField HeaderText="TipoCombustible" ItemStyle-CssClass="hidden-column" Visible="False" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <asp:TemplateField HeaderText="Id_TipoCombustible" ItemStyle-CssClass="hidden-column" Visible="False" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblTipoCombustible" runat="server" Text='<%# Eval("TipoCombustible") %>'></asp:Label>
+                                            <asp:Label ID="lblId_TipoCombustible" runat="server" Text='<%# Eval("Id_TipoCombustible") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Id_Lote" ItemStyle-CssClass="hidden-column" Visible="False" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <asp:TemplateField HeaderText="Id_CentroAnalisis" ItemStyle-CssClass="hidden-column" Visible="False" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblId_Lote" runat="server" Text='<%# Eval("Id_Lote") %>'></asp:Label>
+                                            <asp:Label ID="lblId_CentroAnalisis" runat="server" Text='<%# Eval("Id_CentroAnalisis") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Id_Ubicacion" ItemStyle-CssClass="hidden-column" Visible="False" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblId_Ubicacion" runat="server" Text='<%# Eval("Id_Ubicacion") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Id_Proceso" ItemStyle-CssClass="hidden-column" Visible="False" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">

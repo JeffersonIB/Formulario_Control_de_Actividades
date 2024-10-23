@@ -106,71 +106,71 @@ namespace IT_Ubicacion.Pages.Admin
             }
         }
         //Cargar Listado de Ubicaciones en DropDownList para Modal_Agregar
-        void DDLCargarUbicaciones(long IdEmpresa)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00100_1", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Empresa", SqlDbType.Int).Value = IdEmpresa;
-                ddlUbicaciones.Items.Clear();
-                con.Open();
-                ddlUbicaciones.DataSource = cmd.ExecuteReader();
-                ddlUbicaciones.DataTextField = "Ubicacion";
-                ddlUbicaciones.DataValueField = "Id_Ubicacion";
-                ddlUbicaciones.DataBind();
-                ddlUbicaciones.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //void DDLCargarUbicaciones(long IdEmpresa)
+        //{
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand("SP_FNC00100_1", con);
+        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@Id_Empresa", SqlDbType.Int).Value = IdEmpresa;
+        //        ddlUbicaciones.Items.Clear();
+        //        con.Open();
+        //        ddlUbicaciones.DataSource = cmd.ExecuteReader();
+        //        ddlUbicaciones.DataTextField = "Ubicacion";
+        //        ddlUbicaciones.DataValueField = "Id_Ubicacion";
+        //        ddlUbicaciones.DataBind();
+        //        ddlUbicaciones.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+        //        con.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
         //Cargar Listado de Lotes en DropDownList para Modal_Agregar
-        void DDLCargarLotes(long IdUbicacion)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00500_11", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Ubicacion", SqlDbType.Int).Value = IdUbicacion;
-                ddlLotes.Items.Clear();
-                con.Open();
-                ddlLotes.DataSource = cmd.ExecuteReader();
-                ddlLotes.DataTextField = "Lote";
-                ddlLotes.DataValueField = "Id_Lote";
-                ddlLotes.DataBind();
-                ddlLotes.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //void DDLCargarLotes(long IdUbicacion)
+        //{
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand("SP_FNC00500_11", con);
+        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@Id_Ubicacion", SqlDbType.Int).Value = IdUbicacion;
+        //        ddlLotes.Items.Clear();
+        //        con.Open();
+        //        ddlLotes.DataSource = cmd.ExecuteReader();
+        //        ddlLotes.DataTextField = "Lote";
+        //        ddlLotes.DataValueField = "Id_Lote";
+        //        ddlLotes.DataBind();
+        //        ddlLotes.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+        //        con.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
         //Cargar Listado de Procesos en DropDownList para Modal_Agregar
-        void DDLCargarProcesos(long IdLote)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00300_1", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Lote", SqlDbType.Int).Value = IdLote;
-                ddlProcesos.Items.Clear();
-                con.Open();
-                ddlProcesos.DataSource = cmd.ExecuteReader();
-                ddlProcesos.DataTextField = "Proceso";
-                ddlProcesos.DataValueField = "Id_Proceso";
-                ddlProcesos.DataBind();
-                ddlProcesos.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //void DDLCargarProcesos(long IdLote)
+        //{
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand("SP_FNC00300_1", con);
+        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@Id_Lote", SqlDbType.Int).Value = IdLote;
+        //        ddlProcesos.Items.Clear();
+        //        con.Open();
+        //        ddlProcesos.DataSource = cmd.ExecuteReader();
+        //        ddlProcesos.DataTextField = "Proceso";
+        //        ddlProcesos.DataValueField = "Id_Proceso";
+        //        ddlProcesos.DataBind();
+        //        ddlProcesos.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+        //        con.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
         //Agrega nuevo registro dentro del Modal_Agregar
         protected void Agregar_Click(object sender, EventArgs e)
         {
@@ -179,9 +179,9 @@ namespace IT_Ubicacion.Pages.Admin
                 SqlCommand cmd = new SqlCommand("SP_AG_FNC00409", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddlEmpresas.Text;
-                cmd.Parameters.Add("@Id_Ubicacion", System.Data.SqlDbType.Int).Value = ddlUbicaciones.Text;
-                cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = ddlLotes.Text;
-                cmd.Parameters.Add("@Id_Proceso", System.Data.SqlDbType.VarChar).Value = ddlProcesos.Text;
+                //cmd.Parameters.Add("@Id_Ubicacion", System.Data.SqlDbType.Int).Value = ddlUbicaciones.Text;
+                //cmd.Parameters.Add("@Id_Lote", System.Data.SqlDbType.Int).Value = ddlLotes.Text;
+                //cmd.Parameters.Add("@Id_Proceso", System.Data.SqlDbType.VarChar).Value = ddlProcesos.Text;
                 cmd.Parameters.Add("@CentroAnalisis", System.Data.SqlDbType.VarChar).Value = txtCentroAnalisis.Text;
                 cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.VarChar).Value = Session["Id_Usuario"].ToString();
                 con.Open();
@@ -215,71 +215,71 @@ namespace IT_Ubicacion.Pages.Admin
             }
         }
         //Cargar Listado de Ubicaciones en DropDownList para Modal_Actualizar
-        void DDCargarUbicaciones(long IdEmpresa)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00100_1", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Empresa", SqlDbType.Int).Value = IdEmpresa;
-                ddlUbicaciones.Items.Clear();
-                con.Open();
-                ddUbicaciones.DataSource = cmd.ExecuteReader();
-                ddUbicaciones.DataTextField = "Ubicacion";
-                ddUbicaciones.DataValueField = "Id_Ubicacion";
-                ddUbicaciones.DataBind();
-                ddlUbicaciones.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //void DDCargarUbicaciones(long IdEmpresa)
+        //{
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand("SP_FNC00100_1", con);
+        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@Id_Empresa", SqlDbType.Int).Value = IdEmpresa;
+        //        ddlUbicaciones.Items.Clear();
+        //        con.Open();
+        //        ddUbicaciones.DataSource = cmd.ExecuteReader();
+        //        ddUbicaciones.DataTextField = "Ubicacion";
+        //        ddUbicaciones.DataValueField = "Id_Ubicacion";
+        //        ddUbicaciones.DataBind();
+        //        ddlUbicaciones.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+        //        con.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
         //Cargar Listado de Lotes en DropDownList para Modal_Actualizar
-        void DDCargarLotes(long IdUbicacion)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00500_11", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Ubicacion", SqlDbType.Int).Value = IdUbicacion;
-                ddLotes.Items.Clear();
-                con.Open();
-                ddLotes.DataSource = cmd.ExecuteReader();
-                ddLotes.DataTextField = "Lote";
-                ddLotes.DataValueField = "Id_Lote";
-                ddLotes.DataBind();
-                ddlUbicaciones.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //void DDCargarLotes(long IdUbicacion)
+        //{
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand("SP_FNC00500_11", con);
+        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@Id_Ubicacion", SqlDbType.Int).Value = IdUbicacion;
+        //        ddLotes.Items.Clear();
+        //        con.Open();
+        //        ddLotes.DataSource = cmd.ExecuteReader();
+        //        ddLotes.DataTextField = "Lote";
+        //        ddLotes.DataValueField = "Id_Lote";
+        //        ddLotes.DataBind();
+        //        ddlUbicaciones.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+        //        con.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
         //Cargar Listado de Procesos en DropDownList para Modal_Actualizar
-        void DDCargarProcesos(long IdLote)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SP_FNC00300_1", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Lote", SqlDbType.Int).Value = IdLote;
-                ddProcesos.Items.Clear();
-                con.Open();
-                ddProcesos.DataSource = cmd.ExecuteReader();
-                ddProcesos.DataTextField = "Proceso";
-                ddProcesos.DataValueField = "Id_Proceso";
-                ddProcesos.DataBind();
-                ddProcesos.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-                con.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //void DDCargarProcesos(long IdLote)
+        //{
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand("SP_FNC00300_1", con);
+        //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@Id_Lote", SqlDbType.Int).Value = IdLote;
+        //        ddProcesos.Items.Clear();
+        //        con.Open();
+        //        ddProcesos.DataSource = cmd.ExecuteReader();
+        //        ddProcesos.DataTextField = "Proceso";
+        //        ddProcesos.DataValueField = "Id_Proceso";
+        //        ddProcesos.DataBind();
+        //        ddProcesos.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+        //        con.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
         //Actualizar registro dentro del Modal_Actualizar
         protected void Actualizar_Click(object sender, EventArgs e)
         {
@@ -289,9 +289,9 @@ namespace IT_Ubicacion.Pages.Admin
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Id_CentroAnalisis", lbId_CentroAnalisis.Text);
                 cmd.Parameters.AddWithValue("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddEmpresas.Text;
-                cmd.Parameters.AddWithValue("@Id_Ubicacion", System.Data.SqlDbType.Int).Value = ddUbicaciones.Text;
-                cmd.Parameters.AddWithValue("@Id_Lote", System.Data.SqlDbType.Int).Value = ddLotes.Text;
-                cmd.Parameters.AddWithValue("@Id_Proceso", System.Data.SqlDbType.Int).Value = ddProcesos.Text;
+                //cmd.Parameters.AddWithValue("@Id_Ubicacion", System.Data.SqlDbType.Int).Value = ddUbicaciones.Text;
+                //cmd.Parameters.AddWithValue("@Id_Lote", System.Data.SqlDbType.Int).Value = ddLotes.Text;
+                //cmd.Parameters.AddWithValue("@Id_Proceso", System.Data.SqlDbType.Int).Value = ddProcesos.Text;
                 cmd.Parameters.AddWithValue("@CentroAnalisis", System.Data.SqlDbType.VarChar).Value = txCentroAnalisis.Text;
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -332,15 +332,15 @@ namespace IT_Ubicacion.Pages.Admin
                 GridViewRow gvrow = (GridViewRow)btndetails.NamingContainer;
                 lbId_CentroAnalisis.Text = gvCentroAnalisis.DataKeys[gvrow.RowIndex].Value.ToString(); ;
                 ddEmpresas.Text = (gvrow.FindControl("gvId_Empresa") as Label).Text;
-                ddUbicaciones.Text = (gvrow.FindControl("gvId_Ubicacion") as Label).Text;
-                ddLotes.Text = (gvrow.FindControl("gvId_Lote") as Label).Text;
-                ddProcesos.Text = (gvrow.FindControl("gvId_Proceso") as Label).Text;
+                //ddUbicaciones.Text = (gvrow.FindControl("gvId_Ubicacion") as Label).Text;
+                //ddLotes.Text = (gvrow.FindControl("gvId_Lote") as Label).Text;
+                //ddProcesos.Text = (gvrow.FindControl("gvId_Proceso") as Label).Text;
                 long idEmpresa = Convert.ToInt64((gvrow.FindControl("gvId_Empresa") as Label).Text);
-                DDCargarUbicaciones(idEmpresa);
-                long idUbicacion = Convert.ToInt64((gvrow.FindControl("gvId_Ubicacion") as Label).Text);
-                DDCargarLotes(idUbicacion);
-                long idLote = Convert.ToInt64((gvrow.FindControl("gvId_Lote") as Label).Text);
-                DDCargarProcesos(idLote);
+                //DDCargarUbicaciones(idEmpresa);
+                //long idUbicacion = Convert.ToInt64((gvrow.FindControl("gvId_Ubicacion") as Label).Text);
+                //DDCargarLotes(idUbicacion);
+                //long idLote = Convert.ToInt64((gvrow.FindControl("gvId_Lote") as Label).Text);
+                //DDCargarProcesos(idLote);
                 txCentroAnalisis.Text = (gvrow.FindControl("gvCentroAnalisis") as Label).Text;
                 ModalAc(true);
             }
@@ -355,36 +355,36 @@ namespace IT_Ubicacion.Pages.Admin
         }
         protected void ddlEmpresas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DDLCargarUbicaciones(int.Parse(ddlEmpresas.SelectedValue));
+            //DDLCargarUbicaciones(int.Parse(ddlEmpresas.SelectedValue));
         }
-        protected void ddlUbicaciones_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DDLCargarLotes(int.Parse(ddlUbicaciones.SelectedValue));
-        }
-        protected void ddlLotes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DDLCargarProcesos(int.Parse(ddlLotes.SelectedValue));
-        }
-        protected void ddlProcesos_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //protected void ddlUbicaciones_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    DDLCargarLotes(int.Parse(ddlUbicaciones.SelectedValue));
+        //}
+        //protected void ddlLotes_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    DDLCargarProcesos(int.Parse(ddlLotes.SelectedValue));
+        //}
+        //protected void ddlProcesos_SelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-        }
+        //}
         protected void ddEmpresas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DDCargarUbicaciones(int.Parse(ddEmpresas.SelectedValue));
+           // DDCargarUbicaciones(int.Parse(ddEmpresas.SelectedValue));
         }
-        protected void ddUbicaciones_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DDCargarLotes(int.Parse(ddUbicaciones.SelectedValue));
-        }
-        protected void ddLotes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DDCargarProcesos(int.Parse(ddLotes.SelectedValue));
-        }
-        protected void ddProcesos_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //protected void ddUbicaciones_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    DDCargarLotes(int.Parse(ddUbicaciones.SelectedValue));
+        //}
+        //protected void ddLotes_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    DDCargarProcesos(int.Parse(ddLotes.SelectedValue));
+        //}
+        //protected void ddProcesos_SelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-        }
+        //}
         //Traer Modal_Actualizar
         void ModalAc(bool isDisplay)
         {

@@ -106,6 +106,9 @@
                                     <!-- Administración combustible -->
                                     <li id="Tercer_Men" runat="server" visible="false"><a><i class="fa fa-sitemap"></i>Administración combustible <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
+                                            <li id="VigesimaSegunda_Pag" runat="server">
+                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/CentroAnalisis.aspx") %>">Centro de análisis </a>
+                                            </li>
                                             <li id="VigesimaSeptima_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/Ubicaciones.aspx") %>">Ubicaciones </a>
                                             </li>
@@ -115,9 +118,7 @@
                                             <li id="VigesimaNovena_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/Procesos.aspx") %>">Procesos </a>
                                             </li>
-                                            <li id="VigesimaSegunda_Pag" runat="server">
-                                                <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/CentroAnalisis.aspx") %>">Centro de análisis </a>
-                                            </li>
+
                                             <li id="VigesimaPrimera_Pag" runat="server">
                                                 <a href="<%= Page.ResolveUrl("~/Pages/AdminCombustible/CentroGasto.aspx") %>">Centro de gasto </a>
                                             </li>
