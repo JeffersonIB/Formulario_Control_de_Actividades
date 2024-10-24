@@ -240,12 +240,12 @@ namespace IT_Ubicacion.Pages.Admin
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.Add("@Id_Ubicacion", SqlDbType.Int).Value = IdUbicacion;
                 con.Open();
-                ddlCentroGasto.DataSource = cmd.ExecuteReader();
-                ddlCentroGasto.DataTextField = "CentroGasto";
-                ddlCentroGasto.DataValueField = "Id_CentroGasto";
-                ddlCentroGasto.DataBind();
+                ddCentroGasto.DataSource = cmd.ExecuteReader();
+                ddCentroGasto.DataTextField = "CentroGasto";
+                ddCentroGasto.DataValueField = "Id_CentroGasto";
+                ddCentroGasto.DataBind();
                 con.Close();
-                ddlCentroGasto.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+                ddCentroGasto.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
             }
             catch (Exception)
             {
@@ -266,7 +266,7 @@ namespace IT_Ubicacion.Pages.Admin
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Id_Clasificacion", lbId_Clasificacion.Text);
                 cmd.Parameters.AddWithValue("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddEmpresas.Text;
-                cmd.Parameters.AddWithValue("@Id_Ubicacion", System.Data.SqlDbType.Int).Value = ddlCentroGasto.Text;
+                cmd.Parameters.AddWithValue("@Id_Ubicacion", System.Data.SqlDbType.Int).Value = ddCentroGasto.Text;
                 cmd.Parameters.AddWithValue("@Clasificacion", System.Data.SqlDbType.VarChar).Value = txClasificacion.Text;
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -306,11 +306,11 @@ namespace IT_Ubicacion.Pages.Admin
                 ImageButton btndetails = (ImageButton)e.CommandSource;
                 GridViewRow gvrow = (GridViewRow)btndetails.NamingContainer;
                 lbId_Clasificacion.Text = gvClasificacion.DataKeys[gvrow.RowIndex].Value.ToString(); ;
-                ddEmpresas.Text = (gvrow.FindControl("gvId_Empresa") as Label).Text;
-                
+                ddEmpresas.Text = (gvrow.FindControl("gvId_Empresa") as Label).Text;                
                 long idEmpresa = Convert.ToInt64((gvrow.FindControl("gvId_Empresa") as Label).Text);
                 DDCargarUbicaciones(idEmpresa);
                 long idUbicacion = Convert.ToInt64((gvrow.FindControl("gvId_Ubicacion") as Label).Text);
+                ddUbicaciones.Text = (gvrow.FindControl("gvId_Ubicacion") as Label).Text;
                 txClasificacion.Text = (gvrow.FindControl("gvClasificacion") as Label).Text;
                 ModalAc(true);
             }
