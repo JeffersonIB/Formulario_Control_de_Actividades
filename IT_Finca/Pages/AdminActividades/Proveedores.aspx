@@ -128,7 +128,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Agregar nuevo proveedor
+                        <h5 class="modal-title">Agregar un nuevo proveedor
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -197,7 +197,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Asignar proveedor
+                        <h5 class="modal-title">Asignar proveedores a finca
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -215,7 +215,7 @@
                                         </td>
                                         <td>
                                             <div class="scroll_checkboxes" cssclass="form-control">
-                                                <input type="text" id="txtSearch" oninput="filterEmployees()" placeholder="Buscar por nombre" Style="width: 100%;"/>
+                                                <input type="text" id="txtSearch" oninput="filterEmployees()" placeholder="Buscar por nombre de proveedor" Style="width: 100%;"/>
                                                 <asp:CheckBoxList ID="CheckBoxListEmpleados" runat="server" CssClass="FormText" DataTextField="Nom_Ape" DataValueField="Id_Empleado"></asp:CheckBoxList>
                                             </div>
                                         </td>
@@ -268,7 +268,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modificar datos de proveedor
+                        <h5 class="modal-title">Modificar datos del proveedor
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -387,7 +387,7 @@
                         <asp:Button ID="Asignar" runat="server" class="btn btn-round btn-primary" Text="Asignar proveedor" OnClientClick="ShowModalCl();return false;" Style="width: auto;"/>
                     </td>
                     <td align="center">
-                        <asp:TextBox ID="txtBuscarProveedor" runat="server" placeholder="Buscar por proveedor" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                        <asp:TextBox ID="txtBuscarProveedor" runat="server" placeholder="Buscar por nombre de proveedor" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                     <td align="center">
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;"/>
                     </td>

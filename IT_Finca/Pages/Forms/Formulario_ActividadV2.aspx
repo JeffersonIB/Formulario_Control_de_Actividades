@@ -11,8 +11,6 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
         <title></title>
-        <%--<link href="<%= ResolveClientUrl("~/CSS/Default.css") %>" rel="stylesheet" />--%>
-        <%--<script src="<%= ResolveClientUrl("~/JS/Forms.js") %>"> </script>--%>
         <script type="text/javascript">
             var color = 'White';
             function changeColor(obj) {
@@ -108,37 +106,24 @@
     </head>
     <body>
         <div class="container box">
-    <center>
-        <h1 class="title">Formulario de actividades
-        </h1>
-    </center>
-</div>
-<br />
-        <%--<div class="modal-dialog" role="document">--%>
-        <%--<div class="modal-content">--%>
-        <%--<div class="modal-header">
-                    <h5 class="modal-title">Agregar actividades <strong>"
-                        <asp:Label CssClass="navbar-link" runat="server" ID="lblFinca"> </asp:Label>
-                        "</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>--%>
-        <%--<div class="modal-body">--%>
-
+            <center>
+                <h1 class="title">Formulario de actividades
+                </h1>
+            </center>
+        </div>
+        <br />
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <CENTER>
-                <h5 class="modal-title">Agregar actividades 
+                <center>
+                    <h5 class="modal-title">Agregar actividades 
                     <strong>"<asp:Label CssClass="navbar-link" runat="server" ID="lblFinca"> </asp:Label>"</strong>
-                </h5>
-                    </CENTER>
+                    </h5>
+                </center>
                 <table align="center" style="width: 100%;">
                     <tr>
-                        <td>Lote
+                        <td><h5>Lote</h5>
                                 <div class="control">
                                     <div class="select">
                                         <asp:DropDownList ID="ddlLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLotes_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
@@ -160,7 +145,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Proceso
+                        <td><h5>Proceso</h5>
                                 <div class="control">
                                     <div class="select">
                                         <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
@@ -182,7 +167,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Actividad 1
+                        <td><h5>Actividad 1</h5>
                                 <div class="control">
                                     <div class="select">
                                         <asp:DropDownList ID="ddlActividad1" runat="server" AutoPosBack="true" OnSelectedIndexChanged="ddlActividad1_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
@@ -206,7 +191,7 @@
                     <tr>
                         <td>
                             <p>
-                                <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">Actividad 2 ↓ </a>
+                                <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample"><h5>Actividad 2 ↓ </h5></a>
                             </p>
                             <div class="collapse" id="collapseExample2">
                                 <asp:DropDownList ID="ddlActividad2" runat="server" AutoPosBack="true" OnSelectedIndexChanged="ddlActividad2_OnSelectedIndexChanged" Style="width: 100%;" CssClass="form-control">
@@ -217,7 +202,7 @@
                     <tr>
                         <td>
                             <p>
-                                <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">Actividad 3 ↓
+                                <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample"><h5>Actividad 3 ↓</h5>
                                 </a>
                             </p>
                             <div class="collapse" id="collapseExample3">
@@ -232,15 +217,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Proveedores
+                        <td><h5>Proveedores</h5>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%--<div class="scroll_checkboxes" cssclass="form-control">
-                                            <asp:CheckBox ID="selectAll" runat="server" Text="Seleccionar todos" onclick="SelectAll(this.id)" />
-                                            <asp:CheckBoxList ID="CheckBoxListEmpleados" runat="server" CssClass="FormText" DataTextField="Nom_Ape" DataValueField="Id_Empleado"></asp:CheckBoxList>
-                                        </div>--%>
                             <div class="scroll_checkboxes" cssclass="form-control">
                                 <input type="text" id="txtSearch" oninput="filterEmployees()" placeholder="Buscar por código o nombre" style="width: 100%;" />
                                 <asp:CheckBoxList ID="CheckBoxListEmpleados" runat="server" CssClass="FormText" DataTextField="Nom_Ape" DataValueField="Id_Empleado"></asp:CheckBoxList>
@@ -308,7 +289,6 @@
                                             <asp:TextBox ID="txtCantidad3" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
                                 </Columns>
                             </asp:GridView>
                         </ContentTemplate>
@@ -323,9 +303,6 @@
                 </td>
             </tr>
         </table>
-        <%--</div>--%>
-        <%--  </div>--%>
-        <%--</div>--%>
     </body>
     </html>
 </asp:Content>

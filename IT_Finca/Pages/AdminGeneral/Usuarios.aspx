@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="IT_Usuario.Pages.Admin.Usuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Administración de usuarios
+    Usuarios
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>

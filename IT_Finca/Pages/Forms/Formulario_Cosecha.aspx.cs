@@ -69,7 +69,6 @@ namespace IT_Finca.Pages.Forms
             CargarProcesos(int.Parse(ddlLotes.SelectedValue));
             dllActividad.ClearSelection();
             CargarActividad(int.Parse(ddlLotes.SelectedValue));
-
         }
         void CargarProcesos(long IdLote)
         {
@@ -96,7 +95,6 @@ namespace IT_Finca.Pages.Forms
         {
             
         }
-
         void CargarTipoActividad()
         {
             try
@@ -173,7 +171,6 @@ namespace IT_Finca.Pages.Forms
         {
             args.IsValid = CheckBoxListEmpleados.SelectedIndex != -1;
         }
-
         private DataTable CreateDataTable()
         {
             DataTable dataTable = new DataTable();
@@ -227,28 +224,8 @@ namespace IT_Finca.Pages.Forms
             {
                 LabelError.Text = "";
             }
-            //foreach (GridViewRow row in GridViewCalificaciones.Rows)
-            //{
-            //    if (row.RowType == DataControlRowType.DataRow)
-            //    {
-            //        DropDownList ddlTipoActividad = (DropDownList)row.FindControl("ddlTipoActividad");
-            //        //CargarTipoActividad(ddlTipoActividad);
-
-            //        if (ddlTipoActividad.ClientID.EndsWith("ddlActividad2") && ddlTipoActividad.SelectedValue != "")
-            //        {
-            //            TemplateField campoCantidad2 = (TemplateField)GridViewCalificaciones.Columns[4];
-            //            campoCantidad2.Visible = true;
-            //        }
-            //        else if (ddlTipoActividad.ClientID.EndsWith("ddlActividad3") && ddlTipoActividad.SelectedValue != "")
-            //        {
-            //            TemplateField campoCantidad3 = (TemplateField)GridViewCalificaciones.Columns[5];
-            //            campoCantidad3.Visible = true;
-            //        }
-            //    }
-            //}
             Insertar.Visible = GridViewCalificaciones.Rows.Count > 0;
         }
-
         protected void Insertar_Click(object sender, EventArgs e)
         {
             Insertar.Visible = false;
@@ -259,7 +236,6 @@ namespace IT_Finca.Pages.Forms
                 foreach (DataRow row in dataTable.Rows)
                 {
                     int IdEmpleado = Convert.ToInt32(row["Id_Empleado"]);
-                    //DropDownList ddlTipo_Actividad = GridViewCalificaciones.Rows[row.Table.Rows.IndexOf(row)].FindControl("ddlTipo_Actividad") as DropDownList;
                     string Verde = ((TextBox)GridViewCalificaciones.Rows[row.Table.Rows.IndexOf(row)].FindControl("txtVerde")).Text;
                     string Maduro = ((TextBox)GridViewCalificaciones.Rows[row.Table.Rows.IndexOf(row)].FindControl("txtMaduro")).Text;
                     if (ddlLotes != null)

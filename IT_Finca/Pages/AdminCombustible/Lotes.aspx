@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Lotes.aspx.cs" Inherits="IT_Finca.Pages.AdminCombustible.Lotes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Administración de lotes
+    Lotes
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -26,7 +26,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Agregar nuevo lote
+                        <h5 class="modal-title">Agregar un nuevo lote
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -91,7 +91,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modificar datos de lote
+                        <h5 class="modal-title">Modificar datos del lote
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -119,7 +119,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Ubicacion :
+                                        <td>Ubicación :
                                         </td>
                                         <td>
                                             <div class="control">
@@ -203,7 +203,7 @@
                         <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo lote" OnClientClick="ShowModalAg();return false;" Style="width: auto;"/>
                     </td>
                     <td align="center">
-                        <asp:TextBox ID="txtBuscarLote" runat="server" placeholder="Buscar por lote" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                        <asp:TextBox ID="txtBuscarLote" runat="server" placeholder="Buscar por nombre del lote" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                     </td>
                     <td align="center">
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;"/>

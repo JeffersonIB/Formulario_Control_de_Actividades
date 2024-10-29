@@ -100,16 +100,6 @@
             </center>
         </div>
         <br />
-        <%--<div class="modal-dialog" role="document">--%>
-        <%--<div class="modal-content">--%>
-        <%--<div class="modal-header">
-                    <h5 class="modal-title">Agregar cosecha
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>--%>
-        <%--<div class="modal-body">--%>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -120,7 +110,7 @@
                 </center>
                 <table align="center" style="width: 100%;">
                     <tr>
-                        <td>Lote
+                        <td><h5>Lote</h5>
                                 <div class="control">
                                     <div class="select">
                                         <asp:DropDownList ID="ddlLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLotes_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
@@ -142,7 +132,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Proceso
+                        <td><h5>Proceso</h5>
                                 <div class="control">
                                     <div class="select">
                                         <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
@@ -157,7 +147,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Tipo pago
+                        <td><h5>Tipo de pago</h5>
                                 <div class="control">
                                     <div class="select">
                                         <asp:DropDownList ID="dllTipoActividad" runat="server" AutoPosBack="true" CssClass="form-control" Style="width: 100%;">
@@ -179,7 +169,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Actividad
+                        <td><h5>Actividad</h5>
                                         <div class="control">
                                             <div class="select">
                                                 <asp:DropDownList ID="dllActividad" runat="server" AutoPosBack="true" CssClass="form-control" Style="width: 100%;">
@@ -193,13 +183,13 @@
                             </td>
                         </tr>
                     <tr>
-                        <td>Proveedores
+                        <td><h5>Proveedores</h5>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div class="scroll_checkboxes" cssclass="form-control">
-                                <asp:CheckBox ID="selectAll" runat="server" Text="Seleccionar todos" onclick="SelectAll(this.id)" />
+                                <input type="text" id="txtSearch" oninput="filterEmployees()" placeholder="Buscar por código o nombre" style="width: 100%;" />
                                 <asp:CheckBoxList ID="CheckBoxListEmpleados" runat="server" CssClass="FormText" DataTextField="Nom_Ape" DataValueField="Id_Empleado"></asp:CheckBoxList>
                             </div>
                         </td>
@@ -253,9 +243,6 @@
                 </td>
             </tr>
         </table>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
     </body>
     </html>
 </asp:Content>

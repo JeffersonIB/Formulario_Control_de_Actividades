@@ -96,6 +96,7 @@ namespace IT_Finca.Pages.Admin
                 ddlEmpresas.DataSource = cmd.ExecuteReader();
                 ddlEmpresas.DataTextField = "Empresa";
                 ddlEmpresas.DataValueField = "Id_Empresa";
+                ddlEmpresas.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
                 ddlEmpresas.DataBind();
             }
         }

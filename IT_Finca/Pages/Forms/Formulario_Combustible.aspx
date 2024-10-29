@@ -70,7 +70,8 @@
             <ContentTemplate>
                 <table align="center" style="width: 100%;">
                     <tr>
-                        <td colspan="2">Tipo de combustible
+                        <td colspan="2">
+                            <h5>Tipo de combustible</h5>
                             <div class="control">
                                 <div class="select">
                                     <asp:DropDownList ID="ddlId_TipoCombustible" runat="server" AutoPostBack="true" CssClass="form-control" Style="width: 100%;">
@@ -92,7 +93,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">Centro de analisis
+                        <td colspan="3">
+                            <h5>Centro de analisis</h5>
                             <div class="control">
                                 <div class="select">
                                     <asp:DropDownList ID="ddlCentroAnalisis" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCentroAnalisis_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
@@ -102,7 +104,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">Ubicación
+                        <td colspan="2">
+                            <h5>Ubicación</h5>
                             <div class="control">
                                 <div class="select">
                                     <asp:DropDownList ID="ddlUbicacion" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlUbicacion_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
@@ -112,41 +115,46 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">Proceso
-                                <div class="control">
-                                    <div class="select">
-                                        <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                        </asp:DropDownList>
-                                    </div>
+                        <td colspan="3">
+                            <h5>Proceso</h5>
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
                                 </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">Centro de gasto
-                        <div class="control">
-                            <div class="select">
-                                <asp:DropDownList ID="ddlCentroGasto" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCentroGasto_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                </asp:DropDownList>
+                        <td colspan="3">
+                            <h5>Centro de gasto</h5>
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="ddlCentroGasto" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCentroGasto_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
+                                </div>
                             </div>
-                        </div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">Clasificación
-                        <div class="control">
-                            <div class="select">
-                                <asp:DropDownList ID="ddlClasificacion" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlClasificacion_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                </asp:DropDownList>
+                        <td colspan="3">
+                            <h5>Clasificación</h5>
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="ddlClasificacion" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlClasificacion_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
+                                </div>
                             </div>
-                        </div>
                         </td>
                     </tr>
                 </table>
                 <table align="center" style="width: 100%;">
                     <tr>
-                        <td>Fecha : 
+                        <td>
+                            <h5>Fecha : </h5>
                         </td>
-                        <td>No. Vale : 
+                        <td>
+                            <h5>No. Vale : </h5>
                         </td>
                     </tr>
                     <tr>
@@ -172,9 +180,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Kilometraje : 
+                        <td>
+                            <h5>Kilometraje : </h5>
                         </td>
-                        <td>Cantidad consumo :
+                        <td>
+                            <h5>Cantidad consumo :</h5>
                         </td>
                     </tr>
                     <tr>
@@ -186,7 +196,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Comentario :
+                        <td>
+                            <h5>Comentario :</h5>
                         </td>
                     </tr>
                     <tr>
@@ -234,9 +245,16 @@
                                 OnRowDeleting="GridViewRegistros_RowDeleting"
                                 Visible="false">
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Id_TipoCombustible" ItemStyle-CssClass="hidden-column" Visible="False" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <asp:TemplateField HeaderText="Id_TipoCombustible" ItemStyle-CssClass="hidden-column" Visible="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
                                             <asp:Label ID="lblId_TipoCombustible" runat="server" Text='<%# Eval("Id_TipoCombustible") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Combustible" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                        <ItemTemplate>
+                                            <asp:Label
+                                                ID="lblTipoCombustible" runat="server" Text='<%# Eval("Id_TipoCombustible").ToString() == "1" ? "Gasolina" : Eval("Id_TipoCombustible").ToString() == "2" ? "Diesel" : "Otro" %>'>
+                                            </asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Id_CentroAnalisis" ItemStyle-CssClass="hidden-column" Visible="False" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
@@ -259,14 +277,15 @@
                                             <asp:Label ID="lblId_CentroGasto" runat="server" Text='<%# Eval("Id_CentroGasto") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Id_Clasificacion" ItemStyle-CssClass="hidden-column" Visible="True" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <asp:TemplateField HeaderText="Id_Clasificacion" ItemStyle-CssClass="hidden-column" Visible="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
                                             <asp:Label ID="lblId_Clasificacion" runat="server" Text='<%# Eval("Id_Clasificacion") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Fecha" ItemStyle-CssClass="hidden-column" Visible="True" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    <asp:TemplateField HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:Label ID="DateFecha" runat="server" Text='<%# Eval("Fecha") %>'></asp:Label>
+                                            <asp:Label ID="DateFecha" runat="server" Text='<%# Eval("Fecha", "{0:dd/MM/yyyy}") %>'>
+                                            </asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="NoVale" ItemStyle-CssClass="hidden-column" Visible="True" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">

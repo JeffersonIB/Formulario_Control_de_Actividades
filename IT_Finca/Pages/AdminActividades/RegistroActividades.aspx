@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="RegistroActividades.aspx.cs" Inherits="IT_Finca.Pages.Admin.Registros" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Administración registros actividades
+    Actividades
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -140,7 +140,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Tipo pago :
+                                <td>Tipo de pago :
                                 </td>
                                 <td colspan="2">
                                     <div class="control">

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="CentroGasto.aspx.cs" Inherits="IT_Ubicacion.Pages.Admin.CentroGasto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Administración de centro de gasto
+    Centro de gasto
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -29,7 +29,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Agregar nuevo centro de gasto
+                        <h5 class="modal-title">Agregar un nuevo centro de gasto
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -52,7 +52,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Ubicacion :
+                                        <td>Ubicación :
                                         </td>
                                         <td>
                                             <div class="control">
@@ -92,7 +92,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modificar datos de centro de gasto
+                        <h5 class="modal-title">Modificar datos del centro de gasto
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -120,7 +120,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Ubicacion :
+                                        <td>Ubicación :
                                         </td>
                                         <td>
                                             <div class="control">

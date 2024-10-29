@@ -10,15 +10,13 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using IT_Finca.Pages.Admin;
 using System.Globalization;
+using IT_Ubicacion.Pages.AdminCombustible;
+using System.Text;
 
 namespace IT_Finca.Pages.Forms
 {
     public partial class Formulario_Beneficio : System.Web.UI.Page
     {
-        //string cs = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
-        //SqlConnection comn;
-        //SqlDataAdapter adapt;
-        //DataTable dt;
         protected void Page_Load(object sender, EventArgs e)
         {
             Response.AppendHeader("Cache-Control", "no-store");
@@ -52,7 +50,7 @@ namespace IT_Finca.Pages.Forms
         }
         private DataTable GetFilteredData(string fecha)
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM VW_FNC00602 ORDER BY Fecha_Crea,Id_Finca,Lote ASC", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM VW_FNC00602 ORDER BY Fecha_Crea DESC", con);
             cmd.CommandType = System.Data.CommandType.Text;
             con.Open();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -80,65 +78,93 @@ namespace IT_Finca.Pages.Forms
                 throw;
             }
         }
+        protected void Actualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_AC_FNC00602_1", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id_Beneficio", System.Data.SqlDbType.Int).Value = Convert.ToInt32(lbId_Beneficio.Text);
+                cmd.Parameters.AddWithValue("@Id_Empresa", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Empresa"]);
+                cmd.Parameters.AddWithValue("@Id_Finca", System.Data.SqlDbType.Int).Value = Convert.ToInt32(lbId_Finca.Text);
+                cmd.Parameters.AddWithValue("@Id_Lote", System.Data.SqlDbType.Int).Value = Convert.ToInt32(lbId_Lote.Text);
+                cmd.Parameters.AddWithValue("@Id_Proceso", System.Data.SqlDbType.Int).Value = Convert.ToInt32(lbId_Proceso.Text);
+                cmd.Parameters.AddWithValue("@Id_Actividad", System.Data.SqlDbType.Int).Value = Convert.ToInt32(lbId_Actividad.Text);
+                cmd.Parameters.AddWithValue("@Fecha_Crea_V", System.Data.SqlDbType.Date).Value = Convert.ToDateTime(lbFecha_Crea_V.Text);
+                cmd.Parameters.AddWithValue("@Verde_R", System.Data.SqlDbType.Decimal).Value = Convert.ToDecimal(txVerde.Text);
+                cmd.Parameters.AddWithValue("@Maduro_R", System.Data.SqlDbType.Decimal).Value = Convert.ToDecimal(txMaduro.Text);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                ModalAc(false);
+                Response.Redirect("~/Pages/Forms/Formulario_Beneficio.aspx");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         protected void gvBeneficio_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView gv = (GridView)sender;
             gv.PageIndex = e.NewPageIndex;
             TB_Beneficio();
         }
-        protected void gvBeneficio_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
+        protected void gvBeneficio_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
-            gvBeneficio.EditIndex = e.NewEditIndex;
-            TB_Beneficio();
-        }
-        protected void gvBeneficio_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            try
+            if (e.CommandName == "ShowModalAc")
             {
-                // Obtener los nuevos valores de los TextBox
-                TextBox VerdeR = gvBeneficio.Rows[e.RowIndex].FindControl("txt_Verde") as TextBox;
-                TextBox MaduroR = gvBeneficio.Rows[e.RowIndex].FindControl("txt_Maduro") as TextBox;
-                // Obtener el resto de los valores necesarios
-                Label IdBeneficio = gvBeneficio.Rows[e.RowIndex].FindControl("lbl_Id_Beneficio") as Label;
-                Label IdFinca = gvBeneficio.Rows[e.RowIndex].FindControl("lbl_Id_Finca") as Label;
-                Label Finca = gvBeneficio.Rows[e.RowIndex].FindControl("lbl_Finca") as Label;
-                Label IdLote = gvBeneficio.Rows[e.RowIndex].FindControl("lbl_Id_Lote") as Label;
-                Label Lote = gvBeneficio.Rows[e.RowIndex].FindControl("lbl_Lote") as Label;
-                //Label VerdeV = gvBeneficio.Rows[e.RowIndex].FindControl("lbl_Verde") as Label;
-                //Label MaduroV = gvBeneficio.Rows[e.RowIndex].FindControl("lbl_Maduro") as Label;
-                Label FechaCrea = gvBeneficio.Rows[e.RowIndex].FindControl("lbl_Fecha_Crea") as Label;
-                // Abrir la conexión
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ToString()))
-                {
-                    con.Open();
-                    // Llamar al Stored Procedure
-                    using (SqlCommand cmd = new SqlCommand("SP_AG_FNC00604", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Id_Beneficio", Convert.ToInt32(IdBeneficio.Text));
-                        cmd.Parameters.AddWithValue("@Id_Finca", Convert.ToInt32(IdFinca.Text));
-                        cmd.Parameters.AddWithValue("@Finca", Finca.Text);
-                        cmd.Parameters.AddWithValue("@Id_Lote", Convert.ToInt32(IdLote.Text));
-                        cmd.Parameters.AddWithValue("@Lote", Lote.Text);
-                        //cmd.Parameters.AddWithValue("@Verde_V", Convert.ToDecimal(VerdeV.Text));
-                        //cmd.Parameters.AddWithValue("@Maduro_V", Convert.ToDecimal(MaduroV.Text));
-                        cmd.Parameters.AddWithValue("@Fecha_Crea_V", Convert.ToDateTime(FechaCrea.Text));
-                        cmd.Parameters.AddWithValue("@Verde_R", Convert.ToDecimal(VerdeR.Text));
-                        cmd.Parameters.AddWithValue("@Maduro_R", Convert.ToDecimal(MaduroR.Text));
-                        cmd.Parameters.AddWithValue("@Id_Usr_Crea", Convert.ToInt32(Session["Id_Usuario"]));
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                // Finalizar la edición
-                gvBeneficio.EditIndex = -1;
-                TB_Beneficio();
+                ImageButton btndetails = (ImageButton)e.CommandSource;
+                GridViewRow gvrow = (GridViewRow)btndetails.NamingContainer;
+                lbId_Beneficio.Text = gvBeneficio.DataKeys[gvrow.RowIndex].Value.ToString();
+                lbId_Finca.Text = (gvrow.FindControl("gv_Id_Finca") as Label).Text;
+                lbId_Lote.Text = (gvrow.FindControl("gv_Id_Lote") as Label).Text;
+                lbId_Proceso.Text = (gvrow.FindControl("gv_Id_Proceso") as Label).Text;
+                lbId_Actividad.Text = (gvrow.FindControl("gv_Id_Actividad") as Label).Text;
+                lbFecha_Crea_V.Text = (gvrow.FindControl("gvFecha_Crea") as Label).Text;
+                txVerde.Text = (gvrow.FindControl("gv_Verde") as Label).Text;
+                txMaduro.Text = (gvrow.FindControl("gv_Maduro") as Label).Text;
+                ModalAc(true);
             }
-            catch (Exception)
+            if (e.CommandName == "ShowModalEl")
             {
-                // Manejar la excepción, por ejemplo, mostrar un mensaje o registrarla
+                ImageButton btndetails = (ImageButton)e.CommandSource;
+                GridViewRow gvrow = (GridViewRow)btndetails.NamingContainer;
+                lbId_Beneficio.Text = gvBeneficio.DataKeys[gvrow.RowIndex].Value.ToString();
+                txVerde.Text = (gvrow.FindControl("gv_Verde") as Label).Text;
+                ModalEl(true);
             }
         }
-
+        //Traer Modal_Actualizar
+        void ModalAc(bool isDisplay)
+        {
+            StringBuilder builder = new StringBuilder();
+            if (isDisplay)
+            {
+                builder.Append("<script language=JavaScript> ShowModalAc(); </script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowModalAc", builder.ToString());
+            }
+            else
+            {
+                builder.Append("<script language=JavaScript> CloseModalAc(); </script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CloseModalAc", builder.ToString());
+            }
+        }
+        //Traer Modal_Eliminar
+        void ModalEl(bool isDisplay)
+        {
+            StringBuilder builder = new StringBuilder();
+            if (isDisplay)
+            {
+                builder.Append("<script language=JavaScript> ShowModalEl(); </script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ShowModalAc", builder.ToString());
+            }
+            else
+            {
+                builder.Append("<script language=JavaScript> CloseModalEl(); </script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CloseModalAc", builder.ToString());
+            }
+        }
         protected void gvBeneficio_RowCancelingEdit(object sender, System.Web.UI.WebControls.GridViewCancelEditEventArgs e)
         {
             //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
@@ -151,25 +177,30 @@ namespace IT_Finca.Pages.Forms
             {
                 ImageButton btn_Confir = (ImageButton)sender;
                 GridViewRow row = (GridViewRow)btn_Confir.NamingContainer;
-                Label IdBeneficio = row.FindControl("lbl_Id_Beneficio") as Label;
-                Label IdFinca = row.FindControl("lbl_Id_Finca") as Label;
-                Label Finca = row.FindControl("lbl_Finca") as Label;
-                Label IdLote = row.FindControl("lbl_Id_Lote") as Label;
-                Label Lote = row.FindControl("lbl_Lote") as Label;
-                Label FechaCrea = row.FindControl("lbl_Fecha_Crea") as Label;
+                Label IdBeneficio = row.FindControl("gv_Id_Beneficio") as Label;
+                Label IdFinca = row.FindControl("gv_Id_Finca") as Label;
+                Label IdLote = row.FindControl("gv_Id_Lote") as Label;
+                Label IdProceso = row.FindControl("gv_Id_Proceso") as Label;
+                Label IdActividad = row.FindControl("gv_Id_Actividad") as Label;
+                Label FechaCrea = row.FindControl("gvFecha_Crea") as Label;
+                Label VerdeR = row.FindControl("gv_Verde") as Label;
+                Label MaduroR = row.FindControl("gv_Maduro") as Label;
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ToString()))
                 {
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand("SP_AG_FNC00604_1", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Id_Beneficio", Convert.ToInt32(IdBeneficio.Text));
-                        cmd.Parameters.AddWithValue("@Id_Finca", Convert.ToInt32(IdFinca.Text));
-                        cmd.Parameters.AddWithValue("@Finca", Finca.Text);
-                        cmd.Parameters.AddWithValue("@Id_Lote", Convert.ToInt32(IdLote.Text));
-                        cmd.Parameters.AddWithValue("@Lote", Lote.Text);
-                        cmd.Parameters.AddWithValue("@Fecha_Crea_V", Convert.ToDateTime(FechaCrea.Text));
-                        cmd.Parameters.AddWithValue("@Id_Usr_Crea", Convert.ToInt32(Session["Id_Usuario"]));
+                        cmd.Parameters.AddWithValue("@Id_Beneficio", System.Data.SqlDbType.Int).Value = Convert.ToInt32(IdBeneficio.Text);
+                        cmd.Parameters.AddWithValue("@Id_Empresa", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Empresa"]);
+                        cmd.Parameters.AddWithValue("@Id_Finca", System.Data.SqlDbType.Int).Value = Convert.ToInt32(IdFinca.Text);
+                        cmd.Parameters.AddWithValue("@Id_Lote", System.Data.SqlDbType.Int).Value = Convert.ToInt32(IdLote.Text);
+                        cmd.Parameters.AddWithValue("@Id_Proceso", System.Data.SqlDbType.Int).Value = Convert.ToInt32(IdProceso.Text);
+                        cmd.Parameters.AddWithValue("@Id_Actividad", System.Data.SqlDbType.Int).Value = Convert.ToInt32(IdActividad.Text);
+                        cmd.Parameters.AddWithValue("@Fecha_Crea_V", System.Data.SqlDbType.Date).Value = Convert.ToDateTime(FechaCrea.Text);
+                        cmd.Parameters.AddWithValue("@Verde_R", System.Data.SqlDbType.Decimal).Value = Convert.ToDecimal(VerdeR.Text);
+                        cmd.Parameters.AddWithValue("@Maduro_R", System.Data.SqlDbType.Decimal).Value = Convert.ToDecimal(MaduroR.Text);
+                        cmd.Parameters.AddWithValue("@Id_Usr_Crea", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Usuario"]);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -178,7 +209,7 @@ namespace IT_Finca.Pages.Forms
             }
             catch (Exception)
             {
-                // Manejar la excepción, por ejemplo, mostrar un mensaje o registrarla
+                throw;
             }
         }
         //Error con texto en mayuscula

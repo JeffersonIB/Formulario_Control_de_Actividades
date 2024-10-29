@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="RegistroCosecha.aspx.cs" Inherits="IT_Finca.Pages.Admin.Cosecha" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Administración registros cosecha
+    Cosecha
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -116,7 +116,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Tipo pago :
+                                <td>Tipo de pago :
                                 </td>
                                 <td colspan="2">
                                     <div class="control">
@@ -132,7 +132,7 @@
                                     <asp:TextBox ID="txVerde" runat="server" type="number" Text="0" min="0" step="0.01" CssClass="form-control" Style="width: 80%;"></asp:TextBox>
                                 </td>
                                 <td align="center">Maduro
-                                    <asp:TextBox ID="txMaduro" runat="server" type="number" Text="0" min="0" step="0.01" CssClass="form-control" Style="width: 80%;"></asp:TextBox>
+                                    <asp:TextBox ID="txMaduro" runat="server" type="number" Text="0" min="0" step="0.01" CssClass="form-control" Style="width: 40%;"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>

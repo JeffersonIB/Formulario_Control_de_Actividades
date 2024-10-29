@@ -28,6 +28,7 @@
             <br />
             <table>
                 <tr>
+                    <td><h5>Seleccionar usuario</h5></td>
                     <td align="center">
                         <asp:DropDownList ID="ddlUsuarios" runat="server" AutoPostBack="false" CssClass="form-control" Style="width: 100%;">
                         </asp:DropDownList>
@@ -37,7 +38,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="3">
                         <asp:GridView ID="gvAccesosUsuarios"
                             runat="server"
                             DataKeyNames="Id_Usuario"

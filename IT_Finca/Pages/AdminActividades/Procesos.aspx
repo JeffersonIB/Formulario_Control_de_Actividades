@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP1.Master" AutoEventWireup="true" CodeBehind="Procesos.aspx.cs" Inherits="IT_Finca.Pages.Admin.Procesos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title1" runat="server">
-    Administración de procesos
+    Procesos
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head1" runat="server">
 </asp:Content>
@@ -29,7 +29,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Agregar nuevo proceso
+                        <h5 class="modal-title">Agregar un nuevo proceso
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -104,7 +104,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modificar datos de proceso
+                        <h5 class="modal-title">Modificar datos del proceso
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -228,7 +228,7 @@
                         <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nuevo proceso" OnClientClick="ShowModalAg();return false;" Style="width: auto;"/>
                     </td>
                     <td align="center">
-                        <asp:TextBox ID="txtBuscarProceso" runat="server" placeholder="Buscar por proceso" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
+                        <asp:TextBox ID="txtBuscarProceso" runat="server" placeholder="Buscar por nombre de proceso" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                     </td>
                     <td align="center">
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;"/>

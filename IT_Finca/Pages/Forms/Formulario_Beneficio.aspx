@@ -12,7 +12,7 @@
         <title>Formulario de beneficio
         </title>
         <link href="<%= ResolveClientUrl("~/CSS/Admin.css") %>" rel="stylesheet" />
-        <script src="<%= ResolveClientUrl("~/JS/Cale.js") %>"> </script>
+        <script src="<%= ResolveClientUrl("~/JS/Admin.js") %>"> </script>
         <script>
             $(function () {
                 $("#Calendario").datepicker({
@@ -32,6 +32,61 @@
             </center>
         </div>
         <br />
+        <!-- Modal Actualizar -->
+        <div class="modal fade" id="Modal_Actualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modificar registros
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table align="center">
+                            <tr>
+                                <td>
+                                    <asp:Label runat="server" ID="lbId_Beneficio" Visible="false"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="Center">Verde :
+                                </td>
+                                <td align="Center">Maduro :
+                                </td>
+                            </tr>
+                            <br />
+                            <tr>
+                                <td align="Center">
+                                    <asp:TextBox ID="txVerde" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 50%;"></asp:TextBox>
+                                </td>
+                                <td align="Center">
+                                    <asp:TextBox ID="txMaduro" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 50%;"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Label runat="server" ID="lbId_Finca" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="lbId_Lote" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="lbId_Proceso" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="lbId_Actividad" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="lbFecha_Crea_V" Visible="false"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <br />
+                                    <asp:Button runat="server" ID="btActualizar" class="btn btn-round btn-success" Text="Guardar" OnClick="Actualizar_Click" />
+                                    <asp:Button runat="server" ID="btCancelar" class="btn btn-round btn-danger" Text="Cancelar" OnClientClick="CloseModalAc();return false;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Actualizar -->
         <!-- Tabla de Fincas -->
         <center>
             <table>
@@ -77,78 +132,78 @@
                             RowStyle-CssClass="rows"
                             PagerStyle-CssClass="pager"
                             HeaderStyle-CssClass="header"
-                            OnPageIndexChanging="gvBeneficio_OnPageIndexChanging"
-                            OnRowCancelingEdit="gvBeneficio_RowCancelingEdit"
-                            OnRowEditing="gvBeneficio_RowEditing"
-                            OnRowUpdating="gvBeneficio_RowUpdating">
+                            OnRowCommand="gvBeneficio_OnRowCommand"
+                            OnPageIndexChanging="gvBeneficio_OnPageIndexChanging">
                             <Columns>
-                                <asp:TemplateField HeaderText="Id_Beneficio" Visible="false">
+                                <asp:TemplateField HeaderText="Id Beneficio" Visible="true">
                                     <ItemTemplate>
-                                        <asp:Label ID="lbl_Id_Beneficio" runat="server" Text='<%#Eval("Id_Beneficio") %>'></asp:Label>
+                                        <asp:Label ID="gv_Id_Beneficio" runat="server" Text='<%#Eval("Id_Beneficio") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Id_Finca" Visible="false">
+                                <asp:TemplateField HeaderText="Id_Finca" Visible="false" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:Label ID="lbl_Id_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
+                                        <asp:Label ID="gv_Id_Finca" runat="server" Text='<%#Eval("Id_Finca") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Finca">
+                                <asp:TemplateField HeaderText="Finca" Visible="true">
                                     <ItemTemplate>
-                                        <asp:Label ID="lbl_Finca" runat="server" Text='<%#Eval("Finca") %>'></asp:Label>
+                                        <asp:Label ID="gv_Finca" runat="server" Text='<%#Eval("Finca") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Id_Lote" Visible="false">
                                     <ItemTemplate>
-                                        <asp:Label ID="lbl_Id_Lote" runat="server" Text='<%#Eval("Id_Lote") %>'></asp:Label>
+                                        <asp:Label ID="gv_Id_Lote" runat="server" Text='<%#Eval("Id_Lote") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Lote">
+                                <asp:TemplateField HeaderText="Lote" Visible="true">
                                     <ItemTemplate>
-                                        <asp:Label ID="lbl_Lote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
+                                        <asp:Label ID="gv_Lote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Verde">
+                                <asp:TemplateField HeaderText="Id_Proceso" Visible="false">
                                     <ItemTemplate>
-                                        <div align="center">
-                                            <asp:Label ID="lbl_Verde" runat="server" align="center" Text='<%#Eval("Verde") %>'></asp:Label>
-                                        </div>
-                                    </ItemTemplate>
-                                    <EditItemTemplate>
-                                        <div align="center">
-                                            <asp:TextBox ID="txt_Verde" runat="server" type="number" CssClass="form-control" min="0" step="0.01" placeholder="0.00" Text='<%#Eval("Verde") %>' Style="width: 100%;" align="center"></asp:TextBox>
-                                        </div>
-                                    </EditItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Maduro">
-                                    <ItemTemplate>
-                                        <div align="center">
-                                            <asp:Label ID="lbl_Maduro" runat="server" align="center" Text='<%#Eval("Maduro") %>'></asp:Label>
-                                        </div>
-                                    </ItemTemplate>
-                                    <EditItemTemplate>
-                                        <div align="center">
-                                            <asp:TextBox ID="txt_Maduro" runat="server" type="number" CssClass="form-control" min="0" step="0.01" placeholder="0.00" Text='<%#Eval("Maduro") %>' Style="width: 100%;" align="center"></asp:TextBox>
-                                        </div>
-                                    </EditItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Fecha cosecha" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbl_Fecha_Crea" runat="server" Text='<%# Eval("Fecha_Crea", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                        <asp:Label ID="gv_Id_Proceso" runat="server" Text='<%#Eval("Id_Proceso") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Editar">
+                                <asp:TemplateField HeaderText="Proceso" Visible="true">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="btn_Edit" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName="Edit" CommandArgument='<%#Eval("Id_Beneficio") %>' Style="display: block; margin: 0 auto;" />
+                                        <asp:Label ID="gv_Proceso" runat="server" Text='<%#Eval("Proceso") %>'></asp:Label>
                                     </ItemTemplate>
-                                    <EditItemTemplate>
-                                        <asp:ImageButton ID="btn_Update" runat="server" ImageUrl="~/Pages/Img/Calificado.gif" CommandName="Update" CommandArgument='<%#Eval("Id_Beneficio") %>' Style="display: block; margin: 0 auto;" />
-                                        <asp:ImageButton ID="btn_Cancel" runat="server" ImageUrl="~/Pages/Img/Cancelado.gif" CommandName="Cancel" CommandArgument='<%#Eval("Id_Beneficio") %>' Style="display: block; margin: 0 auto;" />
-                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Id_Actividad" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gv_Id_Actividad" runat="server" Text='<%#Eval("Id_Actividad") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Actividad" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gv_Actividad" runat="server" Text='<%#Eval("Actividad") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Verde" Visible="true">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gv_Verde" runat="server" align="center" Text='<%# String.Format("{0:N}", Eval("Verde") )%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Maduro" Visible="true">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gv_Maduro" runat="server" align="center" Text='<%# String.Format("{0:N}", Eval("Maduro") )%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Fecha" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="gvFecha_Crea" runat="server" Text='<%#Eval("Fecha_Crea") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Modificar">
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/Pages/Img/Editar.png" CommandName="ShowModalAc" CommandArgument='<%#Eval("Id_Beneficio") %>' Style="display: block; margin: 0 auto;" />
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Confirmar">
                                     <ItemTemplate>
                                         <asp:ImageButton ID="btn_Confir" runat="server" ImageUrl="~/Pages/Img/Calificado.gif" OnClick="btn_Confir_Click" CommandArgument='<%#Eval("Id_Beneficio") %>' Style="display: block; margin: 0 auto;" />
-                                    </ItemTemplate>                                   
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
