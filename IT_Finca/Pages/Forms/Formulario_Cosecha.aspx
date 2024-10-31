@@ -11,8 +11,6 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
         <title></title>
-        <%--<link href="<%= ResolveClientUrl("~/CSS/Default.css") %>" rel="stylesheet" />--%>
-        <%--<script src="<%= ResolveClientUrl("~/JS/Forms.js") %>"> </script>--%>
         <script type="text/javascript">
             var color = 'White';
             function changeColor(obj) {
@@ -43,6 +41,20 @@
                     if (checkboxes[i].type === "checkbox") {
                         checkboxes[i].checked = document.getElementById(id).checked;
                         changeColor(checkboxes[i]);
+                    }
+                }
+            }
+            function filterEmployees() {
+                var searchText = document.getElementById('txtSearch').value.toLowerCase();
+                var checkboxes = document.getElementById('<%= CheckBoxListEmpleados.ClientID %>').getElementsByTagName('input');
+
+                for (var i = 0; i < checkboxes.length; i++) {
+                    var checkbox = checkboxes[i];
+                    var employeeName = checkbox.parentNode.innerText.toLowerCase();
+                    if (employeeName.indexOf(searchText) > -1) {
+                        checkbox.parentNode.style.display = 'block';
+                    } else {
+                        checkbox.parentNode.style.display = 'none';
                     }
                 }
             }
@@ -110,13 +122,14 @@
                 </center>
                 <table align="center" style="width: 100%;">
                     <tr>
-                        <td><h5>Lote</h5>
-                                <div class="control">
-                                    <div class="select">
-                                        <asp:DropDownList ID="ddlLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLotes_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                        </asp:DropDownList>
-                                    </div>
+                        <td>
+                            <h5>Lote</h5>
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="ddlLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLotes_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
                                 </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -132,13 +145,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><h5>Proceso</h5>
-                                <div class="control">
-                                    <div class="select">
-                                        <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                        </asp:DropDownList>
-                                    </div>
+                        <td>
+                            <h5>Proceso</h5>
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
                                 </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -147,13 +161,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><h5>Tipo de pago</h5>
-                                <div class="control">
-                                    <div class="select">
-                                        <asp:DropDownList ID="dllTipoActividad" runat="server" AutoPosBack="true" CssClass="form-control" Style="width: 100%;">
-                                        </asp:DropDownList>
-                                    </div>
+                        <td>
+                            <h5>Tipo de pago</h5>
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="dllTipoActividad" runat="server" AutoPosBack="true" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
                                 </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -169,13 +184,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><h5>Actividad</h5>
-                                        <div class="control">
-                                            <div class="select">
-                                                <asp:DropDownList ID="dllActividad" runat="server" AutoPosBack="true" CssClass="form-control" Style="width: 100%;">
-                                                </asp:DropDownList>
-                                            </div>
-                                        </div>
+                        <td>
+                            <h5>Actividad</h5>
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="dllActividad" runat="server" AutoPosBack="true" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
                         </td>
                         <tr>
                             <td>
@@ -183,7 +199,8 @@
                             </td>
                         </tr>
                     <tr>
-                        <td><h5>Proveedores</h5>
+                        <td>
+                            <h5>Proveedores</h5>
                         </td>
                     </tr>
                     <tr>
@@ -215,7 +232,25 @@
                             <label>
                                 <h5>Los registros se cargan en <strong>libras </strong></h5>
                             </label>
-                            <asp:GridView ID="GridViewCalificaciones" runat="server" AutoGenerateColumns="False">
+                            <asp:GridView
+                                ID="GridViewCalificaciones"
+                                runat="server"
+                                CssClass="mydatagrid"
+                                GridLines="both"
+                                GroupingEnabled="true"
+                                AllowPaging="true"
+                                HorizontalAlign="Center"
+                                ShowHeaderWhenEmpty="True"
+                                EmptyDataText="Sin registros"
+                                EmptyDataRowStyle-ForeColor="Red"
+                                RowStyle-CssClass="rows"
+                                PagerStyle-CssClass="pager"
+                                HeaderStyle-CssClass="header"
+                                AutoGenerateColumns="False"
+                                AutoGenerateEditButton="False"
+                                AutoGenerateDeleteButton="False"
+                                OnRowDeleting="GridViewCalificaciones_RowDeleting"
+                                Visible="false">
                                 <Columns>
                                     <asp:BoundField DataField="Id_Empleado" HeaderText="ID Proveedor" Visible="false" />
                                     <asp:BoundField DataField="Nom_Ape" HeaderText="Nombre proveedor" />
@@ -229,6 +264,7 @@
                                             <asp:TextBox ID="txtMaduro" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" HeaderText="Eliminar" DeleteText="Eliminar" ControlStyle-CssClass="btn btn-danger" />
                                 </Columns>
                             </asp:GridView>
                         </ContentTemplate>

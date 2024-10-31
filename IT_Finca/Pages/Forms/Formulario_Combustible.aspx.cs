@@ -297,25 +297,39 @@ namespace IT_Ubicacion.Pages.Forms
                     Label idProceso = (Label)row.FindControl("lblId_Proceso");
                     Label idCentroGasto = (Label)row.FindControl("lblId_CentroGasto");
                     Label idClasificacion = (Label)row.FindControl("lblId_Clasificacion");
-                    Label dateFecha = (Label)row.FindControl("DateFecha");
+                    Label dateFecha = (Label)row.FindControl("Fecha");
                     Label numNoVale = (Label)row.FindControl("lblNumNoVale");
                     Label numKilometraje = (Label)row.FindControl("lblKilometraje");
                     Label numCantidad = (Label)row.FindControl("lblCantidad");
                     Label comentario = (Label)row.FindControl("lblComentario");
 
-                    cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Decimal).Value = Session["Id_Empresa"];
+                    cmd.Parameters.Add("@Id_Empresa", System.Data.SqlDbType.Int).Value = Session["Id_Empresa"];
                     cmd.Parameters.Add("@Id_TipoCombustible", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idTipoCombustible.Text);
                     cmd.Parameters.Add("@Id_CentroAnalisis", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idCentroAnalisis.Text);
-                    cmd.Parameters.Add("@Id_Ubicacion", System.Data.SqlDbType.Decimal).Value = Convert.ToInt32(idUbicacion.Text);
+                    cmd.Parameters.Add("@Id_Ubicacion", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idUbicacion.Text);
                     cmd.Parameters.Add("@Id_Proceso", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idProceso.Text);
                     cmd.Parameters.Add("@Id_CentroGasto", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idCentroGasto.Text);
                     cmd.Parameters.Add("@Id_Clasificacion", System.Data.SqlDbType.Int).Value = Convert.ToInt32(idClasificacion.Text);
-                    cmd.Parameters.Add("@Fecha", System.Data.SqlDbType.Date).Value = Convert.ToDateTime(dateFecha.Text);
+                    DateTime fecha;
+                    if (DateTime.TryParseExact(dateFecha.Text, "dd/MM/yyyy",
+                        System.Globalization.CultureInfo.InvariantCulture,
+                        System.Globalization.DateTimeStyles.None, out fecha))
+                    {
+                        cmd.Parameters.Add("@Fecha", System.Data.SqlDbType.Date).Value = fecha;
+                    }
+                    else
+                    {
+                        // Maneja el error si la fecha no tiene un formato válido
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert",
+                            "swal('Error!', 'Formato de fecha inválido!', 'error')", true);
+                        return;
+                    }
+                    //cmd.Parameters.Add("@Fecha", System.Data.SqlDbType.Date).Value = Convert.ToDateTime(dateFecha.Text);
                     cmd.Parameters.Add("@NoVale", System.Data.SqlDbType.Int).Value = Convert.ToInt32(numNoVale.Text);
                     cmd.Parameters.Add("@Kilometraje", System.Data.SqlDbType.Decimal).Value = Convert.ToDecimal(numKilometraje.Text);
                     cmd.Parameters.Add("@Cantidad", System.Data.SqlDbType.Decimal).Value = Convert.ToDecimal(numCantidad.Text);
-                    cmd.Parameters.Add("@Comentario", System.Data.SqlDbType.NVarChar).Value = comentario.Text;
-                    cmd.Parameters.Add("@Id_Usr_Crea", System.Data.SqlDbType.Decimal).Value = Session["Id_Usuario"];
+                    cmd.Parameters.Add("@Comentario", System.Data.SqlDbType.VarChar).Value = comentario.Text;
+                    cmd.Parameters.Add("@Id_Usr_Crea", System.Data.SqlDbType.Int).Value = Session["Id_Usuario"];
 
                     con.Open();
                     cmd.ExecuteNonQuery();

@@ -201,35 +201,50 @@ namespace IT_Finca.Pages.Forms
         }
         protected void AgregarEmpleados_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Id_Empleado", typeof(int));
-            dt.Columns.Add("Nom_Ape", typeof(string));
+            GridViewCalificaciones.Visible = true;
+            // Recupera el DataTable desde ViewState o crea uno nuevo si no existe
+            DataTable dt = ViewState["EmpleadosDataTable"] as DataTable ?? new DataTable();
+            if (dt.Columns.Count == 0)
+            {
+                dt.Columns.Add("Id_Empleado", typeof(int));
+                dt.Columns.Add("Nom_Ape", typeof(string));
+            }
+
+            // Agrega nuevos empleados seleccionados al DataTable
             foreach (ListItem item in CheckBoxListEmpleados.Items)
             {
                 if (item.Selected)
                 {
-                    // Agregar empleado al DataTable
-                    DataRow dr = dt.NewRow();
-                    dr["Id_Empleado"] = Convert.ToInt32(item.Value);
-                    dr["Nom_Ape"] = item.Text;
-                    dt.Rows.Add(dr);
+                    bool empleadoExistente = dt.AsEnumerable().Any(row => row.Field<int>("Id_Empleado") == Convert.ToInt32(item.Value));
+                    if (!empleadoExistente) // Evita duplicados
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr["Id_Empleado"] = Convert.ToInt32(item.Value);
+                        dr["Nom_Ape"] = item.Text;
+                        dt.Rows.Add(dr);
+                    }
                 }
             }
-            // Enlazar el DataTable al GridView
+
+            // Enlaza el DataTable actualizado al GridView
             GridViewCalificaciones.DataSource = dt;
             GridViewCalificaciones.DataBind();
-            // Evaluar si ddlActividad2 o ddlActividad3 fueron seleccionados
+
+            // Establece la visibilidad de las columnas según las selecciones
             bool ddlActividad1Selected = ddlActividad1.SelectedIndex > 0;
             bool ddlActividad2Selected = ddlActividad2.SelectedIndex > 0;
             bool ddlActividad3Selected = ddlActividad3.SelectedIndex > 0;
-            // Mostrar u ocultar las columnas según las selecciones
-            GridViewCalificaciones.Columns[4].Visible = ddlActividad1Selected; // Índice de la columna "Manzanas"
-            GridViewCalificaciones.Columns[5].Visible = ddlActividad1Selected; // Índice de la columna "Cantidad1"
-            GridViewCalificaciones.Columns[6].Visible = ddlActividad2Selected; // Índice de la columna "Cantidad2"
-            GridViewCalificaciones.Columns[7].Visible = ddlActividad3Selected; // Índice de la columna "Cantidad3"            
-            ViewState["EmpleadosDataTable"] = dt; // Guardar DataTable en ViewState
-            Insertar.Visible = true;
+
+            GridViewCalificaciones.Columns[4].Visible = ddlActividad1Selected; // Manzanas
+            GridViewCalificaciones.Columns[5].Visible = ddlActividad1Selected; // Cantidad1
+            GridViewCalificaciones.Columns[6].Visible = ddlActividad2Selected; // Cantidad2
+            GridViewCalificaciones.Columns[7].Visible = ddlActividad3Selected; // Cantidad3
+
+            // Almacena el DataTable en ViewState y muestra el botón Insertar si hay filas
+            ViewState["EmpleadosDataTable"] = dt;
+            Insertar.Visible = dt.Rows.Count > 0;
         }
+
         protected void GridViewCalificaciones_RowCreated(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -252,6 +267,27 @@ namespace IT_Finca.Pages.Forms
                 }
             }
         }
+        protected void GridViewCalificaciones_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            DataTable dt = (DataTable)ViewState["EmpleadosDataTable"];
+
+            if (dt != null)
+            {
+                dt.Rows.RemoveAt(rowIndex); // Elimina la fila seleccionada
+                ViewState["EmpleadosDataTable"] = dt;
+                Session["GridViewData"] = dt;
+            }
+            BindGridView();
+        }
+
+        private void BindGridView()
+        {
+            DataTable dt = (DataTable)ViewState["EmpleadosDataTable"];
+            GridViewCalificaciones.DataSource = dt;
+            GridViewCalificaciones.DataBind();
+        }
+
         protected void Insertar_Click(object sender, EventArgs e)
         {
             try

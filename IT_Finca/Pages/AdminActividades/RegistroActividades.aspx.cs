@@ -323,7 +323,7 @@ namespace IT_Finca.Pages.Admin
                 cmd.ExecuteNonQuery();
                 con.Close();
                 ModalAc(false);
-                Response.Redirect("~/Pages/AdminActividades/Registros.aspx");
+                Response.Redirect("~/Pages/AdminActividades/RegistroActividades.aspx");
             }
             catch (Exception)
             {

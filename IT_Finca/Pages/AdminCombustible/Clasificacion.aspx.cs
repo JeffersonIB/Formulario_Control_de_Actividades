@@ -264,9 +264,9 @@ namespace IT_Ubicacion.Pages.Admin
             {
                 SqlCommand cmd = new SqlCommand("SP_AC_FNC00408", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id_Clasificacion", lbId_Clasificacion.Text);
+                cmd.Parameters.AddWithValue("@Id_Clasificacion", System.Data.SqlDbType.Int).Value = lbId_Clasificacion.Text;
                 cmd.Parameters.AddWithValue("@Id_Empresa", System.Data.SqlDbType.Int).Value = ddEmpresas.Text;
-                cmd.Parameters.AddWithValue("@Id_Ubicacion", System.Data.SqlDbType.Int).Value = ddCentroGasto.Text;
+                cmd.Parameters.AddWithValue("@Id_CentroGasto", System.Data.SqlDbType.Int).Value = ddCentroGasto.Text;
                 cmd.Parameters.AddWithValue("@Clasificacion", System.Data.SqlDbType.VarChar).Value = txClasificacion.Text;
                 con.Open();
                 cmd.ExecuteNonQuery();

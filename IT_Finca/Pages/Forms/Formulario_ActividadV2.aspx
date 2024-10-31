@@ -123,13 +123,14 @@
                 </center>
                 <table align="center" style="width: 100%;">
                     <tr>
-                        <td><h5>Lote</h5>
-                                <div class="control">
-                                    <div class="select">
-                                        <asp:DropDownList ID="ddlLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLotes_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                        </asp:DropDownList>
-                                    </div>
+                        <td>
+                            <h5>Lote</h5>
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="ddlLotes" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLotes_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
                                 </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -145,13 +146,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><h5>Proceso</h5>
-                                <div class="control">
-                                    <div class="select">
-                                        <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                        </asp:DropDownList>
-                                    </div>
+                        <td>
+                            <h5>Proceso</h5>
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="ddlProcesos" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProcesos_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
                                 </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -167,13 +169,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><h5>Actividad 1</h5>
-                                <div class="control">
-                                    <div class="select">
-                                        <asp:DropDownList ID="ddlActividad1" runat="server" AutoPosBack="true" OnSelectedIndexChanged="ddlActividad1_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
-                                        </asp:DropDownList>
-                                    </div>
+                        <td>
+                            <h5>Actividad 1</h5>
+                            <div class="control">
+                                <div class="select">
+                                    <asp:DropDownList ID="ddlActividad1" runat="server" AutoPosBack="true" OnSelectedIndexChanged="ddlActividad1_OnSelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    </asp:DropDownList>
                                 </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -191,7 +194,9 @@
                     <tr>
                         <td>
                             <p>
-                                <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample"><h5>Actividad 2 ↓ </h5></a>
+                                <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <h5>Actividad 2 ↓ </h5>
+                                </a>
                             </p>
                             <div class="collapse" id="collapseExample2">
                                 <asp:DropDownList ID="ddlActividad2" runat="server" AutoPosBack="true" OnSelectedIndexChanged="ddlActividad2_OnSelectedIndexChanged" Style="width: 100%;" CssClass="form-control">
@@ -202,7 +207,8 @@
                     <tr>
                         <td>
                             <p>
-                                <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample"><h5>Actividad 3 ↓</h5>
+                                <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <h5>Actividad 3 ↓</h5>
                                 </a>
                             </p>
                             <div class="collapse" id="collapseExample3">
@@ -217,7 +223,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><h5>Proveedores</h5>
+                        <td>
+                            <h5>Proveedores</h5>
                         </td>
                     </tr>
                     <tr>
@@ -246,7 +253,25 @@
                 <td>
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
-                            <asp:GridView ID="GridViewCalificaciones" runat="server" AutoGenerateColumns="False" OnRowCreated="GridViewCalificaciones_RowCreated">
+                            <asp:GridView
+                                ID="GridViewCalificaciones"
+                                runat="server"
+                                CssClass="mydatagrid"
+                                GridLines="both"
+                                GroupingEnabled="true"
+                                AllowPaging="true"
+                                HorizontalAlign="Center"
+                                ShowHeaderWhenEmpty="True"
+                                EmptyDataText="Sin registros"
+                                EmptyDataRowStyle-ForeColor="Red"
+                                RowStyle-CssClass="rows"
+                                PagerStyle-CssClass="pager"
+                                HeaderStyle-CssClass="header"
+                                AutoGenerateColumns="False"
+                                AutoGenerateEditButton="False"
+                                AutoGenerateDeleteButton="False"
+                                OnRowDeleting="GridViewCalificaciones_RowDeleting"
+                                Visible="false">
                                 <Columns>
                                     <asp:BoundField DataField="Id_Empleado" HeaderText="ID Proveedor" Visible="false" />
                                     <asp:TemplateField HeaderText="Id_Empleado" ItemStyle-CssClass="hidden-column" Visible="false">
@@ -289,6 +314,7 @@
                                             <asp:TextBox ID="txtCantidad3" runat="server" type="number" CssClass="form-control" Text="0" min="0" step="0.01" placeholder="0.00" Style="width: 100%;"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" HeaderText="Eliminar" DeleteText="Eliminar" ControlStyle-CssClass="btn btn-danger" />
                                 </Columns>
                             </asp:GridView>
                         </ContentTemplate>

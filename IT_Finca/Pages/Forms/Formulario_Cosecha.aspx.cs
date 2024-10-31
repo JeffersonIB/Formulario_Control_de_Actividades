@@ -140,9 +140,9 @@ namespace IT_Finca.Pages.Forms
         {
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("SP_FNC00202", con);
+                SqlCommand cmd = new SqlCommand("SP_CN_FNC00201", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = Session["Id_Finca"].ToString();
+                cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = Convert.ToInt32(Session["Id_Finca"]);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Employee> empleados = new List<Employee>();
@@ -160,6 +160,15 @@ namespace IT_Finca.Pages.Forms
                 CheckBoxListEmpleados.DataTextField = "Nom_Ape";
                 CheckBoxListEmpleados.DataValueField = "Id_Empleado";
                 CheckBoxListEmpleados.DataBind();
+
+                // Generar el código JavaScript para cargar los nombres de empleados en el cliente
+                List<string> empleadosNombres = new List<string>();
+                foreach (Employee empleado in empleados)
+                {
+                    empleadosNombres.Add(empleado.Nom_Ape);
+                }
+                string empleadosNombresJson = string.Join(",", empleadosNombres.Select(name => "\"" + name + "\""));
+                Page.ClientScript.RegisterStartupScript(GetType(), "LoadEmployees", $"var empleados = [{empleadosNombresJson}];", true);
             }
         }
         public class Employee
@@ -180,7 +189,17 @@ namespace IT_Finca.Pages.Forms
         }
         protected void AgregarEmpleados_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = (DataTable)ViewState["CalificacionesDataTable"];
+            GridViewCalificaciones.Visible = true;
+            DataTable dataTable = ViewState["CalificacionesDataTable"] as DataTable;
+            if (dataTable == null)
+            {
+                // Inicializa el DataTable si es la primera vez
+                dataTable = new DataTable();
+                dataTable.Columns.Add("Id_Empleado", typeof(string));
+                dataTable.Columns.Add("Nom_Ape", typeof(string));
+                ViewState["CalificacionesDataTable"] = dataTable;
+            }
+
             bool empleadoRepetido = false;
 
             foreach (ListItem item in CheckBoxListEmpleados.Items)
@@ -189,20 +208,16 @@ namespace IT_Finca.Pages.Forms
                 {
                     string idEmpleado = item.Value;
                     string nombreEmpleado = item.Text;
-                    // Validar si el empleado ya está cargado en el GridView
-                    bool empleadoExistente = false;
-                    foreach (GridViewRow row in GridViewCalificaciones.Rows)
+
+                    // Verifica si el empleado ya existe en el DataTable
+                    bool empleadoExistente = dataTable.AsEnumerable().Any(row => row["Id_Empleado"].ToString() == idEmpleado);
+                    if (empleadoExistente)
                     {
-                        Label labelIdEmpleado = (Label)row.FindControl("LabelIdEmpleado");
-                        if (labelIdEmpleado != null && labelIdEmpleado.Text == idEmpleado)
-                        {
-                            empleadoExistente = true;
-                            empleadoRepetido = true;
-                            break;
-                        }
+                        empleadoRepetido = true;
                     }
-                    if (!empleadoExistente)
+                    else
                     {
+                        // Agrega una nueva fila para el empleado
                         DataRow newRow = dataTable.NewRow();
                         newRow["Id_Empleado"] = idEmpleado;
                         newRow["Nom_Ape"] = nombreEmpleado;
@@ -210,22 +225,43 @@ namespace IT_Finca.Pages.Forms
                     }
                 }
             }
-            GridViewCalificaciones.DataSource = dataTable;
-            GridViewCalificaciones.DataBind();
+
+            // Actualiza el ViewState y enlaza al GridView
+            ViewState["CalificacionesDataTable"] = dataTable;
+            BindGridView();
+
+            // Deselecciona los elementos del CheckBoxList
             foreach (ListItem item in CheckBoxListEmpleados.Items)
             {
                 item.Selected = false;
             }
-            if (empleadoRepetido)
-            {
-                LabelError.Text = "No se pueden agregar empleados duplicados.";
-            }
-            else
-            {
-                LabelError.Text = "";
-            }
+
+            // Muestra mensaje si hay empleados duplicados
+            LabelError.Text = empleadoRepetido ? "No se pueden agregar empleados duplicados." : "";
             Insertar.Visible = GridViewCalificaciones.Rows.Count > 0;
         }
+
+        protected void GridViewCalificaciones_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            DataTable dt = (DataTable)ViewState["CalificacionesDataTable"]; // Usa el mismo nombre de ViewState
+
+            if (dt != null && dt.Rows.Count > rowIndex)
+            {
+                dt.Rows.RemoveAt(rowIndex); // Elimina la fila en el índice especificado
+                ViewState["CalificacionesDataTable"] = dt; // Actualiza el ViewState con la nueva tabla
+            }
+
+            BindGridView(); // Refresca el GridView
+        }
+
+        private void BindGridView()
+        {
+            DataTable dt = (DataTable)ViewState["CalificacionesDataTable"];
+            GridViewCalificaciones.DataSource = dt;
+            GridViewCalificaciones.DataBind();
+        }
+
         protected void Insertar_Click(object sender, EventArgs e)
         {
             Insertar.Visible = false;

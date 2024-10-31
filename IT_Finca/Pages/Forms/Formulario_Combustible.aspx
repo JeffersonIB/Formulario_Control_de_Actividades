@@ -284,7 +284,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:Label ID="DateFecha" runat="server" Text='<%# Eval("Fecha", "{0:dd/MM/yyyy}") %>'>
+                                            <asp:Label ID="Fecha" runat="server" Text='<%# Eval("Fecha", "{0:dd/MM/yyyy}") %>'>
                                             </asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
