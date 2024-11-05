@@ -139,7 +139,7 @@ namespace IT_Finca.Pages.Admin
                 cmd.Parameters.Add("@Id_Finca", System.Data.SqlDbType.Int).Value = ddlFincas.Text;
                 cmd.Parameters.Add("@Lote", System.Data.SqlDbType.VarChar).Value = txtLote.Text;
                 cmd.Parameters.Add("@Manzanas", System.Data.SqlDbType.Int).Value = txtManzanas.Text;
-                cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.VarChar).Value = 1;
+                cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.Int).Value = Session["Id_Usuario"].ToString();
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();

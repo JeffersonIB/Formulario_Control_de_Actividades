@@ -310,12 +310,12 @@
                                         <asp:Label ID="gvDPI" runat="server" Text='<%#Eval("DPI") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Verde" Visible="true">
+                                <asp:TemplateField HeaderText="Verde" Visible="true" ItemStyle-HorizontalAlign="right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvVerde" runat="server" Text='<%#Eval("Verde") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Maduro" Visible="true">
+                                <asp:TemplateField HeaderText="Maduro" Visible="true" ItemStyle-HorizontalAlign="right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvMaduro" runat="server" Text='<%#Eval("Maduro") %>'></asp:Label>
                                     </ItemTemplate>

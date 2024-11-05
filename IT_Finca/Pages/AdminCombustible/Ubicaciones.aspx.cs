@@ -114,7 +114,7 @@ namespace IT_Ubicacion.Pages.AdminCombustible
                 cmd.Parameters.Add("@Ciudad", System.Data.SqlDbType.VarChar).Value = txtCiudad.Text;
                 cmd.Parameters.Add("@Direccion", System.Data.SqlDbType.VarChar).Value = txtDireccion.Text;
                 cmd.Parameters.Add("@Telefono", System.Data.SqlDbType.VarChar).Value = txtTelefono.Text;
-                cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.VarChar).Value = 1;
+                cmd.Parameters.Add("@Id_Usuario", System.Data.SqlDbType.Int).Value = Session["Id_Usuario"].ToString();
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();

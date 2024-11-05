@@ -15,7 +15,7 @@ namespace IT_Finca.Pages.Forms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!IsPostBack && Session["Usuario"] != null)
             {
                 lblFinca.Text = Session["Finca"].ToString();
                 CargarLotes();

@@ -281,13 +281,13 @@
             <table>
                 <tr>
                     <td align="center">
-                        <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nueva actividad" OnClientClick="ShowModalAg();return false;" Style="width: auto;"/>
+                        <asp:Button ID="Button1" runat="server" class="btn btn-round btn-primary" Text="Nueva actividad" OnClientClick="ShowModalAg();return false;" Style="width: auto;" />
                     </td>
                     <td align="center">
                         <asp:TextBox ID="txtBuscarActividad" runat="server" placeholder="Buscar por nombre de actividad" CssClass="form-control" MaxLength="200" Style="width: 100%;"></asp:TextBox>
                     </td>
                     <td align="center">
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;"/>
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-round btn-success" OnClick="btnBuscar_Click" Style="width: auto;" />
                     </td>
                 </tr>
                 <tr>
@@ -312,10 +312,12 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Id_Empresa" Visible="false">
                                     <ItemTemplate>
-                                        <asp:Label ID="gvId_Empresa" runat="server" Text='<%#Eval("Id_Empresa") %>'></asp:Label>
+                                        <asp:Label ID="gvId_Empresa" runat="server" Text='<%# Eval("Id_Empresa") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Empresa" Visible="true">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" />
                                     <ItemTemplate>
                                         <asp:Label ID="gvEmpresa" runat="server" Text='<%#Eval("Empresa") %>'></asp:Label>
                                     </ItemTemplate>
@@ -360,18 +362,14 @@
                                         <asp:Label ID="gvActividad" runat="server" Text='<%#Eval("Actividad") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Costo día" Visible="true">
-                                    <ItemTemplate>
-                                        <div style="text-align: center;">
-                                            <asp:Label ID="gvCosto_Dia" runat="server" Text='<%#Eval("Costo_Dia") %>'></asp:Label>
-                                        </div>
+                                <asp:TemplateField HeaderText="Costo por día" Visible="true" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>                                         
+                                            <asp:Label ID="gvCosto_Dia" runat="server" Text='<%#Eval("Costo_Dia") %>'></asp:Label>                                         
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Costo productividad" Visible="true">
-                                    <ItemTemplate>
-                                        <div style="text-align: center;">
-                                            <asp:Label ID="gvCosto_Produccion" runat="server" Text='<%#Eval("Costo_Produccion") %>'></asp:Label>
-                                        </div>
+                                <asp:TemplateField HeaderText="Costo productividad" Visible="true" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>                                         
+                                            <asp:Label ID="gvCosto_Produccion" runat="server" Text='<%#Eval("Costo_Produccion") %>'></asp:Label>                                         
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Modificar">

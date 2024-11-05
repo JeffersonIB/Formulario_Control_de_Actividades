@@ -11,6 +11,8 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">
         <title></title>
+        <link href="<%= ResolveClientUrl("~/CSS/Admin.css") %>" rel="stylesheet" />
+        <script src="<%= ResolveClientUrl("~/JS/Cale.js") %>"> </script>
         <script type="text/javascript">
             var color = 'White';
             function changeColor(obj) {
@@ -272,7 +274,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td align="center">
                     <div class="ml-auto">
                         <asp:Button ID="Insertar" runat="server" class="btn btn-round btn-success" Text="Insertar" ValidationGroup="Validate" OnClick="Insertar_Click" Visible="false" />
                     </div>

@@ -276,7 +276,7 @@
                                         <asp:Label ID="gvLote" runat="server" Text='<%#Eval("Lote") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Manzanas" Visible="true">
+                                <asp:TemplateField HeaderText="Manzanas" Visible="true" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:Label ID="gvManzanas" runat="server" Text='<%#Eval("Manzanas") %>'></asp:Label>
                                     </ItemTemplate>

@@ -101,7 +101,7 @@
                                         <asp:Label ID="gvMenu" runat="server" Text='<%#Eval("Menu") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Pagina" Visible="true">
+                                <asp:TemplateField HeaderText="Página" Visible="true">
                                     <ItemTemplate>
                                         <asp:Label ID="gvPagina" runat="server" Text='<%#Eval("Pagina") %>'></asp:Label>
                                     </ItemTemplate>

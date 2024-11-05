@@ -164,6 +164,7 @@
     <Content Include="Pages\Forms\Formulario_Secado.aspx" />
     <Content Include="Pages\Forms\Formulario_Beneficio.aspx" />
     <Content Include="Pages\Forms\Formulario_Cosecha.aspx" />
+    <Content Include="Pages\Forms\Formulario_SecadoV2.aspx" />
     <Content Include="Pages\Forms\LasMinas.aspx" />
     <Content Include="Pages\Forms\LasVegas.aspx" />
     <Content Include="Pages\Forms\Linea18.aspx" />
@@ -2568,6 +2569,13 @@
     </Compile>
     <Compile Include="Pages\Forms\Formulario_Cosecha.aspx.designer.cs">
       <DependentUpon>Formulario_Cosecha.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Forms\Formulario_SecadoV2.aspx.cs">
+      <DependentUpon>Formulario_SecadoV2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Forms\Formulario_SecadoV2.aspx.designer.cs">
+      <DependentUpon>Formulario_SecadoV2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Forms\LasMinas.aspx.cs">
       <DependentUpon>LasMinas.aspx</DependentUpon>

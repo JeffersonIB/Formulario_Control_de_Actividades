@@ -336,7 +336,7 @@
                                         <asp:Label ID="gvTipo_Actividad1" runat="server" Text='<%#Eval("Tipo_de_Pago1") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Rendimiento" Visible="true">
+                                <asp:TemplateField HeaderText="Rendimiento" Visible="true" ItemStyle-HorizontalAlign="right">
                                     <ItemTemplate>
                                         <asp:Label ID="gvCantidad1" runat="server" Text='<%#Eval("Cantidad1") %>'></asp:Label>
                                     </ItemTemplate>
