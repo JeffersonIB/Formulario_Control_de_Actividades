@@ -192,7 +192,7 @@ namespace IT_Finca.Pages.Forms
                             cmd.Parameters.AddWithValue("@Id_Lote", idLote);
                             cmd.Parameters.AddWithValue("@Id_Proceso", idProceso);
                             cmd.Parameters.AddWithValue("@Cantidad", cantidad);
-                            cmd.Parameters.AddWithValue("@Fecha_Crea_R", fecha);
+                            cmd.Parameters.AddWithValue("@Fecha_Crea_R", fecha.ToString("yyyy-MM-dd"));
                             cmd.Parameters.AddWithValue("@Id_Tipo_Secado", idTipoSecado);                            
                             cmd.Parameters.AddWithValue("@Id_Partida", idPartida);
                             cmd.Parameters.AddWithValue("@Id_Usr_Crea", System.Data.SqlDbType.Int).Value = Session["Id_Usuario"].ToString();

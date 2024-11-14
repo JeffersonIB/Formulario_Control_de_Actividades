@@ -77,7 +77,7 @@
                             ID="GridViewResultados"
                             runat="server"
                             DataKeyNames="Id_Beneficio"
-                            PageSize="17"
+                            PageSize="1700"
                             CssClass="mydatagrid"
                             GridLines="both"
                             GroupingEnabled="true"
@@ -92,14 +92,14 @@
                             HeaderStyle-CssClass="header"
                             OnPageIndexChanging="GridViewResultados_PageIndexChanging">
                             <Columns>
-                                <asp:TemplateField HeaderText="Id Beneficio" Visible="true">
+                                <asp:TemplateField HeaderText="Id Beneficio" Visible="true" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:Label ID="lbl_Id_Beneficio" runat="server" Text='<%#Eval("Id_Beneficio") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Fecha beneficio" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:Label ID="lbl_Fecha_Crea" runat="server" Text='<%# Eval("Fecha_Crea", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                        <asp:Label ID="lbl_Fecha_Crea" runat="server" Text='<%# Eval("Fecha_Crea", "{0:yyyy/MM/dd}") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Id_Empresa" Visible="false">

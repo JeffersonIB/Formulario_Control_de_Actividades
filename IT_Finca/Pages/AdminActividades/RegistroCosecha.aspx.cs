@@ -295,7 +295,7 @@ namespace IT_Finca.Pages.Admin
                 cmd.ExecuteNonQuery();
                 con.Close();
                 ModalEl(false);
-                Response.Redirect("~/Pages/AdminActividades/Cosecha.aspx");
+                Response.Redirect("~/Pages/AdminActividades/RegistroCosecha.aspx");
             }
             catch (Exception)
             {
